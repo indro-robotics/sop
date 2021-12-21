@@ -3,6 +3,8 @@ import 'text_fields.dart';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'dart:async';
 import 'dart:io';
+import 'dart:typed_data';
+
 
 void main() => runApp(MyApp());
 /// This Widget is the main application widget.
@@ -21,28 +23,47 @@ TextEditingController emailController = TextEditingController();
 TextEditingController subjectController = TextEditingController();
 TextEditingController messageController = TextEditingController();
 
-
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
 }
+
 class _HomeState extends State<Home> {
+  // By defaut, the checkbox is unchecked and "agree" is "false"
+  bool agree = false;
+  // This function is triggered when the button is clicked
+  void _doSomething() {
+    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Screen2()));
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: FlatButton(
-          color: Colors.teal,
-          textColor: Colors.white,
-          onPressed: () {
-            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Screen2()));
-          },
-          child: Text('Check SOP Requirments'),
+      body: Column(children: [
+        Row(
+          children: [
+            Material(
+              child: Checkbox(
+                value: agree,
+                onChanged: (value) {
+                  setState(() {
+                    agree = value ?? false;
+                  });
+                },
+              ),
+            ),
+            Text(
+              'sop requirment',
+              overflow: TextOverflow.ellipsis,
+            )
+          ],
         ),
-      ),
+        ElevatedButton(
+          onPressed: agree ? _doSomething :null, child: Text('Check requirments'))
+      ]),
     );
   }
 }
+
 class Screen2 extends StatefulWidget {
   @override
   _Screen2State createState() => _Screen2State();
