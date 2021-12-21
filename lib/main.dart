@@ -17,9 +17,6 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          title: const Text('Navigate to a new screen on Button click'),
-          backgroundColor: Colors.teal),
       body: Center(
         child: FlatButton(
           color: Colors.teal,
@@ -27,7 +24,7 @@ class _HomeState extends State<Home> {
           onPressed: () {
             Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Screen2()));
           },
-          child: Text('GO TO SCREEN 2'),
+          child: Text('Check SOP Requirments'),
         ),
       ),
     );
@@ -41,9 +38,6 @@ class _Screen2State extends State<Screen2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          title: const Text('Navigate to a new screen on Button click'),
-          backgroundColor: Colors.blueAccent),
       body: Center(
         child: FlatButton(
           color: Colors.blueAccent,
@@ -51,7 +45,7 @@ class _Screen2State extends State<Screen2> {
           onPressed: () {
             Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Home()));
           },
-          child: Text('GO TO HOME'),
+          child: Text('Send email'),
         ),
       ),
     );
