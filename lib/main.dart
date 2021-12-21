@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'text_fields.dart';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
+import 'dart:async';
+import 'dart:io';
 
 void main() => runApp(MyApp());
 /// This Widget is the main application widget.
@@ -115,20 +117,23 @@ class _Screen2State extends State<Screen2> {
                         MaterialStateProperty.all<RoundedRectangleBorder>(
                             RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(40.0),
-                            ))),
+                            )
+                        )
+                    ),
                     onPressed: _enableBtn
                         ? (() async {
-                      final Email email = Email(
-                        body: messageController.text,
-                        subject: subjectController.text,
-                        recipients: [emailController.text],
-                        isHTML: false,
-                      );
-                      await FlutterEmailSender.send(email);
-                    })
-                        : null,
-                    child: Text('Submit'),
-                  )),
+                          final Email email = Email(
+                            body: messageController.text,
+                            subject: subjectController.text,
+                            recipients: [emailController.text],
+                            isHTML: false,
+                          );
+                          await FlutterEmailSender.send(email);
+                        })
+                    : null,
+                  child: Text('Submit'),
+                )
+              ),
             ],
           ),
         ),
