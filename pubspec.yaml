@@ -27,6 +27,9 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  syncfusion_flutter_pdf: ^19.1.55-beta
+  path_provider: ^2.0.1
+  open_file: ^3.1.0
   cupertino_icons: ^1.0.2
   flutter:
     sdk: flutter

@@ -4,6 +4,9 @@ import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'dart:async';
 import 'dart:io';
 import 'dart:typed_data';
+import 'package:syncfusion_flutter_pdf/pdf.dart';
+import 'package:open_file/open_file.dart';
+
 
 
 void main() => runApp(MyApp());
@@ -28,38 +31,56 @@ class Home extends StatefulWidget {
   _HomeState createState() => _HomeState();
 }
 
-class _HomeState extends State<Home> {
-  // By defaut, the checkbox is unchecked and "agree" is "false"
-  bool agree = false;
-  // This function is triggered when the button is clicked
+class _HomeState extends State<Home>
+{
   void _doSomething() {
     Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Screen2()));
   }
-  @override
-  Widget build(BuildContext context) {
+  // The inital group value
+  var _result;
+  Widget build(BuildContext context)
+  {
     return Scaffold(
-      body: Column(children: [
-        Row(
-          children: [
-            Material(
-              child: Checkbox(
-                value: agree,
-                onChanged: (value) {
-                  setState(() {
-                    agree = value ?? false;
-                  });
-                },
-              ),
-            ),
-            Text(
-              'sop requirment',
-              overflow: TextOverflow.ellipsis,
-            )
-          ],
+        appBar: AppBar(
+          backgroundColor: Colors.orange,
+          centerTitle: true,
+          title: Text(
+            'indrorobotics.ca',
+          ),
         ),
-        ElevatedButton(
-          onPressed: agree ? _doSomething :null, child: Text('Check requirments'))
-      ]),
+        body: Padding(
+          padding: EdgeInsets.all(25),
+          child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('1. Mission maps downloaded onto ground station if required'),
+                RadioListTile(
+                    title: Text('Yes'),
+                    value: 'yes',
+                    groupValue: _result,
+                    onChanged: (value) {
+                      setState(() {
+                        _result = value;
+                      });
+                    }),
+                RadioListTile(
+                    title: Text('No'),
+                    value: 'no',
+                    groupValue: _result,
+                    onChanged: (value) {
+                      setState(() {
+                        _result = value;
+                      });
+                    }),
+                SizedBox(height: 25),
+                Text(_result == 'yes' ? 'Good' : 'Please get the map downloaded'),
+                ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.orange,
+                    ),
+                    onPressed: _result == 'yes' ? _doSomething :null, child: Text('Check requirments'))
+              ]),
+        )
     );
   }
 }
@@ -72,6 +93,13 @@ class _Screen2State extends State<Screen2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.orange,
+        centerTitle: true,
+        title: Text(
+          'indrorobotics.ca',
+        ),
+      ),
       body: Form(
         key: _formKey,
         onChanged: (() {
@@ -131,7 +159,7 @@ class _Screen2State extends State<Screen2> {
                                   .withOpacity(0.5);
                             else if (states.contains(MaterialState.disabled))
                               return Colors.grey;
-                            return Colors.blue; // Use the component's default.
+                            return Colors.orange; // Use the component's default.
                           },
                         ),
                         shape:
@@ -162,4 +190,7 @@ class _Screen2State extends State<Screen2> {
     );
   }
 }
+
+
+
 
