@@ -76,7 +76,7 @@ class _HomeState extends State<Home>
                 Text(_result == 'yes' ? 'Good' : 'Please get the map downloaded'),
                 ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.orange,
+                      primary: Colors.green,
                     ),
                     onPressed: _result == 'yes' ? _doSomething :null, child: Text('Check requirments'))
               ]),
@@ -159,7 +159,7 @@ class _Screen2State extends State<Screen2> {
                                   .withOpacity(0.5);
                             else if (states.contains(MaterialState.disabled))
                               return Colors.grey;
-                            return Colors.orange; // Use the component's default.
+                            return Colors.green; // Use the component's default.
                           },
                         ),
                         shape:
