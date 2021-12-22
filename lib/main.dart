@@ -27,6 +27,7 @@ var _result2;
 var _result3;
 var _result4;
 
+
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
@@ -380,6 +381,44 @@ class Screen2 extends StatefulWidget {
 }
 class _Screen2State extends State<Screen2> {
   @override
+
+  int _getPassed() {
+    var passed = 0;
+
+
+    if(_result1=='yes'){
+      passed = passed+1;
+    }
+    if(_result2=='yes'){
+      passed = passed+1;
+    }
+    if(_result3=='yes'){
+      passed = passed+1;
+    }
+    if(_result4=='yes'){
+      passed = passed+1;
+    }
+    return passed;
+  }
+
+  int _getFailed() {
+    var failed = 0;
+
+    if(_result1=='no'){
+      failed = failed+1;
+    }
+    if(_result2=='no'){
+      failed = failed+1;
+    }
+    if(_result3=='no'){
+      failed = failed+1;
+    }
+    if(_result4=='no'){
+      failed = failed+1;
+    }
+    return failed;
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -447,7 +486,14 @@ class _Screen2State extends State<Screen2> {
                     ),
                     onPressed: _enableBtn
                         ? (() async {
-                      var message = "SOP results: \n\n\n   Pack-up Flows:\n      1. Mission maps downloaded onto ground station if required: ${_result1}\n"
+
+                          var passed = _getPassed();
+                          var failed = _getFailed();
+
+                      var message = "SOP results: \n\n"
+                          "Passed: ${passed}\n"
+                          "Failed: ${failed}\n\n"
+                                                     "   Pack-up Flows:\n      1. Mission maps downloaded onto ground station if required: ${_result1}\n"
                                                                        "      2. RPAS securely stored in case: ${_result2}\n\n"
                                                      "   Mission Equipment:\n"
                                                                        "      1. First aid Kit: ${_result3}\n"
