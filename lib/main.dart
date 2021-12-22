@@ -1,23 +1,9 @@
 import 'package:flutter/material.dart';
 import 'text_fields.dart';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
-import 'dart:async';
-import 'dart:io';
-import 'dart:typed_data';
-import 'package:open_file/open_file.dart';
-import 'dart:ui' as ui;
-import 'dart:typed_data';
-import 'package:path_provider/path_provider.dart';
-import 'dart:io';
-import 'package:syncfusion_flutter_pdf/pdf.dart';
 
 
-Future<void> getPdf(List<int> bytes, String fileName) async{
-  final path = (await getExternalStorageDirectory())?.path;
-  final file = File('$path/$fileName');
-  await file.writeAsBytes(bytes, flush: true);
-  OpenFile.open('$path/$fileName');
-}
+
 
 void main() => runApp(MyApp());
 /// This Widget is the main application widget.
@@ -48,14 +34,6 @@ class Home extends StatefulWidget {
 
 
 class _HomeState extends State<Home> {
-  void _createPDF() async{
-    PdfDocument document = PdfDocument();
-    document.pages.add();
-
-    List<int> bytes = document.save();
-    document.dispose();
-    getPdf(bytes,'Output.pdf');
-  }
 
   void NavigateScrean2() {
     Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Screen2()));
@@ -160,12 +138,14 @@ class _HomeState extends State<Home> {
                             return Colors.orange; // Use the component's default. }
                         },
                       ),
+                          fixedSize: MaterialStateProperty.all(const Size(500, 50)),
                           shape:
                           MaterialStateProperty.all<RoundedRectangleBorder>(
                               RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(40.0),
                               )
-                          )
+                          ),
+
                       ),
                       onPressed: NavigateScrean2,
                       child: Text('Send Email')))
