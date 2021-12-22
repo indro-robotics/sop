@@ -122,7 +122,7 @@ class _HomeState extends State<Home> {
                   child:ElevatedButton(
                       style: ButtonStyle(alignment: Alignment.center),
                       onPressed:  _enterUnfinishedPage,
-                      child: Text('Misson Documents'))),
+                      child: Text('Mission Documents'))),
               SizedBox(height: 10),
               Padding(
                   padding: EdgeInsets.symmetric(vertical:0.0,horizontal: 50.0),
@@ -130,16 +130,21 @@ class _HomeState extends State<Home> {
                       style: ButtonStyle(alignment: Alignment.center),
                       onPressed:  _enterUnfinishedPage,
                       child: Text('Pre-Flight Setup and Crew Briefing'))),
-              Padding(
-                  padding: EdgeInsets.symmetric(vertical:90.0,horizontal: 120.0),
+              SizedBox(height: 150),
+              SizedBox(
+              //Padding(
+              //    padding: EdgeInsets.symmetric(vertical:90.0,horizontal: 120.0),
+                  width: 370,
                   child:ElevatedButton(
-                      style: ButtonStyle(alignment: Alignment.center,                           backgroundColor:
+
+                      style: ButtonStyle(alignment: Alignment.center,
+                        backgroundColor:
                       MaterialStateProperty.resolveWith<Color>(
                             (Set<MaterialState> states) {
                             return Colors.orange; // Use the component's default. }
                         },
                       ),
-                          fixedSize: MaterialStateProperty.all(const Size(500, 50)),
+                          //fixedSize: MaterialStateProperty.all(const Size(500, 50)),
                           shape:
                           MaterialStateProperty.all<RoundedRectangleBorder>(
                               RoundedRectangleBorder(
