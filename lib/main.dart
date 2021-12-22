@@ -4,10 +4,20 @@ import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'dart:async';
 import 'dart:io';
 import 'dart:typed_data';
-import 'package:syncfusion_flutter_pdf/pdf.dart';
 import 'package:open_file/open_file.dart';
+import 'dart:ui' as ui;
+import 'dart:typed_data';
+import 'package:path_provider/path_provider.dart';
+import 'dart:io';
+import 'package:syncfusion_flutter_pdf/pdf.dart';
 
 
+Future<void> getPdf(List<int> bytes, String fileName) async{
+  final path = (await getExternalStorageDirectory())?.path;
+  final file = File('$path/$fileName');
+  await file.writeAsBytes(bytes, flush: true);
+  OpenFile.open('$path/$fileName');
+}
 
 void main() => runApp(MyApp());
 /// This Widget is the main application widget.
@@ -26,20 +36,44 @@ TextEditingController emailController = TextEditingController();
 TextEditingController subjectController = TextEditingController();
 TextEditingController messageController = TextEditingController();
 
+var _result1;
+var _result2;
+var _result3;
+var _result4;
+
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
 }
 
-class _HomeState extends State<Home>
-{
-  void _doSomething() {
+
+class _HomeState extends State<Home> {
+  void _createPDF() async{
+    PdfDocument document = PdfDocument();
+    document.pages.add();
+
+    List<int> bytes = document.save();
+    document.dispose();
+    getPdf(bytes,'Output.pdf');
+  }
+
+  void NavigateScrean2() {
     Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Screen2()));
   }
-  // The inital group value
-  var _result;
-  Widget build(BuildContext context)
-  {
+
+  void _enterPackUpFlow() {
+    Navigator.of(context).push(
+        MaterialPageRoute(builder: (context) => ScreenPackUpFlow()));
+  }
+  void _enterMissionEquipments() {
+    Navigator.of(context).push(
+        MaterialPageRoute(builder: (context) => ScreenMissionEquipments()));
+  }
+  void _enterUnfinishedPage() {
+    Navigator.of(context).push(
+        MaterialPageRoute(builder: (context) => ScreenUnfinishedPage()));
+  }
+  Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.orange,
@@ -51,39 +85,314 @@ class _HomeState extends State<Home>
         body: Padding(
           padding: EdgeInsets.all(25),
           child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('1. Mission maps downloaded onto ground station if required'),
-                RadioListTile(
-                    title: Text('Yes'),
-                    value: 'yes',
-                    groupValue: _result,
-                    onChanged: (value) {
-                      setState(() {
-                        _result = value;
-                      });
-                    }),
-                RadioListTile(
-                    title: Text('No'),
-                    value: 'no',
-                    groupValue: _result,
-                    onChanged: (value) {
-                      setState(() {
-                        _result = value;
-                      });
-                    }),
-                SizedBox(height: 25),
-                Text(_result == 'yes' ? 'Good' : 'Please get the map downloaded'),
-                ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.green,
-                    ),
-                    onPressed: _result == 'yes' ? _doSomething :null, child: Text('Check requirments'))
-              ]),
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: 30),
+              Padding(
+                  padding: EdgeInsets.symmetric(vertical:0.0,horizontal: 110.0),
+                  child:ElevatedButton(
+                      style: ButtonStyle(alignment: Alignment.center,
+                          backgroundColor:
+                          MaterialStateProperty.resolveWith<Color>(
+                                (Set<MaterialState> states) {
+                              if ((_result1 == 'yes') && (_result2 == 'yes'))
+                              {
+                                return Colors.green; // Use the component's default. }
+                              }
+                              else
+                              {
+                                return Colors.blue;
+                              }
+                            },
+                          )
+                      ),
+                      onPressed:  _enterPackUpFlow ,
+                      child: Text('Pack-up Flows'))),
+              SizedBox(height: 10),
+              Padding(
+                  padding: EdgeInsets.symmetric(vertical:0.0,horizontal: 95.0),
+                  child:ElevatedButton(
+                      style: ButtonStyle(alignment: Alignment.center,
+                          backgroundColor:
+                          MaterialStateProperty.resolveWith<Color>(
+                                (Set<MaterialState> states) {
+                              if ((_result3 == 'yes') && (_result4 == 'yes'))
+                              {
+                                return Colors.green; // Use the component's default. }
+                              }
+                              else
+                              {
+                                return Colors.blue;
+                              }
+                            },
+                          )
+
+                      ),
+                      onPressed:  _enterMissionEquipments,
+                      child: Text('Mission Equipment'))),
+              SizedBox(height: 10),
+              Padding(
+                  padding: EdgeInsets.symmetric(vertical:0.0,horizontal: 140.0),
+                  child:ElevatedButton(
+                      style: ButtonStyle(alignment: Alignment.center),
+                      onPressed:  _enterUnfinishedPage,
+                      child: Text('PPE'))),
+              SizedBox(height: 10),
+              Padding(
+                  padding: EdgeInsets.symmetric(vertical:0.0,horizontal: 95.0),
+                  child:ElevatedButton(
+                      style: ButtonStyle(alignment: Alignment.center),
+                      onPressed:  _enterUnfinishedPage,
+                      child: Text('Misson Documents'))),
+              SizedBox(height: 10),
+              Padding(
+                  padding: EdgeInsets.symmetric(vertical:0.0,horizontal: 50.0),
+                  child:ElevatedButton(
+                      style: ButtonStyle(alignment: Alignment.center),
+                      onPressed:  _enterUnfinishedPage,
+                      child: Text('Pre-Flight Setup and Crew Briefing'))),
+              Padding(
+                  padding: EdgeInsets.symmetric(vertical:90.0,horizontal: 120.0),
+                  child:ElevatedButton(
+                      style: ButtonStyle(alignment: Alignment.center,                           backgroundColor:
+                      MaterialStateProperty.resolveWith<Color>(
+                            (Set<MaterialState> states) {
+                            return Colors.orange; // Use the component's default. }
+                        },
+                      ),
+                          shape:
+                          MaterialStateProperty.all<RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(40.0),
+                              )
+                          )
+                      ),
+                      onPressed: NavigateScrean2,
+                      child: Text('Send Email')))
+            ],
+          ),
         )
     );
   }
 }
+
+
+
+
+
+class ScreenPackUpFlow extends StatefulWidget {
+  @override
+  _ScreenPackUpFlowState createState() => _ScreenPackUpFlowState();
+}
+class _ScreenPackUpFlowState extends State<ScreenPackUpFlow> {
+  @override
+  void _doSomething() {
+    Navigator.of(context).push(
+        MaterialPageRoute(builder: (context) => Home()));
+  }
+  //var _result;
+  //var _result2;
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.orange,
+          centerTitle: true,
+          title: Text(
+            'indrorobotics.ca',
+          ),
+        ),
+        body: Padding(
+          padding: EdgeInsets.all(25),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('1. Mission maps downloaded onto ground station if required'),
+              RadioListTile(
+                  title: Text('Yes'),
+                  value: 'yes',
+                  groupValue: _result1,
+                  onChanged: (value) {
+                    setState(() {
+                      _result1 = value;
+                    });
+                  }),
+              RadioListTile(
+                  title: Text('No'),
+                  value: 'no',
+                  groupValue: _result1,
+                  onChanged: (value) {
+                    setState(() {
+                      _result1 = value;
+                    });
+                  }),
+              SizedBox(height: 5),
+              Text(_result1 == 'yes' ? 'Good' : 'Please get the map downloaded'),
+
+              SizedBox(height: 30),
+              Text('2. RPAS securely stored in case'),
+              RadioListTile(
+                  title: Text('Yes'),
+                  value: 'yes',
+                  groupValue: _result2,
+                  onChanged: (value) {
+                    setState(() {
+                      _result2 = value;
+                    });
+                  }),
+              RadioListTile(
+                  title: Text('No'),
+                  value: 'no',
+                  groupValue: _result2,
+                  onChanged: (value) {
+                    setState(() {
+                      _result2 = value;
+                    });
+                  }),
+              SizedBox(height: 5),
+              Text(_result2 == 'yes' ? 'Good' : 'Please securely store your RPAS in case'),
+
+              SizedBox(height: 30),
+              Padding(
+                  padding: EdgeInsets.symmetric(vertical:60.0,horizontal: 100.0),
+                  child:ElevatedButton(
+                      style: ButtonStyle(alignment: Alignment.center),
+                      onPressed: ((_result1 == 'yes') && (_result2 == 'yes'))? _doSomething : null,
+                      child: Text('Back To Home')))
+            ],
+          ),
+        )
+    );
+  }
+}
+
+
+
+class ScreenMissionEquipments extends StatefulWidget {
+  @override
+  _ScreenMissionEquipmentsState createState() => _ScreenMissionEquipmentsState();
+}
+class _ScreenMissionEquipmentsState extends State<ScreenMissionEquipments> {
+  @override
+  void _doSomething() {
+    Navigator.of(context).push(
+        MaterialPageRoute(builder: (context) => Home()));
+  }
+  //var _result;
+  //var _result2;
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.orange,
+          centerTitle: true,
+          title: Text(
+            'indrorobotics.ca',
+          ),
+        ),
+        body: Padding(
+          padding: EdgeInsets.all(25),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('1. First aid kit'),
+              RadioListTile(
+                  title: Text('Yes'),
+                  value: 'yes',
+                  groupValue: _result3,
+                  onChanged: (value) {
+                    setState(() {
+                      _result3 = value;
+                    });
+                  }),
+              RadioListTile(
+                  title: Text('No'),
+                  value: 'no',
+                  groupValue: _result3,
+                  onChanged: (value) {
+                    setState(() {
+                      _result3 = value;
+                    });
+                  }),
+              SizedBox(height: 5),
+              Text(_result3 == 'yes' ? 'Good' : 'Please bring first aid kit'),
+
+              SizedBox(height: 30),
+              Text('2. Cell phone(s) or satellite phone charged with correct cables'),
+              RadioListTile(
+                  title: Text('Yes'),
+                  value: 'yes',
+                  groupValue: _result4,
+                  onChanged: (value) {
+                    setState(() {
+                      _result4 = value;
+                    });
+                  }),
+              RadioListTile(
+                  title: Text('No'),
+                  value: 'no',
+                  groupValue: _result4,
+                  onChanged: (value) {
+                    setState(() {
+                      _result4 = value;
+                    });
+                  }),
+              SizedBox(height: 5),
+              Text(_result4 == 'yes' ? 'Good' : 'Plesase get your cell phone(s) or satellite phone charged'),
+
+              SizedBox(height: 30),
+              Padding(
+                  padding: EdgeInsets.symmetric(vertical:60.0,horizontal: 100.0),
+                  child:ElevatedButton(
+                      style: ButtonStyle(alignment: Alignment.center),
+                      onPressed: ((_result3 == 'yes') && (_result4 == 'yes'))? _doSomething : null,
+                      child: Text('Back To Home')))
+            ],
+          ),
+        )
+    );
+  }
+}
+
+
+
+class ScreenUnfinishedPage extends StatefulWidget {
+  @override
+  _ScreenUnfinishedPageState createState() => _ScreenUnfinishedPageState();
+}
+class _ScreenUnfinishedPageState extends State<ScreenUnfinishedPage> {
+  @override
+  void _doSomething() {
+    Navigator.of(context).push(
+        MaterialPageRoute(builder: (context) => Home()));
+  }
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.orange,
+          centerTitle: true,
+          title: Text(
+            'indrorobotics.ca',
+          ),
+        ),
+        body: Padding(
+          padding: EdgeInsets.all(25),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('This Page Is Not Finished Yet'),
+              Padding(
+                  padding: EdgeInsets.symmetric(vertical:60.0,horizontal: 100.0),
+                  child:ElevatedButton(
+                      style: ButtonStyle(alignment: Alignment.center),
+                      onPressed: _doSomething,
+                      child: Text('Back To Home')))
+            ],
+          ),
+        )
+    );
+  }
+}
+
+
 
 class Screen2 extends StatefulWidget {
   @override
@@ -111,6 +420,7 @@ class _Screen2State extends State<Screen2> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
+              SizedBox(height: 50),
               TextFields(
                   controller: subjectController,
                   name: "Subject",
@@ -171,17 +481,17 @@ class _Screen2State extends State<Screen2> {
                     ),
                     onPressed: _enableBtn
                         ? (() async {
-                          final Email email = Email(
-                            body: messageController.text,
-                            subject: subjectController.text,
-                            recipients: [emailController.text],
-                            isHTML: false,
-                          );
-                          await FlutterEmailSender.send(email);
-                        })
-                    : null,
-                  child: Text('Submit'),
-                )
+                      final Email email = Email(
+                        body: messageController.text,
+                        subject: subjectController.text,
+                        recipients: [emailController.text],
+                        isHTML: false,
+                      );
+                      await FlutterEmailSender.send(email);
+                    })
+                        : null,
+                    child: Text('Submit'),
+                  )
               ),
             ],
           ),
@@ -190,7 +500,4 @@ class _Screen2State extends State<Screen2> {
     );
   }
 }
-
-
-
 
