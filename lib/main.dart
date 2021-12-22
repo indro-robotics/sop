@@ -421,20 +421,6 @@ class _Screen2State extends State<Screen2> {
                     }
                     return null;
                   })),
-              TextFields(
-                  controller: messageController,
-                  name: "Message",
-                  validator: ((value) {
-                    if (value!.isEmpty) {
-                      setState(() {
-                        _enableBtn = true;
-                      });
-                      return 'Message is required';
-                    }
-                    return null;
-                  }),
-                  maxLines: null,
-                  type: TextInputType.multiline),
               Padding(
                   padding: EdgeInsets.all(20.0),
                   child: ElevatedButton(
@@ -461,8 +447,17 @@ class _Screen2State extends State<Screen2> {
                     ),
                     onPressed: _enableBtn
                         ? (() async {
+                      var message = "SOP results: \n\n\n   Pack-up Flows:\n      1. Mission maps downloaded onto ground station if required: ${_result1}\n"
+                                                                       "      2. RPAS securely stored in case: ${_result2}\n\n"
+                                                     "   Mission Equipment:\n"
+                                                                       "      1. First aid Kit: ${_result3}\n"
+                                                                       "      2. Cell phone(s) or satellite phone charged with correct cables: ${_result4}\n\n"
+                                                     "   PPE: \n      No Information\n\n"
+                                                     "   Mission Documents: \n      No Information\n\n"
+                                                     "   Pre-Flight Setup and Crew Briefing: \n      No Information\n\n";
+
                       final Email email = Email(
-                        body: messageController.text,
+                        body: message,
                         subject: subjectController.text,
                         recipients: [emailController.text],
                         isHTML: false,
