@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1026368343906",
+    "project_id": "sopauthentication",
+    "storage_bucket": "sopauthentication.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1026368343906:android:d88b54abba7235778be63b",
+        "android_client_info": {
+          "package_name": "com.example.sop2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1026368343906-5jq7lj0ba5ftkarueft3k5h1asg5l9ct.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD26H2lTEO6R9_CLxmz_f2oXVrxrTHizmE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1026368343906-5jq7lj0ba5ftkarueft3k5h1asg5l9ct.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

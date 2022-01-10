@@ -13,12 +13,13 @@ class _LoginNavState extends State<LoginNav> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.orange,
         title: Text("Login Page"),
       ),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            Padding(
+            /*Padding(
               padding: const EdgeInsets.only(top: 60.0),
               child: Center(
                 child: Container(
@@ -29,7 +30,7 @@ class _LoginNavState extends State<LoginNav> {
                         borderRadius: BorderRadius.circular(50.0)),*/
                     child: Image.asset('indro.PNG')),
               ),
-            ),
+            ),*/
             Padding(
               //padding: const EdgeInsets.only(left:15.0,right: 15.0,top:0,bottom: 0),
               padding: EdgeInsets.symmetric(horizontal: 15),
@@ -59,7 +60,7 @@ class _LoginNavState extends State<LoginNav> {
               },
               child: Text(
                 'Forgot Password',
-                style: TextStyle(color: Colors.orange, fontSize: 15),
+                style: TextStyle(color: Colors.blue, fontSize: 15),
               ),
             ),
             Container(
