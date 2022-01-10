@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'text_fields.dart';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
-
+import 'emailNav.dart';
+import 'loginNav.dart';
 
 
 
@@ -11,7 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Home(),
+      home: LoginNav(),
     );
   }
 }
@@ -33,11 +34,10 @@ class Home extends StatefulWidget {
   _HomeState createState() => _HomeState();
 }
 
-
 class _HomeState extends State<Home> {
 
   void NavigateScrean2() {
-    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Screen2()));
+    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Screen2(result1: _result1, result2: _result2, result3: _result3, result4: _result4)));
   }
 
   void _enterPackUpFlow() {
@@ -161,9 +161,6 @@ class _HomeState extends State<Home> {
     );
   }
 }
-
-
-
 
 
 class ScreenPackUpFlow extends StatefulWidget {
@@ -379,151 +376,4 @@ class _ScreenUnfinishedPageState extends State<ScreenUnfinishedPage> {
 }
 
 
-
-class Screen2 extends StatefulWidget {
-  @override
-  _Screen2State createState() => _Screen2State();
-}
-class _Screen2State extends State<Screen2> {
-  @override
-
-  int _getPassed() {
-    var passed = 0;
-
-
-    if(_result1=='yes'){
-      passed = passed+1;
-    }
-    if(_result2=='yes'){
-      passed = passed+1;
-    }
-    if(_result3=='yes'){
-      passed = passed+1;
-    }
-    if(_result4=='yes'){
-      passed = passed+1;
-    }
-    return passed;
-  }
-
-  int _getFailed() {
-    var failed = 0;
-
-    if(_result1=='no'){
-      failed = failed+1;
-    }
-    if(_result2=='no'){
-      failed = failed+1;
-    }
-    if(_result3=='no'){
-      failed = failed+1;
-    }
-    if(_result4=='no'){
-      failed = failed+1;
-    }
-    return failed;
-  }
-
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.orange,
-        centerTitle: true,
-        title: Text(
-          'indrorobotics.ca',
-        ),
-      ),
-      body: Form(
-        key: _formKey,
-        onChanged: (() {
-          setState(() {
-            _enableBtn = _formKey.currentState!.validate();
-          });
-        }),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              SizedBox(height: 50),
-              TextFields(
-                  controller: subjectController,
-                  name: "Subject",
-                  validator: ((value) {
-                    if (value!.isEmpty) {
-                      return 'Name is required';
-                    }
-                    return null;
-                  })),
-              TextFields(
-                  controller: emailController,
-                  name: "Email",
-                  validator: ((value) {
-                    if (value!.isEmpty) {
-                      return 'Email is required';
-                    } else if (!value.contains('@')) {
-                      return 'Please enter a valid email address';
-                    }
-                    return null;
-                  })),
-              Padding(
-                  padding: EdgeInsets.all(20.0),
-                  child: ElevatedButton(
-                    style: ButtonStyle(
-                        backgroundColor:
-                        MaterialStateProperty.resolveWith<Color>(
-                              (Set<MaterialState> states) {
-                            if (states.contains(MaterialState.pressed))
-                              return Theme.of(context)
-                                  .colorScheme
-                                  .primary
-                                  .withOpacity(0.5);
-                            else if (states.contains(MaterialState.disabled))
-                              return Colors.grey;
-                            return Colors.green; // Use the component's default.
-                          },
-                        ),
-                        shape:
-                        MaterialStateProperty.all<RoundedRectangleBorder>(
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(40.0),
-                            )
-                        )
-                    ),
-                    onPressed: _enableBtn
-                        ? (() async {
-
-                          var passed = _getPassed();
-                          var failed = _getFailed();
-
-                      var message = "SOP results: \n\n"
-                          "Passed: ${passed}\n"
-                          "Failed: ${failed}\n\n"
-                                                     "   Pack-up Flows:\n      1. Mission maps downloaded onto ground station if required: ${_result1}\n"
-                                                                       "      2. RPAS securely stored in case: ${_result2}\n\n"
-                                                     "   Mission Equipment:\n"
-                                                                       "      1. First aid Kit: ${_result3}\n"
-                                                                       "      2. Cell phone(s) or satellite phone charged with correct cables: ${_result4}\n\n"
-                                                     "   PPE: \n      No Information\n\n"
-                                                     "   Mission Documents: \n      No Information\n\n"
-                                                     "   Pre-Flight Setup and Crew Briefing: \n      No Information\n\n";
-
-                      final Email email = Email(
-                        body: message,
-                        subject: subjectController.text,
-                        recipients: [emailController.text],
-                        isHTML: false,
-                      );
-                      await FlutterEmailSender.send(email);
-                    })
-                        : null,
-                    child: Text('Submit'),
-                  )
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
 
