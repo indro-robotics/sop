@@ -40,14 +40,15 @@ class Home extends StatefulWidget {
   var result2;
   var result3;
   var result4;
-  Home({Key? key, this.result1, this.result2, this.result3, this.result4}) : super(key: key);
+  var rPASSetupFlow;
+  Home({Key? key, this.result1, this.result2, this.result3, this.result4, this.rPASSetupFlow}) : super(key: key);
   _HomeState createState() => _HomeState();
 
 }
 
 class _HomeState extends State<Home> {
-  void NavigateScrean2() {
 
+  void NavigateScrean2() {
     Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Screen2(result1: result1, result2: result2, result3: result3, result4: result4)));
   }
 
@@ -178,7 +179,22 @@ class _HomeState extends State<Home> {
               Padding(
                   padding: EdgeInsets.symmetric(vertical:0.0,horizontal: 50.0),
                   child:ElevatedButton(
-                      style: ButtonStyle(alignment: Alignment.center),
+                      style: ButtonStyle(alignment: Alignment.center,
+                          backgroundColor:
+                          MaterialStateProperty.resolveWith<Color>(
+                                (Set<MaterialState> states) {
+                              if (rPASSetupFlow == 'complete')
+                              {
+                                return Colors.green; // Use the component's default. }
+                              }
+                              else
+                              {
+                                return Colors.blue;
+                              }
+                            },
+                          )
+
+                      ),
                       onPressed:  _enterPPASFlow,
                       child: Text('RPAS Setup Flow'))),
               SizedBox(height: 10),
