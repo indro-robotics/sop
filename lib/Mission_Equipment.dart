@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
-import 'text_fields.dart';
-import 'package:flutter_email_sender/flutter_email_sender.dart';
-import 'emailNav.dart';
-import 'loginNav.dart';
 import 'main.dart';
-
 
 
 var result3;
@@ -32,7 +27,7 @@ class _ScreenMissionEquipmentsState extends State<ScreenMissionEquipments> {
             'indrorobotics.ca',
           ),
         ),
-        body: Padding(
+        body: SingleChildScrollView(
           padding: EdgeInsets.all(25),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

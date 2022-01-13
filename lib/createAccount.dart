@@ -4,12 +4,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 
-class LoginNav extends StatefulWidget {
+class CreateAccount extends StatefulWidget {
   @override
-  _LoginNavState createState() => _LoginNavState();
+  _CreateAccountState createState() => _CreateAccountState();
 }
 
-class _LoginNavState extends State<LoginNav> {
+class _CreateAccountState extends State<CreateAccount> {
   late String _email, _password;
   final auth = FirebaseAuth.instance;
   var authState = "";
@@ -27,24 +27,11 @@ class _LoginNavState extends State<LoginNav> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.orange,
-        title: Text("Login Page"),
+        title: Text("Sign Up"),
       ),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            /*Padding(
-              padding: const EdgeInsets.only(top: 60.0),
-              child: Center(
-                child: Container(
-                    width: 200,
-                    height: 150,
-                    /*decoration: BoxDecoration(
-                        color: Colors.red,
-                        borderRadius: BorderRadius.circular(50.0)),*/
-                    child: Image.asset('indro.PNG')),
-              ),
-            ),*/
-
             SizedBox(
               height: 100,
             ),
@@ -75,15 +62,21 @@ class _LoginNavState extends State<LoginNav> {
                     border: OutlineInputBorder(),
                     labelText: 'Password',
                     hintText: 'Enter secure password'),
-                  onChanged: (value){
-                    setState((){
-                      _password = value.trim();
-                    });
-                  },
+                onChanged: (value){
+                  setState((){
+                    _password = value.trim();
+                  });
+                },
               ),
             ),
-            SizedBox(
-              height: 20,
+            FlatButton(
+              onPressed: (){
+                //TODO FORGOT PASSWORD SCREEN GOES HERE
+              },
+              child: Text(
+                'Forgot Password',
+                style: TextStyle(color: Colors.blue, fontSize: 15),
+              ),
             ),
             Container(
               height: 50,
@@ -98,14 +91,8 @@ class _LoginNavState extends State<LoginNav> {
                     UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
                         email: _email, password: _password
                     );
-                    UpdateText('');
-                    User? user = FirebaseAuth.instance.currentUser;
-                    if (user!= null && user.emailVerified) {
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(builder:(context)=>Home()));
-                    }
-                    else{
-                      UpdateText('Please verify email');
-                    }
+                    authState = '';
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(builder:(context)=>Home()));
 
                   } on FirebaseAuthException catch (e) {
                     if (e.code == 'user-not-found') {
@@ -122,52 +109,17 @@ class _LoginNavState extends State<LoginNav> {
               ),
             ),
             SizedBox(
-              height: 20,
-            ),
-            Container(
-              height: 50,
-              width: 250,
-              decoration: BoxDecoration(
-                  color: Colors.orangeAccent, borderRadius: BorderRadius.circular(20)),
-              child: FlatButton(
-                onPressed: () async {
-                  try {
-                    UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
-                        email: _email, password: _password
-                    );
-                    User? user = FirebaseAuth.instance.currentUser;
-                    if (user!= null && !user.emailVerified) {
-                      await user.sendEmailVerification();
-                    }
-                    UpdateText('Email verification required');
-                  } on FirebaseAuthException catch (e) {
-                    if (e.code == 'weak-password') {
-                      UpdateText('The password provided is too weak.');
-                    } else if (e.code == 'email-already-in-use') {
-                      UpdateText('The account already exists for that email.');
-                    }
-                  } catch (e) {
-                    print(e);
-                  }
-                },
-                child: Text(
-                  'Create Account',
-                  style: TextStyle(color: Colors.white, fontSize: 25),
-                ),
-              ),
-            ),
-            SizedBox(
               height: 130,
             ),
-            //FlatButton(
-              //onPressed: (){
+            FlatButton(
+              onPressed: (){
                 //TODO FORGOT PASSWORD SCREEN GOES HERE
-              //},
-              //child: Text(
-                //'Forgot Password',
-                //style: TextStyle(color: Colors.blue, fontSize: 15),
-              //),
-            //),
+              },
+              child: Text(
+                'Create Account',
+                style: TextStyle(color: Colors.blue, fontSize: 12),
+              ),
+            ),
             //Text('New User? Create Account')
           ],
         ),

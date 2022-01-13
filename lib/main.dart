@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'text_fields.dart';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
@@ -14,13 +15,27 @@ import 'Pre_Flight_PowerOn_Flow.dart';
 import 'Pre_TakeOff_Checklist.dart';
 import 'TakeOff_Flow.dart';
 import 'Landing_Checklist.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'LoginPage.dart';
 
-
-void main() => runApp(MyApp());
+//void main() => runApp(MyApp());
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
+}
 /// This Widget is the main application widget.
 class MyApp extends StatelessWidget {
+  //FirebaseAuth auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
+    //FirebaseAuth.instance
+    //    .authStateChanges()
+    //    .listen((User? user) {
+    //  if (user == null) {
+    //    home: LoginNav();
+    //  }
+    //});
     return MaterialApp(
       home: LoginNav(),
     );
@@ -36,20 +51,21 @@ TextEditingController messageController = TextEditingController();
 
 class Home extends StatefulWidget {
   @override
-  var result1;
-  var result2;
+  var HeaderOneResults;
   var result3;
   var result4;
   var rPASSetupFlow;
-  Home({Key? key, this.result1, this.result2, this.result3, this.result4, this.rPASSetupFlow}) : super(key: key);
+  Home({Key? key, this.HeaderOneResults, this.result3, this.result4, this.rPASSetupFlow}) : super(key: key);
+
   _HomeState createState() => _HomeState();
 
 }
 
 class _HomeState extends State<Home> {
+  final auth = FirebaseAuth.instance;
 
   void NavigateScrean2() {
-    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Screen2(result1: result1, result2: result2, result3: result3, result4: result4)));
+    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Screen2(HeaderOneResults:HeaderOneResults, result3: result3, result4: result4)));
   }
 
   void _enterPackUpFlow() {
@@ -104,6 +120,14 @@ class _HomeState extends State<Home> {
           title: Text(
             'indrorobotics.ca',
           ),
+
+        ),
+        floatingActionButton: new FloatingActionButton(
+          child: new Icon(Icons.fullscreen_exit),
+          onPressed: () {
+            auth.signOut();
+            Navigator.of(context).pushReplacement(MaterialPageRoute(builder:(context)=>LoginNav()));
+            },
         ),
         body:
         SingleChildScrollView(

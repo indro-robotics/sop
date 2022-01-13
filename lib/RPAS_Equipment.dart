@@ -7,6 +7,9 @@ import 'main.dart';
 
 var result1;
 var result2;
+var HeaderOneResults = ['incomplete', 'incomplete','incomplete', 'incomplete','incomplete', 'incomplete','incomplete', 'incomplete','incomplete'];
+
+//var Header2Elements = new List();
 
 class ScreenPackUpFlow extends StatefulWidget {
   @override
@@ -16,7 +19,7 @@ class _ScreenPackUpFlowState extends State<ScreenPackUpFlow> {
   @override
   void _doSomething() {
     Navigator.of(context).push(
-        MaterialPageRoute(builder: (context) => Home(result1: result1, result2 : result2)));
+        MaterialPageRoute(builder: (context) => Home(HeaderOneResults: HeaderOneResults)));
   }
   //var _result;
   //var _result2;
@@ -29,7 +32,7 @@ class _ScreenPackUpFlowState extends State<ScreenPackUpFlow> {
             'indrorobotics.ca',
           ),
         ),
-        body: Padding(
+        body: SingleChildScrollView(
           padding: EdgeInsets.all(25),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -42,6 +45,7 @@ class _ScreenPackUpFlowState extends State<ScreenPackUpFlow> {
                   onChanged: (value) {
                     setState(() {
                       result1 = value;
+                      HeaderOneResults[0] = value.toString();
                     });
                   }),
               RadioListTile(
@@ -51,10 +55,11 @@ class _ScreenPackUpFlowState extends State<ScreenPackUpFlow> {
                   onChanged: (value) {
                     setState(() {
                       result1 = value;
+                      HeaderOneResults[0] = value.toString();
                     });
                   }),
               SizedBox(height: 5),
-              Text(result1 == 'yes' ? 'Good' : 'Please get the map downloaded'),
+              Text(HeaderOneResults[0] == 'yes' ? 'Good' : 'Please get the map downloaded'),
 
               SizedBox(height: 30),
               Text('2. RPAS securely stored in case'),
@@ -65,6 +70,7 @@ class _ScreenPackUpFlowState extends State<ScreenPackUpFlow> {
                   onChanged: (value) {
                     setState(() {
                       result2 = value;
+                      HeaderOneResults[1] = value.toString();
                     });
                   }),
               RadioListTile(
@@ -74,17 +80,19 @@ class _ScreenPackUpFlowState extends State<ScreenPackUpFlow> {
                   onChanged: (value) {
                     setState(() {
                       result2 = value;
+                      HeaderOneResults[1] = value.toString();
                     });
                   }),
               SizedBox(height: 5),
-              Text(result2 == 'yes' ? 'Good' : 'Please securely store your RPAS in case'),
+              Text(HeaderOneResults[1] == 'yes' ? 'Good' : 'Please securely store your RPAS in case'),
 
               SizedBox(height: 30),
               Padding(
                   padding: EdgeInsets.symmetric(vertical:60.0,horizontal: 100.0),
                   child:ElevatedButton(
                       style: ButtonStyle(alignment: Alignment.center),
-                      onPressed: ((result1 == 'yes' || result1=='no') && (result2 == 'yes'|| result2=='no'))? _doSomething : null,
+                      //onPressed: ((result1 == 'yes' || result1=='no') && (result2 == 'yes'|| result2=='no'))? _doSomething : null,
+                      onPressed: (HeaderOneResults[0] != 'incomplete' && HeaderOneResults[1] != 'incomplete')? _doSomething : null,
                       child: Text('Back To Home')))
             ],
           ),

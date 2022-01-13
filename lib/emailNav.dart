@@ -10,57 +10,41 @@ bool _enableBtn = false;
 
 class Screen2 extends StatefulWidget {
 //  @override
-  var result1;
-  var result2;
+  var HeaderOneResults;
   var result3;
   var result4;
-  Screen2({Key? key,required this.result1,required this.result2,required this.result3, required this.result4}) : super(key: key);
+  Screen2({Key? key,this.HeaderOneResults,required this.result3, required this.result4}) : super(key: key);
 
-  _Screen2State createState() => _Screen2State(result1: result1, result2: result2, result3: result3, result4: result4);
+  _Screen2State createState() => _Screen2State(HeaderOneResults:HeaderOneResults, result3: result3, result4: result4);
 }
 
 class _Screen2State extends State<Screen2> {
 //  @override
-  var result1;
-  var result2;
+  var HeaderOneResults;
   var result3;
   var result4;
-  _Screen2State({Key? key,required this.result1,required this.result2,required this.result3, required this.result4});
+  _Screen2State({Key? key,this.HeaderOneResults,required this.result3, required this.result4});
 
   int _getPassed() {
     var passed = 0;
 
+    for(var i=0; i<HeaderOneResults.length; i++){
+      if(HeaderOneResults[i]=='yes'){
+        passed = passed+1;
+      }
+    }
 
-    if(result1=='yes'){
-      passed = passed+1;
-    }
-    if(result2=='yes'){
-      passed = passed+1;
-    }
-    if(result3=='yes'){
-      passed = passed+1;
-    }
-    if(result4=='yes'){
-      passed = passed+1;
-    }
     return passed;
   }
 
   int _getFailed() {
     var failed = 0;
+    for(var i=0; i<HeaderOneResults.length; i++){
+      if(HeaderOneResults[i]=='no'){
+        failed = failed+1;
+      }
+    }
 
-    if(result1=='no'){
-      failed = failed+1;
-    }
-    if(result2=='no'){
-      failed = failed+1;
-    }
-    if(result3=='no'){
-      failed = failed+1;
-    }
-    if(result4=='no'){
-      failed = failed+1;
-    }
     return failed;
   }
 
@@ -138,8 +122,8 @@ class _Screen2State extends State<Screen2> {
                       var message = "SOP results: \n\n"
                           "Passed: ${passed}\n"
                           "Failed: ${failed}\n\n"
-                          "   Pack-up Flows:\n      1. Mission maps downloaded onto ground station if required: ${result1}\n"
-                          "      2. RPAS securely stored in case: ${result2}\n\n"
+                          "   RPAS Equipment:\n      1. Mission maps downloaded onto ground station if required: ${HeaderOneResults[0]}\n"
+                          "      2. RPAS securely stored in case: ${HeaderOneResults[1]}\n\n"
                           "   Mission Equipment:\n"
                           "      1. First aid Kit: ${result3}\n"
                           "      2. Cell phone(s) or satellite phone charged with correct cables: ${result4}\n\n"
