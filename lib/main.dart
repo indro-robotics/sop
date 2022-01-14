@@ -29,13 +29,7 @@ class MyApp extends StatelessWidget {
   //FirebaseAuth auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
-    //FirebaseAuth.instance
-    //    .authStateChanges()
-    //    .listen((User? user) {
-    //  if (user == null) {
-    //    home: LoginNav();
-    //  }
-    //});
+
     return MaterialApp(
       home: LoginNav(),
     );
@@ -47,7 +41,6 @@ bool _enableBtn = false;
 TextEditingController emailController = TextEditingController();
 TextEditingController subjectController = TextEditingController();
 TextEditingController messageController = TextEditingController();
-
 
 class Home extends StatefulWidget {
   @override
@@ -62,6 +55,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  //int count = 0;
   final auth = FirebaseAuth.instance;
 
   void NavigateScrean2() {
@@ -112,32 +106,46 @@ class _HomeState extends State<Home> {
     Navigator.of(context).push(
         MaterialPageRoute(builder: (context) => ScreenLandingChecklist()));
   }
+
+  void _signOut(){
+    auth.signOut();
+    Navigator.of(context).pushReplacement(MaterialPageRoute(builder:(context)=>LoginNav()));
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          //leading: Icon(Icons.accessibility),
           backgroundColor: Colors.orange,
           centerTitle: true,
           title: Text(
             'indrorobotics.ca',
           ),
-
+          actions:<Widget>[
+            IconButton(
+              icon: Icon(Icons.account_circle),
+              onPressed: _signOut,
+            ),
+          ],
         ),
-        floatingActionButton: new FloatingActionButton(
+        /*floatingActionButton: new FloatingActionButton(
           child: new Icon(Icons.fullscreen_exit),
           onPressed: () {
             auth.signOut();
             Navigator.of(context).pushReplacement(MaterialPageRoute(builder:(context)=>LoginNav()));
             },
-        ),
+        ),*/
         body:
         SingleChildScrollView(
-          padding: EdgeInsets.all(25),
+          padding: EdgeInsets.all(50),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 30),
-              Padding(
-                  padding: EdgeInsets.symmetric(vertical:0.0,horizontal: 50.0),
+              SizedBox(height: 5),
+
+              SizedBox(
+                  width: 370,
+                  //padding: EdgeInsets.symmetric(vertical:0.0,horizontal: 50.0),
                   child:ElevatedButton(
                       style: ButtonStyle(alignment: Alignment.center,
                           backgroundColor:
@@ -156,9 +164,10 @@ class _HomeState extends State<Home> {
                       ),
                       onPressed:  _enterPackUpFlow ,
                       child: Text('RPAS Equipment'))),
-              SizedBox(height: 10),
-              Padding(
-                  padding: EdgeInsets.symmetric(vertical:0.0,horizontal: 50.0),
+              SizedBox(height: 5),
+              SizedBox(
+                  width: 370,
+                  //padding: EdgeInsets.symmetric(vertical:0.0,horizontal: 70.0),
                   child:ElevatedButton(
                       style: ButtonStyle(alignment: Alignment.center,
                           backgroundColor:
@@ -178,30 +187,30 @@ class _HomeState extends State<Home> {
                       ),
                       onPressed:  _enterMissionEquipments,
                       child: Text('Mission Equipment'))),
-              SizedBox(height: 10),
-              Padding(
-                  padding: EdgeInsets.symmetric(vertical:0.0,horizontal: 50.0),
+              SizedBox(height: 5),
+              SizedBox(
+                  width: 370,
                   child:ElevatedButton(
                       style: ButtonStyle(alignment: Alignment.center),
                       onPressed:  _enterPPE,
                       child: Text('PPE'))),
-              SizedBox(height: 10),
-              Padding(
-                  padding: EdgeInsets.symmetric(vertical:0.0,horizontal: 50.0),
+              SizedBox(height: 5),
+              SizedBox(
+                  width: 370,
                   child:ElevatedButton(
                       style: ButtonStyle(alignment: Alignment.center),
                       onPressed:  _enterMissionDocuments,
                       child: Text('Mission Documents'))),
-              SizedBox(height: 10),
-              Padding(
-                  padding: EdgeInsets.symmetric(vertical:0.0,horizontal: 50.0),
+              SizedBox(height: 5),
+              SizedBox(
+                  width: 370,
                   child:ElevatedButton(
                       style: ButtonStyle(alignment: Alignment.center),
                       onPressed:  _enterPreFlightBriefing,
                       child: Text('Pre-Flight Setup and Crew Briefing'))),
-              SizedBox(height: 10),
-              Padding(
-                  padding: EdgeInsets.symmetric(vertical:0.0,horizontal: 50.0),
+              SizedBox(height: 5),
+              SizedBox(
+                  width: 370,
                   child:ElevatedButton(
                       style: ButtonStyle(alignment: Alignment.center,
                           backgroundColor:
@@ -221,37 +230,37 @@ class _HomeState extends State<Home> {
                       ),
                       onPressed:  _enterPPASFlow,
                       child: Text('RPAS Setup Flow'))),
-              SizedBox(height: 10),
-              Padding(
-                  padding: EdgeInsets.symmetric(vertical:0.0,horizontal: 50.0),
+              SizedBox(height: 5),
+              SizedBox(
+                  width: 370,
                   child:ElevatedButton(
                       style: ButtonStyle(alignment: Alignment.center),
                       onPressed:  _enterPayloadFlow,
                       child: Text('Payload Setup Flow'))),
-              SizedBox(height: 10),
-              Padding(
-                  padding: EdgeInsets.symmetric(vertical:0.0,horizontal: 50.0),
+              SizedBox(height: 5),
+              SizedBox(
+                  width: 370,
                   child:ElevatedButton(
                       style: ButtonStyle(alignment: Alignment.center),
                       onPressed:  _enterPreFlightFlow,
                       child: Text('Pre-Flight Power On Flow'))),
-              SizedBox(height: 10),
-              Padding(
-                  padding: EdgeInsets.symmetric(vertical:0.0,horizontal: 50.0),
+              SizedBox(height: 5),
+              SizedBox(
+                  width: 370,
                   child:ElevatedButton(
                       style: ButtonStyle(alignment: Alignment.center),
                       onPressed:  _enterPreTakeOffChecklist,
                       child: Text('Pre-Take Off Checklist'))),
-              SizedBox(height: 10),
-              Padding(
-                  padding: EdgeInsets.symmetric(vertical:0.0,horizontal: 50.0),
+              SizedBox(height: 5),
+              SizedBox(
+                  width: 370,
                   child:ElevatedButton(
                       style: ButtonStyle(alignment: Alignment.center),
                       onPressed:  _enterTakeOffFlow,
                       child: Text('Take Off Flow'))),
-              SizedBox(height: 10),
-              Padding(
-                  padding: EdgeInsets.symmetric(vertical:0.0,horizontal: 50.0),
+              SizedBox(height: 5),
+              SizedBox(
+                  width: 370,
                   child:ElevatedButton(
                       style: ButtonStyle(alignment: Alignment.center),
                       onPressed:  _enterLandingChecklist,

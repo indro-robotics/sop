@@ -3,7 +3,6 @@ import 'main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-
 class LoginNav extends StatefulWidget {
   @override
   _LoginNavState createState() => _LoginNavState();
@@ -32,7 +31,10 @@ class _LoginNavState extends State<LoginNav> {
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            /*Padding(
+            SizedBox(
+              height: 20,
+            ),
+            Padding(
               padding: const EdgeInsets.only(top: 60.0),
               child: Center(
                 child: Container(
@@ -41,12 +43,12 @@ class _LoginNavState extends State<LoginNav> {
                     /*decoration: BoxDecoration(
                         color: Colors.red,
                         borderRadius: BorderRadius.circular(50.0)),*/
-                    child: Image.asset('indro.PNG')),
+                    child: Image.asset('assets/images/indroLogo.png')),
               ),
-            ),*/
+            ),
 
             SizedBox(
-              height: 100,
+              height: 30,
             ),
             Text(authState, style: TextStyle(color: Colors.red,)),
             Padding(

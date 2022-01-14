@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'text_fields.dart';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'main.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:restart_app/restart_app.dart';
+import 'RPAS_Equipment.dart';
+import 'package:flutter_restart/flutter_restart.dart';
 
 final _formKey = GlobalKey<FormState>();
 bool _enableBtn = false;
@@ -20,10 +24,24 @@ class Screen2 extends StatefulWidget {
 
 class _Screen2State extends State<Screen2> {
 //  @override
+
   var HeaderOneResults;
   var result3;
   var result4;
+  late String accountEmail;// = user.email;
+
+  //accountEmail = user.email;
+  //var accountEmail = Text('${FirebaseAuth.instance.currentUser?.email}');
+
   _Screen2State({Key? key,this.HeaderOneResults,required this.result3, required this.result4});
+
+  void getEmail(){
+    setState(() {
+      //accountEmail = user?.email.toString()!;
+      accountEmail = FirebaseAuth.instance.currentUser!.email.toString();
+    });
+    //return accountEmail;
+  }
 
   int _getPassed() {
     var passed = 0;
@@ -78,7 +96,7 @@ class _Screen2State extends State<Screen2> {
                     }
                     return null;
                   })),
-              TextFields(
+              /*TextFields(
                   controller: emailController,
                   name: "Email",
                   validator: ((value) {
@@ -88,7 +106,7 @@ class _Screen2State extends State<Screen2> {
                       return 'Please enter a valid email address';
                     }
                     return null;
-                  })),
+                  })),*/
               Padding(
                   padding: EdgeInsets.all(20.0),
                   child: ElevatedButton(
@@ -130,14 +148,30 @@ class _Screen2State extends State<Screen2> {
                           "   PPE: \n      No Information\n\n"
                           "   Mission Documents: \n      No Information\n\n"
                           "   Pre-Flight Setup and Crew Briefing: \n      No Information\n\n";
-
+                      //User? user = FirebaseAuth.instance.currentUser;
+                      //var accountEmail = Text('${FirebaseAuth.instance.currentUser?.email}');
+                      //var accoutEmail = user?.email;
+                      getEmail();
+                      print(accountEmail);
                       final Email email = Email(
                         body: message,
                         subject: subjectController.text,
-                        recipients: [emailController.text],
+                        //recipients: [emailController.text],
+                        recipients: [accountEmail],
                         isHTML: false,
                       );
                       await FlutterEmailSender.send(email);
+                     //Navigator.popAndPushNamed(context, "/currentRoute");
+                      //Navigator.of(context).push(
+                      //    MaterialPageRoute(builder: (context) => ScreenPackUpFlow()));
+                      //Navigator.popAndPushNamed(context, "/currentRoute");
+                      //Navigator.popAndPushNamed(ScreenPackUpFlow());
+                      //RestartWidget.restartApp(context);
+                      //runApp(MyApp());
+                      //Navigator.popAndPushNamed(context,'ScreenPackUpFlow');
+                      FlutterRestart.restartApp();
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(builder:(context)=>Home()));
+
                     })
                         : null,
                     child: Text('Submit'),
