@@ -45,10 +45,13 @@ TextEditingController messageController = TextEditingController();
 class Home extends StatefulWidget {
   @override
   var HeaderOneResults;
+  var HeaderTwoResults;
+  var HeaderThreeResults;
+  var HeaderFourResults;
   var result3;
   var result4;
   var rPASSetupFlow;
-  Home({Key? key, this.HeaderOneResults, this.result3, this.result4, this.rPASSetupFlow}) : super(key: key);
+  Home({Key? key, this.HeaderOneResults, this.HeaderTwoResults, this.HeaderThreeResults, this.HeaderFourResults, this.rPASSetupFlow}) : super(key: key);
 
   _HomeState createState() => _HomeState();
 
@@ -59,7 +62,8 @@ class _HomeState extends State<Home> {
   final auth = FirebaseAuth.instance;
 
   void NavigateScrean2() {
-    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Screen2(HeaderOneResults:HeaderOneResults, result3: result3, result4: result4)));
+    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Screen2(HeaderOneResults:HeaderOneResults, HeaderTwoResults:HeaderTwoResults,
+        HeaderThreeResults:HeaderThreeResults, HeaderFourResults:HeaderFourResults)));
   }
 
   void _enterPackUpFlow() {
@@ -151,9 +155,31 @@ class _HomeState extends State<Home> {
                           backgroundColor:
                           MaterialStateProperty.resolveWith<Color>(
                                 (Set<MaterialState> states) {
-                              if ((result1 == 'yes' || result1 == 'no') && (result2 == 'yes' || result2 == 'no'))
+                              if ((HeaderOneResults[0] == 'yes' || HeaderOneResults[0] == 'no')
+                                  && (HeaderOneResults[1] == 'yes' || HeaderOneResults[1]== 'no')
+                                  && (HeaderOneResults[2] == 'yes' || HeaderOneResults[2]== 'no')
+                                  && (HeaderOneResults[3] == 'yes' || HeaderOneResults[3]== 'no')
+                                  && (HeaderOneResults[4] == 'yes' || HeaderOneResults[4]== 'no')
+                                  && (HeaderOneResults[5] == 'yes' || HeaderOneResults[5]== 'no')
+                                  && (HeaderOneResults[6] == 'yes' || HeaderOneResults[6]== 'no')
+                                  && (HeaderOneResults[7] == 'yes' || HeaderOneResults[7]== 'no')
+                                  && (HeaderOneResults[8] == 'yes' || HeaderOneResults[8]== 'no')
+                              )
                               {
                                 return Colors.green; // Use the component's default. }
+                              }
+                              else if ((HeaderOneResults[0] == 'yes' || HeaderOneResults[0] == 'no')
+                                  || (HeaderOneResults[1] == 'yes' || HeaderOneResults[1]== 'no')
+                                  || (HeaderOneResults[2] == 'yes' || HeaderOneResults[2]== 'no')
+                                  || (HeaderOneResults[3] == 'yes' || HeaderOneResults[3]== 'no')
+                                  || (HeaderOneResults[4] == 'yes' || HeaderOneResults[4]== 'no')
+                                  || (HeaderOneResults[5] == 'yes' || HeaderOneResults[5]== 'no')
+                                  || (HeaderOneResults[6] == 'yes' || HeaderOneResults[6]== 'no')
+                                  || (HeaderOneResults[7] == 'yes' || HeaderOneResults[7]== 'no')
+                                  || (HeaderOneResults[8] == 'yes' || HeaderOneResults[8]== 'no')
+                              )
+                              {
+                                return Colors.orangeAccent;
                               }
                               else
                               {
@@ -173,9 +199,45 @@ class _HomeState extends State<Home> {
                           backgroundColor:
                           MaterialStateProperty.resolveWith<Color>(
                                 (Set<MaterialState> states) {
-                              if ((result3 == 'yes' || result3 == 'no') && (result4 == 'yes' || result4 == 'no'))
+                                  if ((HeaderTwoResults[0] == 'yes' || HeaderTwoResults[0] == 'no')
+                                      && (HeaderTwoResults[1] == 'yes' || HeaderTwoResults[1]== 'no')
+                                      && (HeaderTwoResults[2] == 'yes' || HeaderTwoResults[2]== 'no')
+                                      && (HeaderTwoResults[3] == 'yes' || HeaderTwoResults[3]== 'no')
+                                      && (HeaderTwoResults[4] == 'yes' || HeaderTwoResults[4]== 'no')
+                                      && (HeaderTwoResults[5] == 'yes' || HeaderTwoResults[5]== 'no')
+                                      && (HeaderTwoResults[6] == 'yes' || HeaderTwoResults[6]== 'no')
+                                      && (HeaderTwoResults[7] == 'yes' || HeaderTwoResults[7]== 'no')
+                                      && (HeaderTwoResults[8] == 'yes' || HeaderTwoResults[8]== 'no')
+                                      && (HeaderTwoResults[9] == 'yes' || HeaderTwoResults[9]== 'no')
+                                      && (HeaderTwoResults[10] == 'yes' || HeaderTwoResults[10]== 'no')
+                                      && (HeaderTwoResults[11] == 'yes' || HeaderTwoResults[11]== 'no')
+                                      && (HeaderTwoResults[12] == 'yes' || HeaderTwoResults[12]== 'no')
+                                      && (HeaderTwoResults[13] == 'yes' || HeaderTwoResults[13]== 'no')
+                                      && (HeaderTwoResults[14] == 'yes' || HeaderTwoResults[14]== 'no')
+                                      && (HeaderTwoResults[15] == 'yes' || HeaderTwoResults[15]== 'no')
+                                  )
                               {
                                 return Colors.green; // Use the component's default. }
+                              }
+                              else if ((HeaderTwoResults[0] == 'yes' || HeaderTwoResults[0] == 'no')
+                                      || (HeaderTwoResults[1] == 'yes' || HeaderTwoResults[1]== 'no')
+                                      || (HeaderTwoResults[2] == 'yes' || HeaderTwoResults[2]== 'no')
+                                      || (HeaderTwoResults[3] == 'yes' || HeaderTwoResults[3]== 'no')
+                                      || (HeaderTwoResults[4] == 'yes' || HeaderTwoResults[4]== 'no')
+                                      || (HeaderTwoResults[5] == 'yes' || HeaderTwoResults[5]== 'no')
+                                      || (HeaderTwoResults[6] == 'yes' || HeaderTwoResults[6]== 'no')
+                                      || (HeaderTwoResults[7] == 'yes' || HeaderTwoResults[7]== 'no')
+                                      || (HeaderTwoResults[8] == 'yes' || HeaderTwoResults[8]== 'no')
+                                      || (HeaderTwoResults[9] == 'yes' || HeaderTwoResults[9]== 'no')
+                                      || (HeaderTwoResults[10] == 'yes' || HeaderTwoResults[10]== 'no')
+                                      || (HeaderTwoResults[11] == 'yes' || HeaderTwoResults[11]== 'no')
+                                      || (HeaderTwoResults[12] == 'yes' || HeaderTwoResults[12]== 'no')
+                                      || (HeaderTwoResults[13] == 'yes' || HeaderTwoResults[13]== 'no')
+                                      || (HeaderTwoResults[14] == 'yes' || HeaderTwoResults[14]== 'no')
+                                      || (HeaderTwoResults[15] == 'yes' || HeaderTwoResults[15]== 'no')
+                                  )
+                              {
+                                return Colors.orangeAccent;
                               }
                               else
                               {
@@ -191,14 +253,90 @@ class _HomeState extends State<Home> {
               SizedBox(
                   width: 370,
                   child:ElevatedButton(
-                      style: ButtonStyle(alignment: Alignment.center),
+                      style: ButtonStyle(alignment: Alignment.center,
+                          backgroundColor:
+                          MaterialStateProperty.resolveWith<Color>(
+                                (Set<MaterialState> states) {
+                              if ((HeaderThreeResults[0] == 'yes' || HeaderThreeResults[0] == 'no')
+                                  && (HeaderThreeResults[1] == 'yes' || HeaderThreeResults[1]== 'no')
+                                  && (HeaderThreeResults[2] == 'yes' || HeaderThreeResults[2]== 'no')
+                                  && (HeaderThreeResults[3] == 'yes' || HeaderThreeResults[3]== 'no')
+                                  && (HeaderThreeResults[4] == 'yes' || HeaderThreeResults[4]== 'no')
+                                  && (HeaderThreeResults[5] == 'yes' || HeaderThreeResults[5]== 'no')
+                                  && (HeaderThreeResults[6] == 'yes' || HeaderThreeResults[6]== 'no')
+                                  && (HeaderThreeResults[7] == 'yes' || HeaderThreeResults[7]== 'no')
+                                  && (HeaderThreeResults[8] == 'yes' || HeaderThreeResults[8]== 'no')
+                              )
+                              {
+                                return Colors.green; // Use the component's default. }
+                              }
+                              else if ((HeaderThreeResults[0] == 'yes' || HeaderThreeResults[0] == 'no')
+                                  || (HeaderThreeResults[1] == 'yes' || HeaderThreeResults[1]== 'no')
+                                  || (HeaderThreeResults[2] == 'yes' || HeaderThreeResults[2]== 'no')
+                                  || (HeaderThreeResults[3] == 'yes' || HeaderThreeResults[3]== 'no')
+                                  || (HeaderThreeResults[4] == 'yes' || HeaderThreeResults[4]== 'no')
+                                  || (HeaderThreeResults[5] == 'yes' || HeaderThreeResults[5]== 'no')
+                                  || (HeaderThreeResults[6] == 'yes' || HeaderThreeResults[6]== 'no')
+                                  || (HeaderThreeResults[7] == 'yes' || HeaderThreeResults[7]== 'no')
+                                  || (HeaderThreeResults[8] == 'yes' || HeaderThreeResults[8]== 'no')
+                              )
+                                {
+                                  return Colors.orangeAccent;
+                                }
+                              else
+                              {
+                                return Colors.blue;
+                              }
+                            },
+                          )
+
+                      ),
                       onPressed:  _enterPPE,
                       child: Text('PPE'))),
               SizedBox(height: 5),
               SizedBox(
                   width: 370,
                   child:ElevatedButton(
-                      style: ButtonStyle(alignment: Alignment.center),
+                      style: ButtonStyle(alignment: Alignment.center,
+                          backgroundColor:
+                          MaterialStateProperty.resolveWith<Color>(
+                                (Set<MaterialState> states) {
+                              if ((HeaderFourResults[0] == 'yes' || HeaderFourResults[0] == 'no')
+                                  && (HeaderFourResults[1] == 'yes' || HeaderFourResults[1]== 'no')
+                                  && (HeaderFourResults[2] == 'yes' || HeaderFourResults[2]== 'no')
+                                  && (HeaderFourResults[3] == 'yes' || HeaderFourResults[3]== 'no')
+                                  && (HeaderFourResults[4] == 'yes' || HeaderTwoResults[4]== 'no')
+                                  && (HeaderFourResults[5] == 'yes' || HeaderFourResults[5]== 'no')
+                                  && (HeaderFourResults[6] == 'yes' || HeaderFourResults[6]== 'no')
+                                  && (HeaderFourResults[7] == 'yes' || HeaderFourResults[7]== 'no')
+                                  && (HeaderFourResults[8] == 'yes' || HeaderFourResults[8]== 'no')
+                                  && (HeaderFourResults[9] == 'yes' || HeaderFourResults[9]== 'no')
+                              )
+                              {
+                                return Colors.green; // Use the component's default. }
+                              }
+                              else if ((HeaderFourResults[0] == 'yes' || HeaderFourResults[0] == 'no')
+                                  || (HeaderFourResults[1] == 'yes' || HeaderFourResults[1]== 'no')
+                                  || (HeaderFourResults[2] == 'yes' || HeaderFourResults[2]== 'no')
+                                  || (HeaderFourResults[3] == 'yes' || HeaderFourResults[3]== 'no')
+                                  || (HeaderFourResults[4] == 'yes' || HeaderFourResults[4]== 'no')
+                                  || (HeaderFourResults[5] == 'yes' || HeaderFourResults[5]== 'no')
+                                  || (HeaderFourResults[6] == 'yes' || HeaderFourResults[6]== 'no')
+                                  || (HeaderFourResults[7] == 'yes' || HeaderFourResults[7]== 'no')
+                                  || (HeaderFourResults[8] == 'yes' || HeaderFourResults[8]== 'no')
+                                  || (HeaderFourResults[9] == 'yes' || HeaderFourResults[9]== 'no')
+                              )
+                              {
+                                return Colors.orangeAccent;
+                              }
+                              else
+                              {
+                                return Colors.blue;
+                              }
+                            },
+                          )
+
+                      ),
                       onPressed:  _enterMissionDocuments,
                       child: Text('Mission Documents'))),
               SizedBox(height: 5),

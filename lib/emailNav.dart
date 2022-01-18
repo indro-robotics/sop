@@ -7,6 +7,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:restart_app/restart_app.dart';
 import 'RPAS_Equipment.dart';
 import 'package:flutter_restart/flutter_restart.dart';
+import 'Mission_Equipment.dart';
+import 'PPE.dart';
 
 final _formKey = GlobalKey<FormState>();
 bool _enableBtn = false;
@@ -15,25 +17,28 @@ bool _enableBtn = false;
 class Screen2 extends StatefulWidget {
 //  @override
   var HeaderOneResults;
-  var result3;
-  var result4;
-  Screen2({Key? key,this.HeaderOneResults,required this.result3, required this.result4}) : super(key: key);
+  var HeaderTwoResults;
+  var HeaderThreeResults;
+  var HeaderFourResults;
+  Screen2({Key? key,this.HeaderOneResults,this.HeaderTwoResults, this.HeaderThreeResults, this.HeaderFourResults}) : super(key: key);
 
-  _Screen2State createState() => _Screen2State(HeaderOneResults:HeaderOneResults, result3: result3, result4: result4);
+  _Screen2State createState() => _Screen2State(HeaderOneResults:HeaderOneResults, HeaderTwoResults:HeaderTwoResults,
+  HeaderThreeResults:HeaderThreeResults, HeaderFourResults:HeaderFourResults);
 }
 
 class _Screen2State extends State<Screen2> {
 //  @override
 
   var HeaderOneResults;
-  var result3;
-  var result4;
+  var HeaderTwoResults;
+  var HeaderThreeResults;
+  var HeaderFourResults;
   late String accountEmail;// = user.email;
 
   //accountEmail = user.email;
   //var accountEmail = Text('${FirebaseAuth.instance.currentUser?.email}');
 
-  _Screen2State({Key? key,this.HeaderOneResults,required this.result3, required this.result4});
+  _Screen2State({Key? key,this.HeaderOneResults,this.HeaderTwoResults, this.HeaderThreeResults, this.HeaderFourResults});
 
   void getEmail(){
     setState(() {
@@ -52,6 +57,23 @@ class _Screen2State extends State<Screen2> {
       }
     }
 
+    for(var i=0; i<HeaderTwoResults.length; i++){
+      if(HeaderTwoResults[i]=='yes'){
+        passed = passed+1;
+      }
+    }
+
+    for(var i=0; i<HeaderThreeResults.length; i++){
+      if(HeaderThreeResults[i]=='yes'){
+        passed = passed+1;
+      }
+    }
+    for(var i=0; i<HeaderFourResults.length; i++){
+      if(HeaderFourResults[i]=='yes'){
+        passed = passed+1;
+      }
+    }
+
     return passed;
   }
 
@@ -59,6 +81,22 @@ class _Screen2State extends State<Screen2> {
     var failed = 0;
     for(var i=0; i<HeaderOneResults.length; i++){
       if(HeaderOneResults[i]=='no'){
+        failed = failed+1;
+      }
+    }
+    for(var i=0; i<HeaderTwoResults.length; i++){
+      if(HeaderTwoResults[i]=='no'){
+        failed = failed+1;
+      }
+    }
+
+    for(var i=0; i<HeaderThreeResults.length; i++){
+      if(HeaderThreeResults[i]=='no'){
+        failed = failed+1;
+      }
+    }
+    for(var i=0; i<HeaderFourResults.length; i++){
+      if(HeaderFourResults[i]=='no'){
         failed = failed+1;
       }
     }
@@ -141,12 +179,54 @@ class _Screen2State extends State<Screen2> {
                           "Passed: ${passed}\n"
                           "Failed: ${failed}\n\n"
                           "   RPAS Equipment:\n      1. Mission maps downloaded onto ground station if required: ${HeaderOneResults[0]}\n"
-                          "      2. RPAS securely stored in case: ${HeaderOneResults[1]}\n\n"
+                          "      2. Gound Control Station fully charged with latest version: ${HeaderOneResults[1]}\n"
+                          "      3. Hand controller (if applicable) fully charged: ${HeaderOneResults[2]}\n"
+                          "      4. Back Up hand controller fully charged and linked to RPA if required: ${HeaderOneResults[3]}\n"
+                          "      5. Memory cards empty and ready to be formatted: ${HeaderOneResults[4]}\n"
+                          "      6. RPAS securely stored in case: ${HeaderOneResults[5]}\n"
+                          "      7. Spare blades (minimum two sets): ${HeaderOneResults[6]}\n"
+                          "      8. Sufficient batteries charged with latest firmware: ${HeaderOneResults[7]}\n"
+                          "      9. Battery charger with cables and LiPo bags if in transport: ${HeaderOneResults[8]}\n"
+                          "\n"
                           "   Mission Equipment:\n"
-                          "      1. First aid Kit: ${result3}\n"
-                          "      2. Cell phone(s) or satellite phone charged with correct cables: ${result4}\n\n"
-                          "   PPE: \n      No Information\n\n"
-                          "   Mission Documents: \n      No Information\n\n"
+                          "      1. First aid Kit: ${HeaderTwoResults[0]}\n"
+                          "      2. Fire extinguisher(s): ${HeaderTwoResults[1]}\n"
+                          "      3. Anemometer: ${HeaderTwoResults[2]}\n"
+                          "      4. Cell Phone(s) or Satellite Phone charged with correct cables: ${HeaderTwoResults[3]}\n"
+                          "      5. 4 to 8 x red or yellow cones: ${HeaderTwoResults[4]}\n"
+                          "      6. RPAS and payload specific items (e.g. base station, battery case, tripod): ${HeaderTwoResults[5]}\n"
+                          "      7. Landing pad: ${HeaderTwoResults[6]}\n"
+                          "      8. Battery warmer equipment: ${HeaderTwoResults[7]}\n"
+                          "      9. Canopy, table and chairs: ${HeaderTwoResults[8]}\n"
+                          "      10. Spectrum analyser with charged battery: ${HeaderTwoResults[9]}\n"
+                          "      11. Tool box: ${HeaderTwoResults[10]}\n"
+                          "      12. Portable power pack charged: ${HeaderTwoResults[11]}\n"
+                          "      13. Extension cord and power bar: ${HeaderTwoResults[12]}\n"
+                          "      14. 12 VDC to 110 VAC inverter: ${HeaderTwoResults[13]}\n"
+                          "      15. Inter-crew comms radios charged and tested: ${HeaderTwoResults[14]}\n"
+                          "      16. Aviation radio(s) charged and tested: ${HeaderTwoResults[15]}\n"
+                          "\n"
+                          "   PPE:\n      1. Hi-vis safety vest: ${HeaderThreeResults[0]}\n"
+                          "      2. Hard-hat: ${HeaderThreeResults[1]}\n"
+                          "      3. Bug repelent: ${HeaderThreeResults[2]}\n"
+                          "      4. Sunglasses and sunscreen: ${HeaderThreeResults[3]}\n"
+                          "      5. Safety glasses: ${HeaderThreeResults[4]}\n"
+                          "      6. Safety footware: ${HeaderThreeResults[5]}\n"
+                          "      7. Fire-retardent suit: ${HeaderThreeResults[6]}\n"
+                          "      8. Ear protection: ${HeaderThreeResults[7]}\n"
+                          "      9. Gloves: ${HeaderThreeResults[8]}\n"
+                          "\n"
+                          "   Mission Documents:\n      1. Canada Flight Supplement and VTA/VNC charts: ${HeaderFourResults[0]}\n"
+                          "      2. Company Operations Manual: ${HeaderFourResults[1]}\n"
+                          "      3. RPAS Flight Manual: ${HeaderFourResults[2]}\n"
+                          "      4. Notices to Airmen (NOTAMS) via NavDrone: ${HeaderFourResults[3]}\n"
+                          "      5. METARs: ${HeaderFourResults[4]}\n"
+                          "      6. Proof of insurance (policy number): ${HeaderFourResults[5]}\n"
+                          "      7. SFOC: ${HeaderFourResults[6]}\n"
+                          "      8. SFOC Application: ${HeaderFourResults[7]}\n"
+                          "      9. NavCan airspace approval and ATC approval if required: ${HeaderFourResults[8]}\n"
+                          "      10. InDro operational clearance: ${HeaderFourResults[9]}\n"
+                          "\n"
                           "   Pre-Flight Setup and Crew Briefing: \n      No Information\n\n";
                       //User? user = FirebaseAuth.instance.currentUser;
                       //var accountEmail = Text('${FirebaseAuth.instance.currentUser?.email}');

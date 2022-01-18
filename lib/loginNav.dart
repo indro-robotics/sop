@@ -32,14 +32,14 @@ class _LoginNavState extends State<LoginNav> {
         child: Column(
           children: <Widget>[
             SizedBox(
-              height: 20,
+              height: 10,
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 60.0),
+              padding: const EdgeInsets.only(top: 10.0),
               child: Center(
                 child: Container(
-                    width: 200,
-                    height: 150,
+                    width: 150,
+                    height: 120,
                     /*decoration: BoxDecoration(
                         color: Colors.red,
                         borderRadius: BorderRadius.circular(50.0)),*/
@@ -48,7 +48,7 @@ class _LoginNavState extends State<LoginNav> {
             ),
 
             SizedBox(
-              height: 30,
+              height: 15,
             ),
             Text(authState, style: TextStyle(color: Colors.red,)),
             Padding(
@@ -85,7 +85,7 @@ class _LoginNavState extends State<LoginNav> {
               ),
             ),
             SizedBox(
-              height: 20,
+              height: 35,
             ),
             Container(
               height: 50,
@@ -158,9 +158,9 @@ class _LoginNavState extends State<LoginNav> {
                 ),
               ),
             ),
-            SizedBox(
-              height: 130,
-            ),
+            //SizedBox(
+            //  height: 130,
+            //),
             //FlatButton(
               //onPressed: (){
                 //TODO FORGOT PASSWORD SCREEN GOES HERE

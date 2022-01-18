@@ -41,7 +41,7 @@ class _ScreenPackUpFlowState extends State<ScreenPackUpFlow> {
               RadioListTile(
                   title: Text('Yes'),
                   value: 'yes',
-                  groupValue: result1,
+                  groupValue: HeaderOneResults[0],
                   onChanged: (value) {
                     setState(() {
                       result1 = value;
@@ -51,7 +51,7 @@ class _ScreenPackUpFlowState extends State<ScreenPackUpFlow> {
               RadioListTile(
                   title: Text('No'),
                   value: 'no',
-                  groupValue: result1,
+                  groupValue: HeaderOneResults[0],
                   onChanged: (value) {
                     setState(() {
                       result1 = value;
@@ -62,11 +62,11 @@ class _ScreenPackUpFlowState extends State<ScreenPackUpFlow> {
               Text(HeaderOneResults[0] == 'yes' ? 'Good' : 'Please get the map downloaded'),
 
               SizedBox(height: 30),
-              Text('2. RPAS securely stored in case'),
+              Text('2. Ground Control Station fully charged with latest version'),
               RadioListTile(
                   title: Text('Yes'),
                   value: 'yes',
-                  groupValue: result2,
+                  groupValue: HeaderOneResults[1],
                   onChanged: (value) {
                     setState(() {
                       result2 = value;
@@ -76,7 +76,7 @@ class _ScreenPackUpFlowState extends State<ScreenPackUpFlow> {
               RadioListTile(
                   title: Text('No'),
                   value: 'no',
-                  groupValue: result2,
+                  groupValue: HeaderOneResults[1],
                   onChanged: (value) {
                     setState(() {
                       result2 = value;
@@ -84,11 +84,182 @@ class _ScreenPackUpFlowState extends State<ScreenPackUpFlow> {
                     });
                   }),
               SizedBox(height: 5),
-              Text(HeaderOneResults[1] == 'yes' ? 'Good' : 'Please securely store your RPAS in case'),
+              Text(HeaderOneResults[1] == 'yes' ? 'Good' : 'Please charge ground control station with latest version'),
 
+              SizedBox(height: 30),
+              Text('3. Hand controller fully charged'),
+              RadioListTile(
+                  title: Text('Yes'),
+                  value: 'yes',
+                  groupValue: HeaderOneResults[2],
+                  onChanged: (value) {
+                    setState(() {
+                      result2 = value;
+                      HeaderOneResults[2] = value.toString();
+                    });
+                  }),
+              RadioListTile(
+                  title: Text('No'),
+                  value: 'no',
+                  groupValue: HeaderOneResults[2],
+                  onChanged: (value) {
+                    setState(() {
+                      result2 = value;
+                      HeaderOneResults[2] = value.toString();
+                    });
+                  }),
+              SizedBox(height: 5),
+              Text(HeaderOneResults[2] == 'yes' ? 'Good' : 'Please charge'),
 
+              SizedBox(height: 30),
+              Text('4. Back Up hand controller fully charged and linked to RPA if required'),
+              RadioListTile(
+                  title: Text('Yes'),
+                  value: 'yes',
+                  groupValue: HeaderOneResults[3],
+                  onChanged: (value) {
+                    setState(() {
+                      result2 = value;
+                      HeaderOneResults[3] = value.toString();
+                    });
+                  }),
+              RadioListTile(
+                  title: Text('No'),
+                  value: 'no',
+                  groupValue: HeaderOneResults[3],
+                  onChanged: (value) {
+                    setState(() {
+                      result2 = value;
+                      HeaderOneResults[3] = value.toString();
+                    });
+                  }),
+              SizedBox(height: 5),
+              Text(HeaderOneResults[3] == 'yes' ? 'Good' : 'Please charge back up'),
 
+              SizedBox(height: 30),
+              Text('5. Memory cards empty and ready to be formatted'),
+              RadioListTile(
+                  title: Text('Yes'),
+                  value: 'yes',
+                  groupValue: HeaderOneResults[4],
+                  onChanged: (value) {
+                    setState(() {
+                      result2 = value;
+                      HeaderOneResults[4] = value.toString();
+                    });
+                  }),
+              RadioListTile(
+                  title: Text('No'),
+                  value: 'no',
+                  groupValue: HeaderOneResults[4],
+                  onChanged: (value) {
+                    setState(() {
+                      result2 = value;
+                      HeaderOneResults[4] = value.toString();
+                    });
+                  }),
+              SizedBox(height: 5),
+              Text(HeaderOneResults[4] == 'yes' ? 'Good' : 'Please get memory cards formatted'),
 
+              SizedBox(height: 30),
+              Text('6. RPAS securely stored in case'),
+              RadioListTile(
+                  title: Text('Yes'),
+                  value: 'yes',
+                  groupValue: HeaderOneResults[5],
+                  onChanged: (value) {
+                    setState(() {
+                      result2 = value;
+                      HeaderOneResults[5] = value.toString();
+                    });
+                  }),
+              RadioListTile(
+                  title: Text('No'),
+                  value: 'no',
+                  groupValue: HeaderOneResults[5],
+                  onChanged: (value) {
+                    setState(() {
+                      result2 = value;
+                      HeaderOneResults[5] = value.toString();
+                    });
+                  }),
+              SizedBox(height: 5),
+              Text(HeaderOneResults[5] == 'yes' ? 'Good' : 'Please store RPAS'),
+
+              SizedBox(height: 30),
+              Text('7. Spare blades'),
+              RadioListTile(
+                  title: Text('Yes'),
+                  value: 'yes',
+                  groupValue: HeaderOneResults[6],
+                  onChanged: (value) {
+                    setState(() {
+                      result2 = value;
+                      HeaderOneResults[6] = value.toString();
+                    });
+                  }),
+              RadioListTile(
+                  title: Text('No'),
+                  value: 'no',
+                  groupValue: HeaderOneResults[6],
+                  onChanged: (value) {
+                    setState(() {
+                      result2 = value;
+                      HeaderOneResults[6] = value.toString();
+                    });
+                  }),
+              SizedBox(height: 5),
+              Text(HeaderOneResults[6] == 'yes' ? 'Good' : 'Please carry spare blades'),
+
+              SizedBox(height: 30),
+              Text('8. Sufficient batteries charged with latest firmware'),
+              RadioListTile(
+                  title: Text('Yes'),
+                  value: 'yes',
+                  groupValue: HeaderOneResults[7],
+                  onChanged: (value) {
+                    setState(() {
+                      result2 = value;
+                      HeaderOneResults[7] = value.toString();
+                    });
+                  }),
+              RadioListTile(
+                  title: Text('No'),
+                  value: 'no',
+                  groupValue: HeaderOneResults[7],
+                  onChanged: (value) {
+                    setState(() {
+                      result2 = value;
+                      HeaderOneResults[7] = value.toString();
+                    });
+                  }),
+              SizedBox(height: 5),
+              Text(HeaderOneResults[7] == 'yes' ? 'Good' : 'please charge'),
+
+              SizedBox(height: 30),
+              Text('9. Battery charger with cables and LiPo bags if in transpor'),
+              RadioListTile(
+                  title: Text('Yes'),
+                  value: 'yes',
+                  groupValue: HeaderOneResults[8],
+                  onChanged: (value) {
+                    setState(() {
+                      result2 = value;
+                      HeaderOneResults[8] = value.toString();
+                    });
+                  }),
+              RadioListTile(
+                  title: Text('No'),
+                  value: 'no',
+                  groupValue: HeaderOneResults[8],
+                  onChanged: (value) {
+                    setState(() {
+                      result2 = value;
+                      HeaderOneResults[8] = value.toString();
+                    });
+                  }),
+              SizedBox(height: 5),
+              Text(HeaderOneResults[8] == 'yes' ? 'Good' : 'please equip'),
 
               SizedBox(height: 30),
               Padding(
@@ -96,7 +267,14 @@ class _ScreenPackUpFlowState extends State<ScreenPackUpFlow> {
                   child:ElevatedButton(
                       style: ButtonStyle(alignment: Alignment.center),
                       //onPressed: ((result1 == 'yes' || result1=='no') && (result2 == 'yes'|| result2=='no'))? _doSomething : null,
-                      onPressed: (HeaderOneResults[0] != 'incomplete' && HeaderOneResults[1] != 'incomplete')? _doSomething : null,
+                      onPressed: (HeaderOneResults[0] != 'incomplete' && HeaderOneResults[1] != 'incomplete'
+                          && HeaderOneResults[2] != 'incomplete'
+                          && HeaderOneResults[3] != 'incomplete'
+                          && HeaderOneResults[4] != 'incomplete'
+                          && HeaderOneResults[5] != 'incomplete'
+                          && HeaderOneResults[6] != 'incomplete'
+                          && HeaderOneResults[7] != 'incomplete'
+                          && HeaderOneResults[8] != 'incomplete')? _doSomething : null,
                       child: Text('Back To Home')))
             ],
           ),
