@@ -44,7 +44,6 @@ class _ScreenPackUpFlowState extends State<ScreenPackUpFlow> {
                   groupValue: HeaderOneResults[0],
                   onChanged: (value) {
                     setState(() {
-                      result1 = value;
                       HeaderOneResults[0] = value.toString();
                     });
                   }),
@@ -54,7 +53,6 @@ class _ScreenPackUpFlowState extends State<ScreenPackUpFlow> {
                   groupValue: HeaderOneResults[0],
                   onChanged: (value) {
                     setState(() {
-                      result1 = value;
                       HeaderOneResults[0] = value.toString();
                     });
                   }),
@@ -69,7 +67,6 @@ class _ScreenPackUpFlowState extends State<ScreenPackUpFlow> {
                   groupValue: HeaderOneResults[1],
                   onChanged: (value) {
                     setState(() {
-                      result2 = value;
                       HeaderOneResults[1] = value.toString();
                     });
                   }),
@@ -79,7 +76,6 @@ class _ScreenPackUpFlowState extends State<ScreenPackUpFlow> {
                   groupValue: HeaderOneResults[1],
                   onChanged: (value) {
                     setState(() {
-                      result2 = value;
                       HeaderOneResults[1] = value.toString();
                     });
                   }),

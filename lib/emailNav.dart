@@ -20,10 +20,15 @@ class Screen2 extends StatefulWidget {
   var HeaderTwoResults;
   var HeaderThreeResults;
   var HeaderFourResults;
-  Screen2({Key? key,this.HeaderOneResults,this.HeaderTwoResults, this.HeaderThreeResults, this.HeaderFourResults}) : super(key: key);
+  var HeaderFiveResults;
+  var HeaderNineResults;
+  var HeaderElevenResults;
+  Screen2({Key? key,this.HeaderOneResults,this.HeaderTwoResults, this.HeaderThreeResults, this.HeaderFourResults,
+  this.HeaderFiveResults, this.HeaderNineResults, this.HeaderElevenResults}) : super(key: key);
 
   _Screen2State createState() => _Screen2State(HeaderOneResults:HeaderOneResults, HeaderTwoResults:HeaderTwoResults,
-  HeaderThreeResults:HeaderThreeResults, HeaderFourResults:HeaderFourResults);
+  HeaderThreeResults:HeaderThreeResults, HeaderFourResults:HeaderFourResults, HeaderFiveResults:HeaderFiveResults,
+      HeaderNineResults:HeaderNineResults, HeaderElevenResults:HeaderElevenResults);
 }
 
 class _Screen2State extends State<Screen2> {
@@ -33,12 +38,16 @@ class _Screen2State extends State<Screen2> {
   var HeaderTwoResults;
   var HeaderThreeResults;
   var HeaderFourResults;
+  var HeaderFiveResults;
+  var HeaderNineResults;
+  var HeaderElevenResults;
   late String accountEmail;// = user.email;
 
   //accountEmail = user.email;
   //var accountEmail = Text('${FirebaseAuth.instance.currentUser?.email}');
 
-  _Screen2State({Key? key,this.HeaderOneResults,this.HeaderTwoResults, this.HeaderThreeResults, this.HeaderFourResults});
+  _Screen2State({Key? key,this.HeaderOneResults,this.HeaderTwoResults, this.HeaderThreeResults, this.HeaderFourResults,
+  this.HeaderFiveResults, this.HeaderNineResults, this.HeaderElevenResults});
 
   void getEmail(){
     setState(() {
@@ -74,6 +83,24 @@ class _Screen2State extends State<Screen2> {
       }
     }
 
+    for(var i=0; i<HeaderFiveResults.length; i++){
+      if(HeaderFiveResults[i]=='yes'){
+        passed = passed+1;
+      }
+    }
+
+    for(var i=0; i<HeaderNineResults.length; i++){
+      if(HeaderNineResults[i]=='yes'){
+        passed = passed+1;
+      }
+    }
+
+    for(var i=0; i<HeaderElevenResults.length; i++){
+      if(HeaderElevenResults[i]=='yes'){
+        passed = passed+1;
+      }
+    }
+
     return passed;
   }
 
@@ -97,6 +124,24 @@ class _Screen2State extends State<Screen2> {
     }
     for(var i=0; i<HeaderFourResults.length; i++){
       if(HeaderFourResults[i]=='no'){
+        failed = failed+1;
+      }
+    }
+
+    for(var i=0; i<HeaderFiveResults.length; i++){
+      if(HeaderFiveResults[i]=='no'){
+        failed = failed+1;
+      }
+    }
+
+    for(var i=0; i<HeaderNineResults.length; i++){
+      if(HeaderNineResults[i]=='no'){
+        failed = failed+1;
+      }
+    }
+
+    for(var i=0; i<HeaderElevenResults.length; i++){
+      if(HeaderElevenResults[i]=='no'){
         failed = failed+1;
       }
     }
@@ -227,7 +272,38 @@ class _Screen2State extends State<Screen2> {
                           "      9. NavCan airspace approval and ATC approval if required: ${HeaderFourResults[8]}\n"
                           "      10. InDro operational clearance: ${HeaderFourResults[9]}\n"
                           "\n"
-                          "   Pre-Flight Setup and Crew Briefing: \n      No Information\n\n";
+                          "   Pre-Flight Setup and Crew Briefing:\n"
+                          "      1. Confirm location suitable for operation: ${HeaderFiveResults[0]}\n"
+                          "      2. Done PPE as required: ${HeaderFiveResults[1]}\n"
+                          "      3. Site survey (secure take-off/landing area, select GCS site and check for obstacles): ${HeaderFiveResults[2]}\n"
+                          "      4. Secure area to ensure no public access: ${HeaderFiveResults[3]}\n"
+                          "      5. Lay out cones and take-off pad: ${HeaderFiveResults[4]}\n"
+                          "      6. Fire extinguisher(s) and first aid kit in an easily accessible location: ${HeaderFiveResults[5]}\n"
+                          "      7. Notification of nearby property owners of mission intentions if required: ${HeaderFiveResults[6]}\n"
+                          "      8. Share mission plans via NavDrone app: ${HeaderFiveResults[7]}\n"
+                          "      9. Wind direction, speed, temp, visibility, cloud ceiling, humidity and pressure and kp-index within limits: ${HeaderFiveResults[8]}\n"
+                          "      10. Review mission objectives and flight plan with crew: ${HeaderFiveResults[9]}\n"
+                          "      11. Identify safety egress routes and alternate landing site: ${HeaderFiveResults[10]}\n"
+                          "      12. Emergency numbers: ${HeaderFiveResults[11]}\n"
+                          "      13. Review crew responsibilities: ${HeaderFiveResults[12]}\n"
+                          "      14. Turn on aviation radio and select appropriate frequecy: ${HeaderFiveResults[13]}\n"
+                          "\n"
+                          "   Pre-Take-Off Checklist:\n      1. Wind and Weather: ${HeaderNineResults[0]}\n"
+                          "      2. Air Vehicle Batteries above 50%: ${HeaderNineResults[1]}\n"
+                          "      3. Hand Controller above 50%: ${HeaderNineResults[2]}\n"
+                          "      4. Ground Control Station: ${HeaderNineResults[3]}\n"
+                          "      5. Cameras: ${HeaderNineResults[4]}\n"
+                          "      6. Take-Off Mode: ${HeaderNineResults[5]}\n"
+                          "      7. Area and Air Traffic: ${HeaderNineResults[6]}\n"
+                          "      8. Cleared Take-Off: ${HeaderNineResults[7]}\n"
+                          "\n"
+                          "   Landing Checklist:\n      1. Disarm RPA: ${HeaderElevenResults[0]}\n"
+                          "      2. Ensure propellers have fully stopped: ${HeaderElevenResults[1]}\n"
+                          "      3. Final battery percent callout: ${HeaderElevenResults[2]}\n"
+                          "      4. IF BATTERY SWAP - Insert charged battery and initiate RPAS-specific Power-On flow: ${HeaderElevenResults[3]}\n"
+                          "      5. IF SHUT DOWN, power down GCS: ${HeaderElevenResults[4]}\n"
+                          "      6. Turn off flight log: ${HeaderElevenResults[5]}\n"
+                          "\n";
                       //User? user = FirebaseAuth.instance.currentUser;
                       //var accountEmail = Text('${FirebaseAuth.instance.currentUser?.email}');
                       //var accoutEmail = user?.email;
