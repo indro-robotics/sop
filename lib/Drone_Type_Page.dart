@@ -4,38 +4,36 @@ import 'package:flutter/widgets.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'PPAS_Setup_Flow.dart';
 import 'RPAS_Wayfinder_Flow.dart';
-import 'MicaSense_Payload.dart';
-import 'Zenmuse_Payload.dart';
 
 
-class ScreenPayloadFlow extends StatefulWidget {
+class ScreenDroneType extends StatefulWidget {
   @override
-  var payload;
-  var micaSense;
-  var Zenmuse;
-  ScreenPayloadFlow({Key? key, this.payload, this.micaSense, this.Zenmuse}) : super(key: key);
-  _ScreenPayloadFlowState createState() => _ScreenPayloadFlowState(payload:payload, micaSense:micaSense, Zenmuse:Zenmuse);
+  var rPASSetupFlow;
+  var matrice;
+  var wayfinder;
+  ScreenDroneType({Key? key, this.rPASSetupFlow, this.matrice, this.wayfinder}) : super(key: key);
+  _ScreenDroneTypeState createState() => _ScreenDroneTypeState(rPASSetupFlow:rPASSetupFlow, matrice:matrice, wayfinder:wayfinder);
 }
-class _ScreenPayloadFlowState extends State<ScreenPayloadFlow> {
-  var payload;
-  var micaSense;
-  var Zenmuse;
-  _ScreenPayloadFlowState({Key? key, this.payload, this.micaSense, this.Zenmuse});
+class _ScreenDroneTypeState extends State<ScreenDroneType> {
+  var rPASSetupFlow;
+  var matrice;
+  var wayfinder;
+  _ScreenDroneTypeState({Key? key, this.rPASSetupFlow, this.matrice, this.wayfinder});
 
   @override
   void _doSomething() {
     Navigator.of(context).push(
         MaterialPageRoute(builder: (context) => Home()));
   }
-  void _enterMicaSenseFlow() {
+  void _enterMatriceFlow() {
     //rPASSetupFlow = 'incomplete';
     Navigator.of(context).push(
-        MaterialPageRoute(builder: (context) => ScreenMicaSenseFlow()));
+        MaterialPageRoute(builder: (context) => ScreenPPASFlow()));
   }
-  void _enterZenmuseFlow() {
+  void _enterWayfinderFlow() {
     //rPASSetupFlow = 'incomplete';
     Navigator.of(context).push(
-        MaterialPageRoute(builder: (context) => ScreenZenmuseFlow()));
+        MaterialPageRoute(builder: (context) => ScreenWayfinderFlow()));
   }
 
   Widget build(BuildContext context) {
@@ -54,7 +52,7 @@ class _ScreenPayloadFlowState extends State<ScreenPayloadFlow> {
             children: [
               SizedBox(height: 5),
               Text(
-                "Choose Payload:",
+                "Choose Drone:",
                 style: TextStyle(fontWeight: FontWeight.w800, fontSize: 20.0),
               ),
               SizedBox(height:10),
@@ -67,7 +65,7 @@ class _ScreenPayloadFlowState extends State<ScreenPayloadFlow> {
                           backgroundColor:
                           MaterialStateProperty.resolveWith<Color>(
                                 (Set<MaterialState> states) {
-                              if (micaSense == 'complete')
+                              if (matrice == 'complete')
                               {
                                 return Colors.green; // Use the component's default. }
                               }
@@ -78,8 +76,8 @@ class _ScreenPayloadFlowState extends State<ScreenPayloadFlow> {
                             },
                           )
                       ),
-                      onPressed: _enterMicaSenseFlow,
-                      child: Text('MicaSense Payload'))),
+                      onPressed: _enterMatriceFlow,
+                      child: Text('Matrice Drone'))),
               SizedBox(height: 15),
               SizedBox(
                   width: 370,
@@ -90,7 +88,7 @@ class _ScreenPayloadFlowState extends State<ScreenPayloadFlow> {
                           backgroundColor:
                           MaterialStateProperty.resolveWith<Color>(
                                 (Set<MaterialState> states) {
-                              if (Zenmuse == 'complete')
+                              if (wayfinder == 'complete')
                               {
                                 return Colors.green; // Use the component's default. }
                               }
@@ -101,8 +99,8 @@ class _ScreenPayloadFlowState extends State<ScreenPayloadFlow> {
                             },
                           )
                       ),
-                      onPressed: _enterZenmuseFlow,
-                      child: Text('Zenmuse Payload'))),
+                      onPressed: _enterWayfinderFlow,
+                      child: Text('InDro Robotics Wayfinder'))),
               Padding(
                   padding: EdgeInsets.symmetric(vertical:60.0,horizontal: 100.0),
                   child:ElevatedButton(
@@ -115,6 +113,11 @@ class _ScreenPayloadFlowState extends State<ScreenPayloadFlow> {
     );
   }
 }
+
+
+
+
+
 
 
 

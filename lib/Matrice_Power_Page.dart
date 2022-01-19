@@ -3,16 +3,17 @@ import 'main.dart';
 import 'package:progress_timeline/progress_timeline.dart';
 import 'package:flutter/widgets.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
+import 'Wayfinder_Power_Page.dart';
 
 //var rPASSetupFlow = 'incomplete';
-var matrice = 'incomplete';
+var matricepower = 'incomplete';
 
-class ScreenPPASFlow extends StatefulWidget {
+class ScreenMatricePower extends StatefulWidget {
   @override
-  _ScreenPPASFlowState createState() => _ScreenPPASFlowState();
+  _ScreenMatricePowerState createState() => _ScreenMatricePowerState();
 }
-class _ScreenPPASFlowState extends State<ScreenPPASFlow> {
-  String textHolder = '1/12 \n\nInsert leg into side slot & flip clips down (twice, once for each leg)';
+class _ScreenMatricePowerState extends State<ScreenMatricePower> {
+  String textHolder = '1/10 \n\nOpen up CyrstalSky and extend handheld controller antennas';
   String submitHolder = 'I Confirm';
 
   late ProgressTimeline screenProgress;
@@ -28,8 +29,6 @@ class _ScreenPPASFlowState extends State<ScreenPPASFlow> {
     SingleState(stateTitle: "Stage 8"),
     SingleState(stateTitle: "Stage 9"),
     SingleState(stateTitle: "Stage 10"),
-    SingleState(stateTitle: "Stage 11"),
-    SingleState(stateTitle: "Stage 12"),
     SingleState(stateTitle: "Complete"),
   ];
 
@@ -38,40 +37,37 @@ class _ScreenPPASFlowState extends State<ScreenPPASFlow> {
     setState(() {
       //rPASSetupFlow = 'incomplete';
       if(screenProgress.state.currentStageIndex == 0){
-        textHolder = '1/12 \n\nInsert leg into side slot & flip clips down (twice, once for each leg)';
+        textHolder = '1/10 \n\nOpen up CyrstalSky and extend handheld controller antennas';
       }
       else if(screenProgress.state.currentStageIndex == 1){
-        textHolder = '2/12 \n\nInspect & attach required payloads';
+        textHolder = '2/10 \n\nConnect handheld controller (USB) to the CrystalSky';
       }
       else if(screenProgress.state.currentStageIndex == 2){
-        textHolder = '3/12 \n\nExtend propeller arms to the side, twist to lock (four times, once for each propeller arm)';
+        textHolder = '3/10 \n\nPush and Hold power button to turn on the controller';
       }
       else if(screenProgress.state.currentStageIndex == 3){
-      textHolder = '4/12 \n\nInspect arms, legs and chassis for damage, notable wear, etc.';
+        textHolder = '4/10 \n\nPush and Hold power button to turn on the drone';
       }
       else if(screenProgress.state.currentStageIndex == 4){
-        textHolder = '5/12 \n\nInspect motors: check give/resistance of each motor is equal';
+        textHolder = '5/10 \n\nUse DJI Pilot app on the CrystalSky, should now connect to the Matrice.';
       }
       else if(screenProgress.state.currentStageIndex == 5){
-        textHolder = '6/12 \n\nPropeller check: leading edge, cracks or breaks';
+        textHolder = '6/10 \n\nGreen light with Matrice 210 beside it';
       }
       else if(screenProgress.state.currentStageIndex == 6){
-        textHolder = '7/12 \n\nPlace propellers by matching colour (black or grey) to the appropriate clockwise or counterclockwise arm';
+        textHolder = '7/10 \n\nCheck to see that you can see via the FPV camera';
       }
       else if(screenProgress.state.currentStageIndex == 7){
-        textHolder = '8/12 \n\nPropellers require you to push then turn to lock (as indicated on the propeller - one set clockwise, the other counterclockwise)';
+        textHolder = '8/10 \n\nEnsure control switches are set properly for operation (switch on top of handheld beside left antenna)';
       }
       else if(screenProgress.state.currentStageIndex == 8){
-        textHolder = '9/12 \n\nPut SD card in the drone (located on left side of the chassis) (will click when placed properly)';
+        textHolder = '9/10 \n\nDouble-Checks: \n - Return to home altitude \n - Flight mode \n - Compass & IMU calibration \n'
+            ' - ESC Status \n - Battery level \n - Battery temperature (>60C) \n - Vision sensor \n'
+            ' - Control stick mode (standard, flipped, etc.) \n - Remote controller battery';
       }
       else if(screenProgress.state.currentStageIndex == 9){
-        textHolder = '10/12 \n\nInspect TB55 (or TB50) batteries for cracks, buldging, etc.';
-      }
-      else if(screenProgress.state.currentStageIndex == 10){
-        textHolder = '11/12 \n\nEnsure batteries were paired in the charger so they are at the same point in their lifecycle (labelled as such) (label for battery pairs)';
-      }
-      else if(screenProgress.state.currentStageIndex == 11){
-        textHolder = '12/12 \n\nInstall the batteries by sliding them in from the back on the lowest point of the chassis.';
+        textHolder = '10/10 \n\nMenus: \n - Geo-fencing (max altitude, distance from home) \n - What drone does when signal is lost \n - Ensure obstacle avoidance is on \n'
+            ' - Check that signal strength is good \n - Ensure appropriate low battery & critical battery warnings';
       }
       else{
         textHolder = 'Completed!';
@@ -82,7 +78,7 @@ class _ScreenPPASFlowState extends State<ScreenPPASFlow> {
   Color getColor(){
     //red is just a sample color
     Color color;
-    if(screenProgress.state.currentStageIndex < 12) {
+    if(screenProgress.state.currentStageIndex < 10) {
       color = Colors.green;
     } else {
       color = Colors.blue;
@@ -90,7 +86,7 @@ class _ScreenPPASFlowState extends State<ScreenPPASFlow> {
     return color;
   }
 
-    @override
+  @override
   void initState() {
     //rPASSetupFlow = 'incomplete';
     screenProgress = new ProgressTimeline(
@@ -101,23 +97,23 @@ class _ScreenPPASFlowState extends State<ScreenPPASFlow> {
   }
 
   void _doSomething() {
-    rPASSetupFlow = 'complete';
-    matrice = 'complete';
+    poweron = 'complete';
+    matricepower = 'complete';
 
     Navigator.of(context).push(
-        MaterialPageRoute(builder: (context) => Home(rPASSetupFlow: rPASSetupFlow, matrice:matrice)));
+        MaterialPageRoute(builder: (context) => Home(poweron: poweron, matricepower:matricepower)));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.orange,
-          centerTitle: true,
-          title: Text(
-            'indrorobotics.ca',
-          ),
+      appBar: AppBar(
+        backgroundColor: Colors.orange,
+        centerTitle: true,
+        title: Text(
+          'indrorobotics.ca',
         ),
+      ),
       body: Center(
         child: Column(
 //          crossAxisAlignment: CrossAxisAlignment.center,
@@ -151,7 +147,7 @@ class _ScreenPPASFlowState extends State<ScreenPPASFlow> {
                   borderRadius: new BorderRadius.circular(20.0)),
               //onPressed: (screenProgress.state.currentStageIndex == 12)? _doSomething : null,
               onPressed: () {
-                if(screenProgress.state.currentStageIndex==12){
+                if(screenProgress.state.currentStageIndex==10){
                   _doSomething();
                 }
                 screenProgress.gotoNextStage();
@@ -164,5 +160,3 @@ class _ScreenPPASFlowState extends State<ScreenPPASFlow> {
     );
   }
 }
-
-

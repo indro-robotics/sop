@@ -5,14 +5,14 @@ import 'package:flutter/widgets.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 //var rPASSetupFlow = 'incomplete';
-var matrice = 'incomplete';
+var wayfinderpower = 'incomplete';
 
-class ScreenPPASFlow extends StatefulWidget {
+class ScreenWayfinderPower extends StatefulWidget {
   @override
-  _ScreenPPASFlowState createState() => _ScreenPPASFlowState();
+  _ScreenWayfinderPowerState createState() => _ScreenWayfinderPowerState();
 }
-class _ScreenPPASFlowState extends State<ScreenPPASFlow> {
-  String textHolder = '1/12 \n\nInsert leg into side slot & flip clips down (twice, once for each leg)';
+class _ScreenWayfinderPowerState extends State<ScreenWayfinderPower> {
+  String textHolder = '1/24 \n\nPayload secure';
   String submitHolder = 'I Confirm';
 
   late ProgressTimeline screenProgress;
@@ -30,6 +30,18 @@ class _ScreenPPASFlowState extends State<ScreenPPASFlow> {
     SingleState(stateTitle: "Stage 10"),
     SingleState(stateTitle: "Stage 11"),
     SingleState(stateTitle: "Stage 12"),
+    SingleState(stateTitle: "Stage 13"),
+    SingleState(stateTitle: "Stage 14"),
+    SingleState(stateTitle: "Stage 15"),
+    SingleState(stateTitle: "Stage 16"),
+    SingleState(stateTitle: "Stage 17"),
+    SingleState(stateTitle: "Stage 18"),
+    SingleState(stateTitle: "Stage 19"),
+    SingleState(stateTitle: "Stage 20"),
+    SingleState(stateTitle: "Stage 21"),
+    SingleState(stateTitle: "Stage 22"),
+    SingleState(stateTitle: "Stage 23"),
+    SingleState(stateTitle: "Stage 24"),
     SingleState(stateTitle: "Complete"),
   ];
 
@@ -38,40 +50,76 @@ class _ScreenPPASFlowState extends State<ScreenPPASFlow> {
     setState(() {
       //rPASSetupFlow = 'incomplete';
       if(screenProgress.state.currentStageIndex == 0){
-        textHolder = '1/12 \n\nInsert leg into side slot & flip clips down (twice, once for each leg)';
+        textHolder = '1/24 \n\nPayload secure';
       }
       else if(screenProgress.state.currentStageIndex == 1){
-        textHolder = '2/12 \n\nInspect & attach required payloads';
+        textHolder = '2/24 \n\nVerify isolator cartirges secure';
       }
       else if(screenProgress.state.currentStageIndex == 2){
-        textHolder = '3/12 \n\nExtend propeller arms to the side, twist to lock (four times, once for each propeller arm)';
+        textHolder = '3/24 \n\nRadio controller on, verify transmission and battery levels';
       }
       else if(screenProgress.state.currentStageIndex == 3){
-      textHolder = '4/12 \n\nInspect arms, legs and chassis for damage, notable wear, etc.';
+        textHolder = '4/24 \n\nSelect appropriate radio controller model';
       }
       else if(screenProgress.state.currentStageIndex == 4){
-        textHolder = '5/12 \n\nInspect motors: check give/resistance of each motor is equal';
+        textHolder = '5/24 \n\nBattery voltage above 48v';
       }
       else if(screenProgress.state.currentStageIndex == 5){
-        textHolder = '6/12 \n\nPropeller check: leading edge, cracks or breaks';
+        textHolder = '6/24 \n\nBattery packs secure';
       }
       else if(screenProgress.state.currentStageIndex == 6){
-        textHolder = '7/12 \n\nPlace propellers by matching colour (black or grey) to the appropriate clockwise or counterclockwise arm';
+        textHolder = '7/24 \n\nCheck battery leads and connect';
       }
       else if(screenProgress.state.currentStageIndex == 7){
-        textHolder = '8/12 \n\nPropellers require you to push then turn to lock (as indicated on the propeller - one set clockwise, the other counterclockwise)';
+        textHolder = '8/24 \n\nInitialize flight controller (DO NOT MOVE AIRCRAFT)';
       }
       else if(screenProgress.state.currentStageIndex == 8){
-        textHolder = '9/12 \n\nPut SD card in the drone (located on left side of the chassis) (will click when placed properly)';
+        textHolder = '9/24 \n\nCheck condition of 8 blade dampers';
       }
       else if(screenProgress.state.currentStageIndex == 9){
-        textHolder = '10/12 \n\nInspect TB55 (or TB50) batteries for cracks, buldging, etc.';
+        textHolder = '10/24 \n\nOrientation lights solid and dim';
       }
       else if(screenProgress.state.currentStageIndex == 10){
-        textHolder = '11/12 \n\nEnsure batteries were paired in the charger so they are at the same point in their lifecycle (labelled as such) (label for battery pairs)';
+        textHolder = '11/24 \n\nReceiver bound to aircraft';
       }
       else if(screenProgress.state.currentStageIndex == 11){
-        textHolder = '12/12 \n\nInstall the batteries by sliding them in from the back on the lowest point of the chassis.';
+        textHolder = '12/24 \n\nQGroundControl connected, no warnings';
+      }
+      else if(screenProgress.state.currentStageIndex == 12){
+        textHolder = '13/24 \n\nCompass calibration check and calibrate if necessary';
+      }
+      else if(screenProgress.state.currentStageIndex == 13){
+        textHolder = '14/24 \n\nRadio control range check as required';
+      }
+      else if(screenProgress.state.currentStageIndex == 14){
+        textHolder = '15/24 \n\nSet Mode switch to Manual';
+      }
+      else if(screenProgress.state.currentStageIndex == 15){
+        textHolder = '16/24 \n\nHome switch Up/Off position';
+      }
+      else if(screenProgress.state.currentStageIndex == 16){
+        textHolder = '17/24 \n\nRadio controller verify correct model';
+      }
+      else if(screenProgress.state.currentStageIndex == 17){
+        textHolder = '18/24 \n\nTelemetry check';
+      }
+      else if(screenProgress.state.currentStageIndex == 18){
+        textHolder = '19/24 \n\nGPS signal locked (green light)';
+      }
+      else if(screenProgress.state.currentStageIndex == 19){
+        textHolder = '20/24 \n\nCheck orientation and ARM';
+      }
+      else if(screenProgress.state.currentStageIndex == 20){
+        textHolder = '21/24 \n\nVerify orientation lights';
+      }
+      else if(screenProgress.state.currentStageIndex == 21){
+        textHolder = '22/24 \n\nVeryify motor operation';
+      }
+      else if(screenProgress.state.currentStageIndex == 22){
+        textHolder = '23/24 \n\nVerify flight controls';
+      }
+      else if(screenProgress.state.currentStageIndex == 23){
+        textHolder = '24/24 \n\nThrottle at minimum';
       }
       else{
         textHolder = 'Completed!';
@@ -82,7 +130,7 @@ class _ScreenPPASFlowState extends State<ScreenPPASFlow> {
   Color getColor(){
     //red is just a sample color
     Color color;
-    if(screenProgress.state.currentStageIndex < 12) {
+    if(screenProgress.state.currentStageIndex < 24) {
       color = Colors.green;
     } else {
       color = Colors.blue;
@@ -90,7 +138,7 @@ class _ScreenPPASFlowState extends State<ScreenPPASFlow> {
     return color;
   }
 
-    @override
+  @override
   void initState() {
     //rPASSetupFlow = 'incomplete';
     screenProgress = new ProgressTimeline(
@@ -101,23 +149,23 @@ class _ScreenPPASFlowState extends State<ScreenPPASFlow> {
   }
 
   void _doSomething() {
-    rPASSetupFlow = 'complete';
-    matrice = 'complete';
+    poweron = 'complete';
+    wayfinderpower = 'complete';
 
     Navigator.of(context).push(
-        MaterialPageRoute(builder: (context) => Home(rPASSetupFlow: rPASSetupFlow, matrice:matrice)));
+        MaterialPageRoute(builder: (context) => Home(poweron: poweron, wayfinderpower:wayfinderpower)));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.orange,
-          centerTitle: true,
-          title: Text(
-            'indrorobotics.ca',
-          ),
+      appBar: AppBar(
+        backgroundColor: Colors.orange,
+        centerTitle: true,
+        title: Text(
+          'indrorobotics.ca',
         ),
+      ),
       body: Center(
         child: Column(
 //          crossAxisAlignment: CrossAxisAlignment.center,
@@ -151,7 +199,7 @@ class _ScreenPPASFlowState extends State<ScreenPPASFlow> {
                   borderRadius: new BorderRadius.circular(20.0)),
               //onPressed: (screenProgress.state.currentStageIndex == 12)? _doSomething : null,
               onPressed: () {
-                if(screenProgress.state.currentStageIndex==12){
+                if(screenProgress.state.currentStageIndex==24){
                   _doSomething();
                 }
                 screenProgress.gotoNextStage();
@@ -164,5 +212,3 @@ class _ScreenPPASFlowState extends State<ScreenPPASFlow> {
     );
   }
 }
-
-

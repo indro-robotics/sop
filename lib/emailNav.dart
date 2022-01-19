@@ -23,12 +23,24 @@ class Screen2 extends StatefulWidget {
   var HeaderFiveResults;
   var HeaderNineResults;
   var HeaderElevenResults;
+  var rPASSetupFlow;
+  var matrice;
+  var wayfinder;
+  var poweron;
+  var matricepower;
+  var wayfinderpower;
+  var payload;
+  var micaSense;
+  var Zenmuse;
   Screen2({Key? key,this.HeaderOneResults,this.HeaderTwoResults, this.HeaderThreeResults, this.HeaderFourResults,
-  this.HeaderFiveResults, this.HeaderNineResults, this.HeaderElevenResults}) : super(key: key);
+  this.HeaderFiveResults, this.HeaderNineResults, this.HeaderElevenResults,this.rPASSetupFlow, this.matrice, this.wayfinder,
+  this.poweron, this.matricepower, this.wayfinderpower, this.payload, this.micaSense, this.Zenmuse}) : super(key: key);
 
   _Screen2State createState() => _Screen2State(HeaderOneResults:HeaderOneResults, HeaderTwoResults:HeaderTwoResults,
   HeaderThreeResults:HeaderThreeResults, HeaderFourResults:HeaderFourResults, HeaderFiveResults:HeaderFiveResults,
-      HeaderNineResults:HeaderNineResults, HeaderElevenResults:HeaderElevenResults);
+      HeaderNineResults:HeaderNineResults, HeaderElevenResults:HeaderElevenResults,rPASSetupFlow:rPASSetupFlow,
+      matrice:matrice, wayfinder:wayfinder, poweron:poweron, matricepower:matricepower, wayfinderpower:wayfinderpower,
+  payload:payload, micaSense:micaSense, Zenmuse:Zenmuse);
 }
 
 class _Screen2State extends State<Screen2> {
@@ -41,13 +53,23 @@ class _Screen2State extends State<Screen2> {
   var HeaderFiveResults;
   var HeaderNineResults;
   var HeaderElevenResults;
+  var rPASSetupFlow;
+  var matrice;
+  var wayfinder;
+  var poweron;
+  var matricepower;
+  var wayfinderpower;
+  var payload;
+  var micaSense;
+  var Zenmuse;
   late String accountEmail;// = user.email;
 
   //accountEmail = user.email;
   //var accountEmail = Text('${FirebaseAuth.instance.currentUser?.email}');
 
   _Screen2State({Key? key,this.HeaderOneResults,this.HeaderTwoResults, this.HeaderThreeResults, this.HeaderFourResults,
-  this.HeaderFiveResults, this.HeaderNineResults, this.HeaderElevenResults});
+  this.HeaderFiveResults, this.HeaderNineResults, this.HeaderElevenResults,this.rPASSetupFlow, this.matrice, this.wayfinder,
+  this.poweron, this.matricepower, this.wayfinderpower, this.payload, this.micaSense, this.Zenmuse});
 
   void getEmail(){
     setState(() {
@@ -287,6 +309,18 @@ class _Screen2State extends State<Screen2> {
                           "      12. Emergency numbers: ${HeaderFiveResults[11]}\n"
                           "      13. Review crew responsibilities: ${HeaderFiveResults[12]}\n"
                           "      14. Turn on aviation radio and select appropriate frequecy: ${HeaderFiveResults[13]}\n"
+                          "\n"
+                          "   RPAS Setup Flow: ${rPASSetupFlow}\n"
+                          "   matrice: ${matrice}\n"
+                          "   wayfinder: ${wayfinder}\n"
+                          "\n"
+                          "   Payload Setup ${payload}\n"
+                          "   micaSense Payload: ${micaSense}\n"
+                          "   Zenmuse Payload: ${Zenmuse}\n"
+                          "\n"
+                          "   Pre Flight Power On Flow: ${poweron}\n"
+                          "   Power on matrice: ${matricepower}\n"
+                          "   Power on wayfinder: ${wayfinderpower}\n"
                           "\n"
                           "   Pre-Take-Off Checklist:\n      1. Wind and Weather: ${HeaderNineResults[0]}\n"
                           "      2. Air Vehicle Batteries above 50%: ${HeaderNineResults[1]}\n"

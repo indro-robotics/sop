@@ -17,6 +17,12 @@ import 'TakeOff_Flow.dart';
 import 'Landing_Checklist.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'LoginPage.dart';
+import 'Drone_Type_Page.dart';
+import 'RPAS_Wayfinder_Flow.dart';
+import 'Matrice_Power_Page.dart';
+import 'Wayfinder_Power_Page.dart';
+import 'MicaSense_Payload.dart';
+import 'Zenmuse_Payload.dart';
 
 //void main() => runApp(MyApp());
 void main() async{
@@ -41,6 +47,10 @@ bool _enableBtn = false;
 TextEditingController emailController = TextEditingController();
 TextEditingController subjectController = TextEditingController();
 TextEditingController messageController = TextEditingController();
+var rPASSetupFlow = 'incomplete';
+var poweron = 'incomplete';
+var payload = 'incomplete';
+//var rPASSetupFlow = 'incomplete';
 
 class Home extends StatefulWidget {
   @override
@@ -54,9 +64,18 @@ class Home extends StatefulWidget {
   var result3;
   var result4;
   var rPASSetupFlow;
+  var matrice;
+  var wayfinder;
+  var poweron;
+  var matricepower;
+  var wayfinderpower;
+  var payload;
+  var micaSense;
+  var Zenmuse;
   Home({Key? key, this.HeaderOneResults, this.HeaderTwoResults, this.HeaderThreeResults, this.HeaderFourResults, this.HeaderFiveResults,
     this.HeaderNineResults, this.HeaderElevenResults,
-    this.rPASSetupFlow}) : super(key: key);
+    this.rPASSetupFlow, this.matrice, this.wayfinder, this.poweron, this.matricepower, this.wayfinderpower,
+  this.payload, this.micaSense, this.Zenmuse}) : super(key: key);
 
   _HomeState createState() => _HomeState();
 
@@ -69,7 +88,9 @@ class _HomeState extends State<Home> {
   void NavigateScrean2() {
     Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Screen2(HeaderOneResults:HeaderOneResults, HeaderTwoResults:HeaderTwoResults,
         HeaderThreeResults:HeaderThreeResults, HeaderFourResults:HeaderFourResults, HeaderFiveResults:HeaderFiveResults,
-        HeaderNineResults:HeaderNineResults, HeaderElevenResults:HeaderElevenResults)));
+        HeaderNineResults:HeaderNineResults, HeaderElevenResults:HeaderElevenResults,  rPASSetupFlow: rPASSetupFlow, matrice:matrice,
+        wayfinder:wayfinder, poweron:poweron, matricepower:matricepower, wayfinderpower:wayfinderpower,
+    poweron:poweron, micaSense:micaSense, Zenmuse:Zenmuse)));
   }
 
   void _enterPackUpFlow() {
@@ -94,15 +115,15 @@ class _HomeState extends State<Home> {
   }
   void _enterRPASFlow() {
     Navigator.of(context).push(
-        MaterialPageRoute(builder: (context) => ScreenPPASFlow()));
+        MaterialPageRoute(builder: (context) => ScreenDroneType(rPASSetupFlow:rPASSetupFlow, matrice:matrice, wayfinder:wayfinder)));
   }
   void _enterPayloadFlow() {
     Navigator.of(context).push(
-        MaterialPageRoute(builder: (context) => ScreenPayloadFlow()));
+        MaterialPageRoute(builder: (context) => ScreenPayloadFlow(payload:payload, micaSense:micaSense, Zenmuse:Zenmuse)));
   }
   void _enterPreFlightFlow() {
     Navigator.of(context).push(
-        MaterialPageRoute(builder: (context) => ScreenPreFlightFlow()));
+        MaterialPageRoute(builder: (context) => ScreenPowerOn(poweron:poweron, matricepower:matricepower, wayfinderpower:wayfinderpower)));
   }
   void _enterPreTakeOffChecklist() {
     Navigator.of(context).push(
@@ -425,14 +446,44 @@ class _HomeState extends State<Home> {
               SizedBox(
                   width: 370,
                   child:ElevatedButton(
-                      style: ButtonStyle(alignment: Alignment.center),
+                      style: ButtonStyle(alignment: Alignment.center,
+                      backgroundColor:
+                      MaterialStateProperty.resolveWith<Color>(
+                            (Set<MaterialState> states) {
+                          if (payload == 'complete')
+                          {
+                            return Colors.green; // Use the component's default. }
+                          }
+                          else
+                          {
+                            return Colors.blue;
+                          }
+                        },
+                      )
+
+                  ),
                       onPressed:  _enterPayloadFlow,
                       child: Text('Payload Setup Flow'))),
               SizedBox(height: 5),
               SizedBox(
                   width: 370,
                   child:ElevatedButton(
-                      style: ButtonStyle(alignment: Alignment.center),
+                      style: ButtonStyle(alignment: Alignment.center,
+                          backgroundColor:
+                          MaterialStateProperty.resolveWith<Color>(
+                                (Set<MaterialState> states) {
+                              if (poweron == 'complete')
+                              {
+                                return Colors.green; // Use the component's default. }
+                              }
+                              else
+                              {
+                                return Colors.blue;
+                              }
+                            },
+                          )
+
+                      ),
                       onPressed:  _enterPreFlightFlow,
                       child: Text('Pre-Flight Power On Flow'))),
               SizedBox(height: 5),
