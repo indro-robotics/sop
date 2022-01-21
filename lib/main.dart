@@ -72,10 +72,11 @@ class Home extends StatefulWidget {
   var payload;
   var micaSense;
   var Zenmuse;
+  var flightTime;
   Home({Key? key, this.HeaderOneResults, this.HeaderTwoResults, this.HeaderThreeResults, this.HeaderFourResults, this.HeaderFiveResults,
     this.HeaderNineResults, this.HeaderElevenResults,
     this.rPASSetupFlow, this.matrice, this.wayfinder, this.poweron, this.matricepower, this.wayfinderpower,
-  this.payload, this.micaSense, this.Zenmuse}) : super(key: key);
+  this.payload, this.micaSense, this.Zenmuse, this.flightTime}) : super(key: key);
 
   _HomeState createState() => _HomeState();
 
@@ -90,7 +91,7 @@ class _HomeState extends State<Home> {
         HeaderThreeResults:HeaderThreeResults, HeaderFourResults:HeaderFourResults, HeaderFiveResults:HeaderFiveResults,
         HeaderNineResults:HeaderNineResults, HeaderElevenResults:HeaderElevenResults,  rPASSetupFlow: rPASSetupFlow, matrice:matrice,
         wayfinder:wayfinder, poweron:poweron, matricepower:matricepower, wayfinderpower:wayfinderpower,
-    poweron:poweron, micaSense:micaSense, Zenmuse:Zenmuse)));
+    payload:payload, micaSense:micaSense, Zenmuse:Zenmuse)));
   }
 
   void _enterPackUpFlow() {
