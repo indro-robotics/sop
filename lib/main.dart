@@ -1,3 +1,5 @@
+
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'text_fields.dart';
@@ -23,11 +25,17 @@ import 'Matrice_Power_Page.dart';
 import 'Wayfinder_Power_Page.dart';
 import 'MicaSense_Payload.dart';
 import 'Zenmuse_Payload.dart';
+import 'Matrice300_Power_Page.dart';
+import 'Matrice300_RPAS.dart';
+import 'DJI_Mavic_Mini_RPAS.dart';
+import 'DJI_Mavic_Mini_PowerOn.dart';
+
+
 
 //void main() => runApp(MyApp());
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  //await Firebase.initializeApp();
   runApp(MyApp());
 }
 /// This Widget is the main application widget.
@@ -37,7 +45,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return MaterialApp(
-      home: LoginNav(),
+      home: Home(),
+      //home: LoginNav(),
     );
   }
 }
@@ -73,10 +82,14 @@ class Home extends StatefulWidget {
   var micaSense;
   var Zenmuse;
   var flightTime;
+  var matrice300power;
+  var matrice300;
+  var mavicMinipower;
+  var mavicMini;
   Home({Key? key, this.HeaderOneResults, this.HeaderTwoResults, this.HeaderThreeResults, this.HeaderFourResults, this.HeaderFiveResults,
     this.HeaderNineResults, this.HeaderElevenResults,
     this.rPASSetupFlow, this.matrice, this.wayfinder, this.poweron, this.matricepower, this.wayfinderpower,
-  this.payload, this.micaSense, this.Zenmuse, this.flightTime}) : super(key: key);
+  this.payload, this.micaSense, this.Zenmuse, this.flightTime, this.matrice300power, this.matrice300, this.mavicMini, this.mavicMinipower}) : super(key: key);
 
   _HomeState createState() => _HomeState();
 
@@ -84,14 +97,14 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   //int count = 0;
-  final auth = FirebaseAuth.instance;
+  //final auth = FirebaseAuth.instance;
 
   void NavigateScrean2() {
     Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Screen2(HeaderOneResults:HeaderOneResults, HeaderTwoResults:HeaderTwoResults,
         HeaderThreeResults:HeaderThreeResults, HeaderFourResults:HeaderFourResults, HeaderFiveResults:HeaderFiveResults,
         HeaderNineResults:HeaderNineResults, HeaderElevenResults:HeaderElevenResults,  rPASSetupFlow: rPASSetupFlow, matrice:matrice,
         wayfinder:wayfinder, poweron:poweron, matricepower:matricepower, wayfinderpower:wayfinderpower,
-    payload:payload, micaSense:micaSense, Zenmuse:Zenmuse)));
+    payload:payload, micaSense:micaSense, Zenmuse:Zenmuse, timeValue:timeValue, matrice300power:matrice300power, matrice300:matrice300, mavicMinipower:mavicMinipower, mavicMini:mavicMini)));
   }
 
   void _enterPackUpFlow() {
@@ -140,8 +153,8 @@ class _HomeState extends State<Home> {
   }
 
   void _signOut(){
-    auth.signOut();
-    Navigator.of(context).pushReplacement(MaterialPageRoute(builder:(context)=>LoginNav()));
+    //auth.signOut();
+    //Navigator.of(context).pushReplacement(MaterialPageRoute(builder:(context)=>LoginNav()));
   }
 
   Widget build(BuildContext context) {
@@ -153,20 +166,13 @@ class _HomeState extends State<Home> {
           title: Text(
             'indrorobotics.ca',
           ),
-          actions:<Widget>[
+          /*actions:<Widget>[
             IconButton(
               icon: Icon(Icons.account_circle),
               onPressed: _signOut,
             ),
-          ],
+          ],*/
         ),
-        /*floatingActionButton: new FloatingActionButton(
-          child: new Icon(Icons.fullscreen_exit),
-          onPressed: () {
-            auth.signOut();
-            Navigator.of(context).pushReplacement(MaterialPageRoute(builder:(context)=>LoginNav()));
-            },
-        ),*/
         body:
         SingleChildScrollView(
           padding: EdgeInsets.all(50),
@@ -217,7 +223,7 @@ class _HomeState extends State<Home> {
                           )
                       ),
                       onPressed:  _enterPackUpFlow ,
-                      child: Text('RPAS Equipment'))),
+                      child: Text('Pre-Mission Checklist'))),
               SizedBox(height: 5),
               SizedBox(
                   width: 370,
@@ -533,9 +539,27 @@ class _HomeState extends State<Home> {
               SizedBox(
                   width: 370,
                   child:ElevatedButton(
-                      style: ButtonStyle(alignment: Alignment.center),
+                      style: ButtonStyle(alignment: Alignment.center,
+                          backgroundColor:
+                          MaterialStateProperty.resolveWith<Color>(
+                                (Set<MaterialState> states) {
+                              if (timeValue!="00:00:00" && buttonText=='Complete')
+                              {
+                                return Colors.green; // Use the component's default. }
+                              }
+                              else if(timeValue!="00:00:00"){
+                                return Colors.orangeAccent;
+                              }
+                              else
+                              {
+                                return Colors.blue;
+                              }
+                            },
+                          )
+
+                      ),
                       onPressed:  _enterTakeOffFlow,
-                      child: Text('Take Off Flow'))),
+                      child: Text('Flight'))),
               SizedBox(height: 5),
               SizedBox(
                   width: 370,

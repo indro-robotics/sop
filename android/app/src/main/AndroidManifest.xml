@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.sop2">
    <application
-        android:label="sop2"
+        android:label="SOP"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

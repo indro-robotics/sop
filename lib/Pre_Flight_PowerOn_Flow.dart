@@ -6,6 +6,8 @@ import 'PPAS_Setup_Flow.dart';
 import 'RPAS_Wayfinder_Flow.dart';
 import 'Matrice_Power_Page.dart';
 import 'Wayfinder_Power_Page.dart';
+import 'Matrice300_Power_Page.dart';
+import 'DJI_Mavic_Mini_PowerOn.dart';
 
 
 class ScreenPowerOn extends StatefulWidget {
@@ -13,14 +15,19 @@ class ScreenPowerOn extends StatefulWidget {
   var poweron;
   var matricepower;
   var wayfinderpower;
-  ScreenPowerOn({Key? key, this.poweron, this.matricepower, this.wayfinderpower}) : super(key: key);
-  _ScreenPowerOnState createState() => _ScreenPowerOnState(poweron:poweron, matricepower:matricepower, wayfinderpower:wayfinderpower);
+  var matrice300power;
+  var mavicMinipower;
+  ScreenPowerOn({Key? key, this.poweron, this.matricepower, this.wayfinderpower, this.matrice300power, this.mavicMinipower}) : super(key: key);
+  _ScreenPowerOnState createState() => _ScreenPowerOnState(poweron:poweron, matricepower:matricepower, wayfinderpower:wayfinderpower, matrice300power:matrice300power,
+      mavicMinipower:mavicMinipower);
 }
 class _ScreenPowerOnState extends State<ScreenPowerOn> {
   var poweron;
   var matricepower;
   var wayfinderpower;
-  _ScreenPowerOnState({Key? key, this.poweron, this.matricepower, this.wayfinderpower});
+  var matrice300power;
+  var mavicMinipower;
+  _ScreenPowerOnState({Key? key, this.poweron, this.matricepower, this.wayfinderpower, this.matrice300power, this.mavicMinipower});
 
   @override
   void _doSomething() {
@@ -36,6 +43,16 @@ class _ScreenPowerOnState extends State<ScreenPowerOn> {
     //rPASSetupFlow = 'incomplete';
     Navigator.of(context).push(
         MaterialPageRoute(builder: (context) => ScreenWayfinderPower()));
+  }
+  void _enterMatrice300PowerFlow() {
+    //rPASSetupFlow = 'incomplete';
+    Navigator.of(context).push(
+        MaterialPageRoute(builder: (context) => ScreenMatrice300Power()));
+  }
+  void _enterMavicMiniPowerFlow() {
+    //rPASSetupFlow = 'incomplete';
+    Navigator.of(context).push(
+        MaterialPageRoute(builder: (context) => ScreenMavicMiniPower()));
   }
 
   Widget build(BuildContext context) {
@@ -79,7 +96,7 @@ class _ScreenPowerOnState extends State<ScreenPowerOn> {
                           )
                       ),
                       onPressed: _enterMatricePowerFlow,
-                      child: Text('Matrice Drone'))),
+                      child: Text('matrice m210'))),
               SizedBox(height: 15),
               SizedBox(
                   width: 370,
@@ -103,8 +120,54 @@ class _ScreenPowerOnState extends State<ScreenPowerOn> {
                       ),
                       onPressed: _enterWayfinderPowerFlow,
                       child: Text('InDro Robotics Wayfinder'))),
+              SizedBox(height: 15),
+              SizedBox(
+                  width: 370,
+                  height: 100,
+                  //padding: EdgeInsets.symmetric(vertical:0.0,horizontal: 50.0),
+                  child:ElevatedButton(
+                      style: ButtonStyle(alignment: Alignment.center,
+                          backgroundColor:
+                          MaterialStateProperty.resolveWith<Color>(
+                                (Set<MaterialState> states) {
+                              if (matrice300power == 'complete')
+                              {
+                                return Colors.green; // Use the component's default. }
+                              }
+                              else
+                              {
+                                return Colors.blue;
+                              }
+                            },
+                          )
+                      ),
+                      onPressed: _enterMatrice300PowerFlow,
+                      child: Text('matrice m300'))),
+              SizedBox(height: 15),
+              SizedBox(
+                  width: 370,
+                  height: 100,
+                  //padding: EdgeInsets.symmetric(vertical:0.0,horizontal: 50.0),
+                  child:ElevatedButton(
+                      style: ButtonStyle(alignment: Alignment.center,
+                          backgroundColor:
+                          MaterialStateProperty.resolveWith<Color>(
+                                (Set<MaterialState> states) {
+                              if (mavicMinipower == 'complete')
+                              {
+                                return Colors.green; // Use the component's default. }
+                              }
+                              else
+                              {
+                                return Colors.blue;
+                              }
+                            },
+                          )
+                      ),
+                      onPressed: _enterMavicMiniPowerFlow,
+                      child: Text('Mavic Mini'))),
               Padding(
-                  padding: EdgeInsets.symmetric(vertical:60.0,horizontal: 100.0),
+                  padding: EdgeInsets.symmetric(vertical:15.0,horizontal: 110.0),
                   child:ElevatedButton(
                       style: ButtonStyle(alignment: Alignment.center),
                       onPressed: _doSomething,

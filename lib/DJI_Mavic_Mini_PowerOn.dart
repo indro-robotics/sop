@@ -6,13 +6,13 @@ import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'Wayfinder_Power_Page.dart';
 
 //var rPASSetupFlow = 'incomplete';
-var matricepower = 'incomplete';
+var mavicMinipower = 'incomplete';
 
-class ScreenMatricePower extends StatefulWidget {
+class ScreenMavicMiniPower extends StatefulWidget {
   @override
-  _ScreenMatricePowerState createState() => _ScreenMatricePowerState();
+  _ScreenMavicMiniPowerState createState() => _ScreenMavicMiniPowerState();
 }
-class _ScreenMatricePowerState extends State<ScreenMatricePower> {
+class _ScreenMavicMiniPowerState extends State<ScreenMavicMiniPower> {
   String textHolder = '1/10 \n\nOpen up CyrstalSky and extend handheld controller antennas';
   String submitHolder = 'I Confirm';
 
@@ -99,10 +99,10 @@ class _ScreenMatricePowerState extends State<ScreenMatricePower> {
   void _doSomething() {
     if(screenProgress.state.currentStageIndex==10) {
       poweron = 'complete';
-      matricepower = 'complete';
+      mavicMinipower = 'complete';
     }
     Navigator.of(context).push(
-        MaterialPageRoute(builder: (context) => Home(poweron: poweron, matricepower:matricepower)));
+        MaterialPageRoute(builder: (context) => Home(poweron: poweron, mavicMinipower:mavicMinipower)));
   }
 
   @override
@@ -135,49 +135,49 @@ class _ScreenMatricePowerState extends State<ScreenMatricePower> {
             SizedBox(
               height: 80,
             ),
-      Container(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            FlatButton(
-              child: Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: Text(
-                  "Back",
-                  style: TextStyle(fontSize: 20, color: Colors.white),
-                ),
-              ),
-              color: Colors.green,
-              shape: new RoundedRectangleBorder(
-                  borderRadius: new BorderRadius.circular(20.0)),
-              onPressed: () {
-                if(screenProgress.state.currentStageIndex==0){
-                  _doSomething();
-                }
-                screenProgress.gotoPreviousStage();
-                changeText();
-              },
-            ),
-            FlatButton(
-              child: Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: Text(
-                  "$submitHolder",
-                  style: TextStyle(fontSize: 20, color: Colors.white),
-                ),
-              ),
-              color: getColor(),
-              shape: new RoundedRectangleBorder(
-                  borderRadius: new BorderRadius.circular(20.0)),
-              //onPressed: (screenProgress.state.currentStageIndex == 12)? _doSomething : null,
-              onPressed: () {
-                if(screenProgress.state.currentStageIndex==10){
-                  _doSomething();
-                }
-                screenProgress.gotoNextStage();
-                changeText();
-              },
-            ),]))
+            Container(
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      FlatButton(
+                        child: Padding(
+                          padding: const EdgeInsets.all(15.0),
+                          child: Text(
+                            "Back",
+                            style: TextStyle(fontSize: 20, color: Colors.white),
+                          ),
+                        ),
+                        color: Colors.green,
+                        shape: new RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(20.0)),
+                        onPressed: () {
+                          if(screenProgress.state.currentStageIndex==0){
+                            _doSomething();
+                          }
+                          screenProgress.gotoPreviousStage();
+                          changeText();
+                        },
+                      ),
+                      FlatButton(
+                        child: Padding(
+                          padding: const EdgeInsets.all(15.0),
+                          child: Text(
+                            "$submitHolder",
+                            style: TextStyle(fontSize: 20, color: Colors.white),
+                          ),
+                        ),
+                        color: getColor(),
+                        shape: new RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(20.0)),
+                        //onPressed: (screenProgress.state.currentStageIndex == 12)? _doSomething : null,
+                        onPressed: () {
+                          if(screenProgress.state.currentStageIndex==10){
+                            _doSomething();
+                          }
+                          screenProgress.gotoNextStage();
+                          changeText();
+                        },
+                      ),]))
           ],
         ),
       ),

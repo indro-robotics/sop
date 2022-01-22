@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'main.dart';
+import 'Drone_Type_Page.dart';
 import 'package:progress_timeline/progress_timeline.dart';
 import 'package:flutter/widgets.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 //var rPASSetupFlow = 'incomplete';
-var matrice = 'incomplete';
+var mavicMini = 'incomplete';
 
-class ScreenPPASFlow extends StatefulWidget {
+class ScreenMavicMiniFlow extends StatefulWidget {
   @override
-  _ScreenPPASFlowState createState() => _ScreenPPASFlowState();
+  _ScreenMavicMiniFlowState createState() => _ScreenMavicMiniFlowState();
 }
-class _ScreenPPASFlowState extends State<ScreenPPASFlow> {
+class _ScreenMavicMiniFlowState extends State<ScreenMavicMiniFlow> {
   String textHolder = '1/12 \n\nInsert leg into side slot & flip clips down (twice, once for each leg)';
   String submitHolder = 'I Confirm';
 
@@ -47,7 +48,7 @@ class _ScreenPPASFlowState extends State<ScreenPPASFlow> {
         textHolder = '3/12 \n\nExtend propeller arms to the side, twist to lock (four times, once for each propeller arm)';
       }
       else if(screenProgress.state.currentStageIndex == 3){
-      textHolder = '4/12 \n\nInspect arms, legs and chassis for damage, notable wear, etc.';
+        textHolder = '4/12 \n\nInspect arms, legs and chassis for damage, notable wear, etc.';
       }
       else if(screenProgress.state.currentStageIndex == 4){
         textHolder = '5/12 \n\nInspect motors: check give/resistance of each motor is equal';
@@ -90,7 +91,7 @@ class _ScreenPPASFlowState extends State<ScreenPPASFlow> {
     return color;
   }
 
-    @override
+  @override
   void initState() {
     //rPASSetupFlow = 'incomplete';
     screenProgress = new ProgressTimeline(
@@ -103,22 +104,22 @@ class _ScreenPPASFlowState extends State<ScreenPPASFlow> {
   void _doSomething() {
     if(screenProgress.state.currentStageIndex==12) {
       rPASSetupFlow = 'complete';
-      matrice = 'complete';
+      mavicMini = 'complete';
     }
     Navigator.of(context).push(
-        MaterialPageRoute(builder: (context) => Home(rPASSetupFlow: rPASSetupFlow, matrice:matrice)));
+        MaterialPageRoute(builder: (context) => Home(rPASSetupFlow: rPASSetupFlow, mavicMini:mavicMini)));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.orange,
-          centerTitle: true,
-          title: Text(
-            'indrorobotics.ca',
-          ),
+      appBar: AppBar(
+        backgroundColor: Colors.orange,
+        centerTitle: true,
+        title: Text(
+          'indrorobotics.ca',
         ),
+      ),
       body: Center(
         child: Column(
 //          crossAxisAlignment: CrossAxisAlignment.center,
@@ -139,49 +140,49 @@ class _ScreenPPASFlowState extends State<ScreenPPASFlow> {
             SizedBox(
               height: 80,
             ),
-      Container(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            FlatButton(
-              child: Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: Text(
-                  "Back",
-                  style: TextStyle(fontSize: 20, color: Colors.white),
-                ),
-              ),
-              color: Colors.green,
-              shape: new RoundedRectangleBorder(
-                  borderRadius: new BorderRadius.circular(20.0)),
-              onPressed: () {
-                if(screenProgress.state.currentStageIndex==0){
-                  _doSomething();
-                }
-                screenProgress.gotoPreviousStage();
-                changeText();
-              },
-            ),
-            FlatButton(
-              child: Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: Text(
-                  "$submitHolder",
-                  style: TextStyle(fontSize: 20, color: Colors.white),
-                ),
-              ),
-              color: getColor(),
-              shape: new RoundedRectangleBorder(
-                  borderRadius: new BorderRadius.circular(20.0)),
-              //onPressed: (screenProgress.state.currentStageIndex == 12)? _doSomething : null,
-              onPressed: () {
-                if(screenProgress.state.currentStageIndex==12){
-                  _doSomething();
-                }
-                screenProgress.gotoNextStage();
-                changeText();
-              },
-            ),]))
+            Container(
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      FlatButton(
+                        child: Padding(
+                          padding: const EdgeInsets.all(15.0),
+                          child: Text(
+                            "Back",
+                            style: TextStyle(fontSize: 20, color: Colors.white),
+                          ),
+                        ),
+                        color: Colors.green,
+                        shape: new RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(20.0)),
+                        onPressed: () {
+                          if(screenProgress.state.currentStageIndex==0){
+                            _doSomething();
+                          }
+                          screenProgress.gotoPreviousStage();
+                          changeText();
+                        },
+                      ),
+                      FlatButton(
+                        child: Padding(
+                          padding: const EdgeInsets.all(15.0),
+                          child: Text(
+                            "$submitHolder",
+                            style: TextStyle(fontSize: 20, color: Colors.white),
+                          ),
+                        ),
+                        color: getColor(),
+                        shape: new RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(20.0)),
+                        //onPressed: (screenProgress.state.currentStageIndex == 12)? _doSomething : null,
+                        onPressed: () {
+                          if(screenProgress.state.currentStageIndex==12){
+                            _doSomething();
+                          }
+                          screenProgress.gotoNextStage();
+                          changeText();
+                        },
+                      ),]))
           ],
         ),
       ),

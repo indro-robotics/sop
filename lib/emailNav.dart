@@ -32,15 +32,22 @@ class Screen2 extends StatefulWidget {
   var payload;
   var micaSense;
   var Zenmuse;
+  var matrice300power;
+  var matrice300;
+  var mavicMinipower;
+  var mavicMini;
+  String timeValue;
   Screen2({Key? key,this.HeaderOneResults,this.HeaderTwoResults, this.HeaderThreeResults, this.HeaderFourResults,
   this.HeaderFiveResults, this.HeaderNineResults, this.HeaderElevenResults,this.rPASSetupFlow, this.matrice, this.wayfinder,
-  this.poweron, this.matricepower, this.wayfinderpower, this.payload, this.micaSense, this.Zenmuse}) : super(key: key);
+  this.poweron, this.matricepower, this.wayfinderpower, this.payload, this.micaSense, this.Zenmuse, required this.timeValue, this.matrice300power, this.matrice300,
+  this.mavicMinipower, this.mavicMini}) : super(key: key);
 
   _Screen2State createState() => _Screen2State(HeaderOneResults:HeaderOneResults, HeaderTwoResults:HeaderTwoResults,
   HeaderThreeResults:HeaderThreeResults, HeaderFourResults:HeaderFourResults, HeaderFiveResults:HeaderFiveResults,
       HeaderNineResults:HeaderNineResults, HeaderElevenResults:HeaderElevenResults,rPASSetupFlow:rPASSetupFlow,
       matrice:matrice, wayfinder:wayfinder, poweron:poweron, matricepower:matricepower, wayfinderpower:wayfinderpower,
-  payload:payload, micaSense:micaSense, Zenmuse:Zenmuse);
+  payload:payload, micaSense:micaSense, Zenmuse:Zenmuse, timeValue:timeValue, matrice300power:matrice300power, matrice300:matrice300, mavicMinipower:mavicMinipower,
+  mavicMini:mavicMini);
 }
 
 class _Screen2State extends State<Screen2> {
@@ -62,6 +69,11 @@ class _Screen2State extends State<Screen2> {
   var payload;
   var micaSense;
   var Zenmuse;
+  var matrice300power;
+  var matrice300;
+  var mavicMinipower;
+  var mavicMini;
+  String timeValue;
   late String accountEmail;// = user.email;
 
   //accountEmail = user.email;
@@ -69,7 +81,8 @@ class _Screen2State extends State<Screen2> {
 
   _Screen2State({Key? key,this.HeaderOneResults,this.HeaderTwoResults, this.HeaderThreeResults, this.HeaderFourResults,
   this.HeaderFiveResults, this.HeaderNineResults, this.HeaderElevenResults,this.rPASSetupFlow, this.matrice, this.wayfinder,
-  this.poweron, this.matricepower, this.wayfinderpower, this.payload, this.micaSense, this.Zenmuse});
+  this.poweron, this.matricepower, this.wayfinderpower, this.payload, this.micaSense, this.Zenmuse, required this.timeValue, this.matrice300power, this.matrice300,
+  this.mavicMinipower, this.mavicMini});
 
   void getEmail(){
     setState(() {
@@ -201,7 +214,7 @@ class _Screen2State extends State<Screen2> {
                     }
                     return null;
                   })),
-              /*TextFields(
+              TextFields(
                   controller: emailController,
                   name: "Email",
                   validator: ((value) {
@@ -211,7 +224,7 @@ class _Screen2State extends State<Screen2> {
                       return 'Please enter a valid email address';
                     }
                     return null;
-                  })),*/
+                  })),
               Padding(
                   padding: EdgeInsets.all(20.0),
                   child: ElevatedButton(
@@ -311,16 +324,20 @@ class _Screen2State extends State<Screen2> {
                           "      14. Turn on aviation radio and select appropriate frequecy: ${HeaderFiveResults[13]}\n"
                           "\n"
                           "   RPAS Setup Flow: ${rPASSetupFlow}\n"
-                          "   matrice: ${matrice}\n"
+                          "   matrice m210: ${matrice}\n"
                           "   wayfinder: ${wayfinder}\n"
+                          "   matrice m300: ${matrice300}\n"
+                          "   Mavic Mini: ${mavicMini}\n"
                           "\n"
                           "   Payload Setup ${payload}\n"
                           "   micaSense Payload: ${micaSense}\n"
-                          "   Zenmuse Payload: ${Zenmuse}\n"
+                          "   zenmuse x4s Payload: ${Zenmuse}\n"
                           "\n"
                           "   Pre Flight Power On Flow: ${poweron}\n"
-                          "   Power on matrice: ${matricepower}\n"
+                          "   Power on matrice m210: ${matricepower}\n"
                           "   Power on wayfinder: ${wayfinderpower}\n"
+                          "   Power on matrice 300: ${matrice300power}\n"
+                          "   Power on Mavic Mini: ${mavicMinipower}\n"
                           "\n"
                           "   Pre-Take-Off Checklist:\n      1. Wind and Weather: ${HeaderNineResults[0]}\n"
                           "      2. Air Vehicle Batteries above 50%: ${HeaderNineResults[1]}\n"
@@ -330,6 +347,8 @@ class _Screen2State extends State<Screen2> {
                           "      6. Take-Off Mode: ${HeaderNineResults[5]}\n"
                           "      7. Area and Air Traffic: ${HeaderNineResults[6]}\n"
                           "      8. Cleared Take-Off: ${HeaderNineResults[7]}\n"
+                          "\n"
+                          "   Flight Time: $timeValue\n"
                           "\n"
                           "   Landing Checklist:\n      1. Disarm RPA: ${HeaderElevenResults[0]}\n"
                           "      2. Ensure propellers have fully stopped: ${HeaderElevenResults[1]}\n"
@@ -346,8 +365,8 @@ class _Screen2State extends State<Screen2> {
                       final Email email = Email(
                         body: message,
                         subject: subjectController.text,
-                        //recipients: [emailController.text],
-                        recipients: [accountEmail],
+                        recipients: [emailController.text],
+                        //recipients: [accountEmail],
                         isHTML: false,
                       );
                       await FlutterEmailSender.send(email);

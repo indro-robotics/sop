@@ -79,7 +79,7 @@ class _ScreenPayloadFlowState extends State<ScreenPayloadFlow> {
                           )
                       ),
                       onPressed: _enterMicaSenseFlow,
-                      child: Text('MicaSense Payload'))),
+                      child: Text('MicaSense'))),
               SizedBox(height: 15),
               SizedBox(
                   width: 370,
@@ -102,7 +102,7 @@ class _ScreenPayloadFlowState extends State<ScreenPayloadFlow> {
                           )
                       ),
                       onPressed: _enterZenmuseFlow,
-                      child: Text('Zenmuse Payload'))),
+                      child: Text('zenmuse x4s'))),
               Padding(
                   padding: EdgeInsets.symmetric(vertical:60.0,horizontal: 100.0),
                   child:ElevatedButton(

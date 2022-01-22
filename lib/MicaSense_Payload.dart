@@ -83,9 +83,10 @@ class _ScreenMicaSenseFlowState extends State<ScreenMicaSenseFlow> {
   }
 
   void _doSomething() {
-    payload = 'complete';
-    micaSense = 'complete';
-
+    if(screenProgress.state.currentStageIndex==7) {
+      payload = 'complete';
+      micaSense = 'complete';
+    }
     Navigator.of(context).push(
         MaterialPageRoute(builder: (context) => Home(payload:payload, micaSense:micaSense)));
   }
@@ -120,6 +121,29 @@ class _ScreenMicaSenseFlowState extends State<ScreenMicaSenseFlow> {
             SizedBox(
               height: 80,
             ),
+      Container(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            FlatButton(
+              child: Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Text(
+                  "Back",
+                  style: TextStyle(fontSize: 20, color: Colors.white),
+                ),
+              ),
+              color: Colors.green,
+              shape: new RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.circular(20.0)),
+              onPressed: () {
+                if(screenProgress.state.currentStageIndex==0){
+                  _doSomething();
+                }
+                screenProgress.gotoPreviousStage();
+                changeText();
+              },
+            ),
             FlatButton(
               child: Padding(
                 padding: const EdgeInsets.all(15.0),
@@ -139,7 +163,7 @@ class _ScreenMicaSenseFlowState extends State<ScreenMicaSenseFlow> {
                 screenProgress.gotoNextStage();
                 changeText();
               },
-            ),
+            ),]))
           ],
         ),
       ),

@@ -89,9 +89,10 @@ class _ScreenWayfinderFlowState extends State<ScreenWayfinderFlow> {
   }
 
   void _doSomething() {
-    rPASSetupFlow = 'complete';
-    wayfinder = 'complete';
-
+    if(screenProgress.state.currentStageIndex==8) {
+      rPASSetupFlow = 'complete';
+      wayfinder = 'complete';
+    }
     Navigator.of(context).push(
         MaterialPageRoute(builder: (context) => Home(rPASSetupFlow: 'complete', wayfinder:wayfinder)));
   }
@@ -126,6 +127,29 @@ class _ScreenWayfinderFlowState extends State<ScreenWayfinderFlow> {
             SizedBox(
               height: 80,
             ),
+      Container(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            FlatButton(
+              child: Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Text(
+                  "Back",
+                  style: TextStyle(fontSize: 20, color: Colors.white),
+                ),
+              ),
+              color: Colors.green,
+              shape: new RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.circular(20.0)),
+              onPressed: () {
+                if(screenProgress.state.currentStageIndex==0){
+                  _doSomething();
+                }
+                screenProgress.gotoPreviousStage();
+                changeText();
+              },
+            ),
             FlatButton(
               child: Padding(
                 padding: const EdgeInsets.all(15.0),
@@ -145,7 +169,7 @@ class _ScreenWayfinderFlowState extends State<ScreenWayfinderFlow> {
                 screenProgress.gotoNextStage();
                 changeText();
               },
-            ),
+            ),]))
           ],
         ),
       ),

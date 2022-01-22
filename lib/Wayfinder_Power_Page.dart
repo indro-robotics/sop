@@ -149,9 +149,10 @@ class _ScreenWayfinderPowerState extends State<ScreenWayfinderPower> {
   }
 
   void _doSomething() {
-    poweron = 'complete';
-    wayfinderpower = 'complete';
-
+    if(screenProgress.state.currentStageIndex==24) {
+      poweron = 'complete';
+      wayfinderpower = 'complete';
+    }
     Navigator.of(context).push(
         MaterialPageRoute(builder: (context) => Home(poweron: poweron, wayfinderpower:wayfinderpower)));
   }
@@ -186,6 +187,29 @@ class _ScreenWayfinderPowerState extends State<ScreenWayfinderPower> {
             SizedBox(
               height: 80,
             ),
+      Container(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            FlatButton(
+              child: Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Text(
+                  "Back",
+                  style: TextStyle(fontSize: 20, color: Colors.white),
+                ),
+              ),
+              color: Colors.green,
+              shape: new RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.circular(20.0)),
+              onPressed: () {
+                if(screenProgress.state.currentStageIndex==0){
+                  _doSomething();
+                }
+                screenProgress.gotoPreviousStage();
+                changeText();
+              },
+            ),
             FlatButton(
               child: Padding(
                 padding: const EdgeInsets.all(15.0),
@@ -205,7 +229,7 @@ class _ScreenWayfinderPowerState extends State<ScreenWayfinderPower> {
                 screenProgress.gotoNextStage();
                 changeText();
               },
-            ),
+            ),]))
           ],
         ),
       ),

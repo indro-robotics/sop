@@ -75,9 +75,10 @@ class _ScreenZenmuseState extends State<ScreenZenmuseFlow> {
   }
 
   void _doSomething() {
-    payload = 'complete';
-    Zenmuse = 'complete';
-
+    if(screenProgress.state.currentStageIndex==5) {
+      payload = 'complete';
+      Zenmuse = 'complete';
+    }
     Navigator.of(context).push(
         MaterialPageRoute(builder: (context) => Home(payload:payload, Zenmuse:Zenmuse)));
   }
@@ -112,6 +113,29 @@ class _ScreenZenmuseState extends State<ScreenZenmuseFlow> {
             SizedBox(
               height: 80,
             ),
+      Container(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            FlatButton(
+              child: Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Text(
+                  "Back",
+                  style: TextStyle(fontSize: 20, color: Colors.white),
+                ),
+              ),
+              color: Colors.green,
+              shape: new RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.circular(20.0)),
+              onPressed: () {
+                if(screenProgress.state.currentStageIndex==0){
+                  _doSomething();
+                }
+                screenProgress.gotoPreviousStage();
+                changeText();
+              },
+            ),
             FlatButton(
               child: Padding(
                 padding: const EdgeInsets.all(15.0),
@@ -131,7 +155,7 @@ class _ScreenZenmuseState extends State<ScreenZenmuseFlow> {
                 screenProgress.gotoNextStage();
                 changeText();
               },
-            ),
+            ),]))
           ],
         ),
       ),

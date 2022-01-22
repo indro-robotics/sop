@@ -6,14 +6,14 @@ import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'Wayfinder_Power_Page.dart';
 
 //var rPASSetupFlow = 'incomplete';
-var matricepower = 'incomplete';
+var matrice300 = 'incomplete';
 
-class ScreenMatricePower extends StatefulWidget {
+class ScreenMatrice300Flow extends StatefulWidget {
   @override
-  _ScreenMatricePowerState createState() => _ScreenMatricePowerState();
+  _ScreenMatrice300FlowState createState() => _ScreenMatrice300FlowState();
 }
-class _ScreenMatricePowerState extends State<ScreenMatricePower> {
-  String textHolder = '1/10 \n\nOpen up CyrstalSky and extend handheld controller antennas';
+class _ScreenMatrice300FlowState extends State<ScreenMatrice300Flow> {
+  String textHolder = '1/10 \n\nInstall landing gear and ensure rotating locks are tight';
   String submitHolder = 'I Confirm';
 
   late ProgressTimeline screenProgress;
@@ -29,6 +29,10 @@ class _ScreenMatricePowerState extends State<ScreenMatricePower> {
     SingleState(stateTitle: "Stage 8"),
     SingleState(stateTitle: "Stage 9"),
     SingleState(stateTitle: "Stage 10"),
+    SingleState(stateTitle: "Stage 11"),
+    SingleState(stateTitle: "Stage 12"),
+    SingleState(stateTitle: "Stage 13"),
+    SingleState(stateTitle: "Stage 14"),
     SingleState(stateTitle: "Complete"),
   ];
 
@@ -37,37 +41,46 @@ class _ScreenMatricePowerState extends State<ScreenMatricePower> {
     setState(() {
       //rPASSetupFlow = 'incomplete';
       if(screenProgress.state.currentStageIndex == 0){
-        textHolder = '1/10 \n\nOpen up CyrstalSky and extend handheld controller antennas';
+        textHolder = '1/14 \n\nInstall landing gear and ensure rotating locks are tight';
       }
       else if(screenProgress.state.currentStageIndex == 1){
-        textHolder = '2/10 \n\nConnect handheld controller (USB) to the CrystalSky';
+        textHolder = '2/14 \n\nRemove aircraft from case and inspect for any damages';
       }
       else if(screenProgress.state.currentStageIndex == 2){
-        textHolder = '3/10 \n\nPush and Hold power button to turn on the controller';
+        textHolder = '3/14 \n\nExtend propeller arms, twist locks tight ';
       }
       else if(screenProgress.state.currentStageIndex == 3){
-        textHolder = '4/10 \n\nPush and Hold power button to turn on the drone';
+        textHolder = '4/14 \n\nInspect arms, legs and chassis for damage, notable wear, etc.';
       }
       else if(screenProgress.state.currentStageIndex == 4){
-        textHolder = '5/10 \n\nUse DJI Pilot app on the CrystalSky, should now connect to the Matrice.';
+        textHolder = '5/14 \n\nPropeller check: leading edge, cracks or breaks';
       }
       else if(screenProgress.state.currentStageIndex == 5){
-        textHolder = '6/10 \n\nGreen light with Matrice 210 beside it';
+        textHolder = '6/14 \n\nInspect motors: check give/resistance of each motor is equal';
       }
       else if(screenProgress.state.currentStageIndex == 6){
-        textHolder = '7/10 \n\nCheck to see that you can see via the FPV camera';
+        textHolder = '7/14 \n\nInspect & attach required payload(s)';
       }
       else if(screenProgress.state.currentStageIndex == 7){
-        textHolder = '8/10 \n\nEnsure control switches are set properly for operation (switch on top of handheld beside left antenna)';
+        textHolder = '8/14 \n\nEnsure gimbal is secure and lens cap removed.';
       }
       else if(screenProgress.state.currentStageIndex == 8){
-        textHolder = '9/10 \n\nDouble-Checks: \n - Return to home altitude \n - Flight mode \n - Compass & IMU calibration \n'
-            ' - ESC Status \n - Battery level \n - Battery temperature (>60C) \n - Vision sensor \n'
-            ' - Control stick mode (standard, flipped, etc.) \n - Remote controller battery';
+        textHolder = '9/14 \n\nInsert SD card in the payload as required';
       }
       else if(screenProgress.state.currentStageIndex == 9){
-        textHolder = '10/10 \n\nMenus: \n - Geo-fencing (max altitude, distance from home) \n - What drone does when signal is lost \n - Ensure obstacle avoidance is on \n'
-            ' - Check that signal strength is good \n - Ensure appropriate low battery & critical battery warnings';
+        textHolder = '10/14 \n\nInstall aircraft batteries.';
+      }
+      else if(screenProgress.state.currentStageIndex == 10){
+        textHolder = '11/14 \n\nPosition aircraft on launch pad.';
+      }
+      else if(screenProgress.state.currentStageIndex == 11){
+        textHolder = '12/14 \n\nInspect TB60 batteries for cracks, buldging, etc.';
+      }
+      else if(screenProgress.state.currentStageIndex == 12){
+        textHolder = '13/14 \n\nEnsure batteries were paired in the charger so they are at the same point in their lifecycle ';
+      }
+      else if(screenProgress.state.currentStageIndex == 13){
+        textHolder = '14/14 \n\nInstall the batteries by sliding them in from the back and locking the rotating lever';
       }
       else{
         textHolder = 'Completed!';
@@ -78,7 +91,7 @@ class _ScreenMatricePowerState extends State<ScreenMatricePower> {
   Color getColor(){
     //red is just a sample color
     Color color;
-    if(screenProgress.state.currentStageIndex < 10) {
+    if(screenProgress.state.currentStageIndex < 14) {
       color = Colors.green;
     } else {
       color = Colors.blue;
@@ -97,12 +110,12 @@ class _ScreenMatricePowerState extends State<ScreenMatricePower> {
   }
 
   void _doSomething() {
-    if(screenProgress.state.currentStageIndex==10) {
-      poweron = 'complete';
-      matricepower = 'complete';
+    if(screenProgress.state.currentStageIndex==14) {
+      rPASSetupFlow = 'complete';
+      matrice300 = 'complete';
     }
     Navigator.of(context).push(
-        MaterialPageRoute(builder: (context) => Home(poweron: poweron, matricepower:matricepower)));
+        MaterialPageRoute(builder: (context) => Home(poweron: poweron, matrice300:matrice300)));
   }
 
   @override
@@ -171,7 +184,7 @@ class _ScreenMatricePowerState extends State<ScreenMatricePower> {
                   borderRadius: new BorderRadius.circular(20.0)),
               //onPressed: (screenProgress.state.currentStageIndex == 12)? _doSomething : null,
               onPressed: () {
-                if(screenProgress.state.currentStageIndex==10){
+                if(screenProgress.state.currentStageIndex==14){
                   _doSomething();
                 }
                 screenProgress.gotoNextStage();
