@@ -32,15 +32,16 @@ class Screen2 extends StatefulWidget {
   var payload;
   var micaSense;
   var Zenmuse;
+  String timeValue;
   Screen2({Key? key,this.HeaderOneResults,this.HeaderTwoResults, this.HeaderThreeResults, this.HeaderFourResults,
   this.HeaderFiveResults, this.HeaderNineResults, this.HeaderElevenResults,this.rPASSetupFlow, this.matrice, this.wayfinder,
-  this.poweron, this.matricepower, this.wayfinderpower, this.payload, this.micaSense, this.Zenmuse}) : super(key: key);
+  this.poweron, this.matricepower, this.wayfinderpower, this.payload, this.micaSense, this.Zenmuse, required this.timeValue}) : super(key: key);
 
   _Screen2State createState() => _Screen2State(HeaderOneResults:HeaderOneResults, HeaderTwoResults:HeaderTwoResults,
   HeaderThreeResults:HeaderThreeResults, HeaderFourResults:HeaderFourResults, HeaderFiveResults:HeaderFiveResults,
       HeaderNineResults:HeaderNineResults, HeaderElevenResults:HeaderElevenResults,rPASSetupFlow:rPASSetupFlow,
       matrice:matrice, wayfinder:wayfinder, poweron:poweron, matricepower:matricepower, wayfinderpower:wayfinderpower,
-  payload:payload, micaSense:micaSense, Zenmuse:Zenmuse);
+  payload:payload, micaSense:micaSense, Zenmuse:Zenmuse, timeValue:timeValue);
 }
 
 class _Screen2State extends State<Screen2> {
@@ -62,6 +63,7 @@ class _Screen2State extends State<Screen2> {
   var payload;
   var micaSense;
   var Zenmuse;
+  String timeValue;
   late String accountEmail;// = user.email;
 
   //accountEmail = user.email;
@@ -69,7 +71,7 @@ class _Screen2State extends State<Screen2> {
 
   _Screen2State({Key? key,this.HeaderOneResults,this.HeaderTwoResults, this.HeaderThreeResults, this.HeaderFourResults,
   this.HeaderFiveResults, this.HeaderNineResults, this.HeaderElevenResults,this.rPASSetupFlow, this.matrice, this.wayfinder,
-  this.poweron, this.matricepower, this.wayfinderpower, this.payload, this.micaSense, this.Zenmuse});
+  this.poweron, this.matricepower, this.wayfinderpower, this.payload, this.micaSense, this.Zenmuse, required this.timeValue});
 
   void getEmail(){
     setState(() {
@@ -330,6 +332,8 @@ class _Screen2State extends State<Screen2> {
                           "      6. Take-Off Mode: ${HeaderNineResults[5]}\n"
                           "      7. Area and Air Traffic: ${HeaderNineResults[6]}\n"
                           "      8. Cleared Take-Off: ${HeaderNineResults[7]}\n"
+                          "\n"
+                          "   Flight Time: $timeValue\n"
                           "\n"
                           "   Landing Checklist:\n      1. Disarm RPA: ${HeaderElevenResults[0]}\n"
                           "      2. Ensure propellers have fully stopped: ${HeaderElevenResults[1]}\n"

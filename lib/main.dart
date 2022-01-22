@@ -91,7 +91,7 @@ class _HomeState extends State<Home> {
         HeaderThreeResults:HeaderThreeResults, HeaderFourResults:HeaderFourResults, HeaderFiveResults:HeaderFiveResults,
         HeaderNineResults:HeaderNineResults, HeaderElevenResults:HeaderElevenResults,  rPASSetupFlow: rPASSetupFlow, matrice:matrice,
         wayfinder:wayfinder, poweron:poweron, matricepower:matricepower, wayfinderpower:wayfinderpower,
-    payload:payload, micaSense:micaSense, Zenmuse:Zenmuse)));
+    payload:payload, micaSense:micaSense, Zenmuse:Zenmuse, timeValue:timeValue)));
   }
 
   void _enterPackUpFlow() {
@@ -533,7 +533,25 @@ class _HomeState extends State<Home> {
               SizedBox(
                   width: 370,
                   child:ElevatedButton(
-                      style: ButtonStyle(alignment: Alignment.center),
+                      style: ButtonStyle(alignment: Alignment.center,
+                          backgroundColor:
+                          MaterialStateProperty.resolveWith<Color>(
+                                (Set<MaterialState> states) {
+                              if (timeValue!="00:00:00" && buttonText=='Complete')
+                              {
+                                return Colors.green; // Use the component's default. }
+                              }
+                              else if(timeValue!="00:00:00"){
+                                return Colors.orangeAccent;
+                              }
+                              else
+                              {
+                                return Colors.blue;
+                              }
+                            },
+                          )
+
+                      ),
                       onPressed:  _enterTakeOffFlow,
                       child: Text('Take Off Flow'))),
               SizedBox(height: 5),
