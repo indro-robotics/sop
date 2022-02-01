@@ -2,13 +2,8 @@ import 'package:flutter/material.dart';
 import 'text_fields.dart';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'main.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:restart_app/restart_app.dart';
-import 'RPAS_Equipment.dart';
 import 'package:flutter_restart/flutter_restart.dart';
-import 'Mission_Equipment.dart';
-import 'PPE.dart';
+
 
 final _formKey = GlobalKey<FormState>();
 bool _enableBtn = false;
@@ -84,13 +79,13 @@ class _Screen2State extends State<Screen2> {
   this.poweron, this.matricepower, this.wayfinderpower, this.payload, this.micaSense, this.Zenmuse, required this.timeValue, this.matrice300power, this.matrice300,
   this.mavicMinipower, this.mavicMini});
 
-  void getEmail(){
-    setState(() {
+//  void getEmail(){
+//    setState(() {
       //accountEmail = user?.email.toString()!;
-      accountEmail = FirebaseAuth.instance.currentUser!.email.toString();
-    });
+//      accountEmail = FirebaseAuth.instance.currentUser!.email.toString();
+//    });
     //return accountEmail;
-  }
+//  }
 
   int _getPassed() {
     var passed = 0;
@@ -357,11 +352,8 @@ class _Screen2State extends State<Screen2> {
                           "      5. IF SHUT DOWN, power down GCS: ${HeaderElevenResults[4]}\n"
                           "      6. Turn off flight log: ${HeaderElevenResults[5]}\n"
                           "\n";
-                      //User? user = FirebaseAuth.instance.currentUser;
-                      //var accountEmail = Text('${FirebaseAuth.instance.currentUser?.email}');
-                      //var accoutEmail = user?.email;
-                      getEmail();
-                      print(accountEmail);
+                      //getEmail();
+                      //print(accountEmail);
                       final Email email = Email(
                         body: message,
                         subject: subjectController.text,

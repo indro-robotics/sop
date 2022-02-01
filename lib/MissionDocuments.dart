@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'text_fields.dart';
-import 'package:flutter_email_sender/flutter_email_sender.dart';
-import 'emailNav.dart';
-import 'loginNav.dart';
 import 'main.dart';
 
 var HeaderFourResults = ['incomplete', 'incomplete','incomplete', 'incomplete','incomplete', 'incomplete','incomplete',

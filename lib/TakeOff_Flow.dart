@@ -1,13 +1,7 @@
 import 'package:flutter/material.dart';
-import 'text_fields.dart';
-import 'package:flutter_email_sender/flutter_email_sender.dart';
-import 'emailNav.dart';
-import 'loginNav.dart';
 import 'main.dart';
 import 'dart:async';
-import 'timer_builder.dart';
 import 'emergencyPage.dart';
-import 'package:location/location.dart';
 
 var flightTime = '';
 enum CustomTimerState { reset, paused, counting, finished }
