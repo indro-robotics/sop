@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'main.dart';
-import 'Drone_Type_Page.dart';
 import 'package:progress_timeline/progress_timeline.dart';
 import 'package:flutter/widgets.dart';
-import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
+
 
 //var rPASSetupFlow = 'incomplete';
 var mavicMini = 'incomplete';

@@ -1,11 +1,7 @@
 
 
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'text_fields.dart';
-import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'emailNav.dart';
-import 'loginNav.dart';
 import 'RPAS_Equipment.dart';
 import 'Mission_Equipment.dart';
 import 'PPE.dart';
@@ -17,8 +13,6 @@ import 'Pre_Flight_PowerOn_Flow.dart';
 import 'Pre_TakeOff_Checklist.dart';
 import 'TakeOff_Flow.dart';
 import 'Landing_Checklist.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'LoginPage.dart';
 import 'Drone_Type_Page.dart';
 import 'RPAS_Wayfinder_Flow.dart';
 import 'Matrice_Power_Page.dart';

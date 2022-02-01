@@ -1,12 +1,5 @@
 import 'package:flutter/material.dart';
-import 'text_fields.dart';
-import 'package:flutter_email_sender/flutter_email_sender.dart';
-import 'emailNav.dart';
-import 'loginNav.dart';
-import 'main.dart';
-import 'dart:async';
 import 'TakeOff_Flow.dart';
-import 'package:flutter/material.dart';
 
 const Color colorScaffoldBackground = Colors.white;
 const Color colorAccountOverviewbackground = Colors.red;
