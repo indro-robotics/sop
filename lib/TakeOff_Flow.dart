@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'main.dart';
 import 'dart:async';
 import 'emergencyPage.dart';
+import 'package:spritewidget/spritewidget.dart';
 
 var flightTime = '';
+var flightStart = '';
+var flightEnd = '';
 enum CustomTimerState { reset, paused, counting, finished }
 
 bool isStartPressed= false;
@@ -275,6 +278,9 @@ class _ScreenTakeOffFlowState extends State<ScreenTakeOffFlow> with TickerProvid
                     onPressed: () {
                       setState(() {
                         if(buttonText=='Start'){
+                          setState(() {
+                            flightStart = DateTime.now().toString();
+                          });
                           buttonText = 'In Flight';
                           buttonColor = Color(0xFFFFF59D);
                           //buttonIcon = Icons.flight_outlined;
@@ -345,6 +351,9 @@ class _ScreenTakeOffFlowState extends State<ScreenTakeOffFlow> with TickerProvid
                           //flightVal ==2;
                         }*/
                         else if(buttonText =='End Flight'){
+                          setState(() {
+                            flightEnd = DateTime.now().toString();
+                          });
                           buttonText = 'Complete';
                           buttonColor = Colors.grey;
                           //buttonIcon = Icons.airplanemode_off;
@@ -388,6 +397,8 @@ class _ScreenTakeOffFlowState extends State<ScreenTakeOffFlow> with TickerProvid
                       stopStopWatch();
                       isStartPressed = false;
                       setState(() {
+                        flightStart = '';
+                        flightEnd = '';
                         buttonText = 'Start';
                         buttonColor = Colors.green;
                         buttonIcon = Icons.flight_takeoff;

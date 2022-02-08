@@ -1,5 +1,6 @@
 
 
+
 import 'package:flutter/material.dart';
 import 'emailNav.dart';
 import 'RPAS_Equipment.dart';
@@ -23,6 +24,9 @@ import 'Matrice300_Power_Page.dart';
 import 'Matrice300_RPAS.dart';
 import 'DJI_Mavic_Mini_RPAS.dart';
 import 'DJI_Mavic_Mini_PowerOn.dart';
+import 'pdf_paragraph_api.dart';
+import 'pdf_api.dart';
+
 
 
 
@@ -93,7 +97,14 @@ class _HomeState extends State<Home> {
   //int count = 0;
   //final auth = FirebaseAuth.instance;
 
-  void NavigateScrean2() {
+  /*Future<void> NavigateScrean2() async {
+    final pdfFile = await PdfParagraphApi.generate();
+    PdfApi.openFile(pdfFile);
+
+  }*/
+
+
+  Future<void> NavigateScrean2() async {
     Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Screen2(HeaderOneResults:HeaderOneResults, HeaderTwoResults:HeaderTwoResults,
         HeaderThreeResults:HeaderThreeResults, HeaderFourResults:HeaderFourResults, HeaderFiveResults:HeaderFiveResults,
         HeaderNineResults:HeaderNineResults, HeaderElevenResults:HeaderElevenResults,  rPASSetupFlow: rPASSetupFlow, matrice:matrice,
@@ -123,7 +134,8 @@ class _HomeState extends State<Home> {
   }
   void _enterRPASFlow() {
     Navigator.of(context).push(
-        MaterialPageRoute(builder: (context) => ScreenDroneType(rPASSetupFlow:rPASSetupFlow, matrice:matrice, wayfinder:wayfinder)));
+        MaterialPageRoute(builder: (context) => ScreenDroneType(rPASSetupFlow:rPASSetupFlow, matrice:matrice, wayfinder:wayfinder, matrice300:matrice300,
+            mavicMini:mavicMini)));
   }
   void _enterPayloadFlow() {
     Navigator.of(context).push(
@@ -131,7 +143,8 @@ class _HomeState extends State<Home> {
   }
   void _enterPreFlightFlow() {
     Navigator.of(context).push(
-        MaterialPageRoute(builder: (context) => ScreenPowerOn(poweron:poweron, matricepower:matricepower, wayfinderpower:wayfinderpower)));
+        MaterialPageRoute(builder: (context) => ScreenPowerOn(poweron:poweron, matricepower:matricepower, wayfinderpower:wayfinderpower,
+            matrice300power:matrice300power, mavicMinipower:mavicMinipower)));
   }
   void _enterPreTakeOffChecklist() {
     Navigator.of(context).push(
@@ -623,4 +636,5 @@ class _HomeState extends State<Home> {
     );
   }
 }
+
 

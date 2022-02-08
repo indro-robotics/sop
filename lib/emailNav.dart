@@ -1,12 +1,17 @@
+
 import 'package:flutter/material.dart';
 import 'text_fields.dart';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'main.dart';
 import 'package:flutter_restart/flutter_restart.dart';
+import 'pdf_paragraph_api.dart';
 
 
 final _formKey = GlobalKey<FormState>();
 bool _enableBtn = false;
+bool _allowWriteFile = false;
+
+
 
 
 class Screen2 extends StatefulWidget {
@@ -86,6 +91,9 @@ class _Screen2State extends State<Screen2> {
 //    });
     //return accountEmail;
 //  }
+
+
+
 
   int _getPassed() {
     var passed = 0;
@@ -247,6 +255,8 @@ class _Screen2State extends State<Screen2> {
                     onPressed: _enableBtn
                         ? (() async {
 
+
+
                       var passed = _getPassed();
                       var failed = _getFailed();
 
@@ -354,22 +364,24 @@ class _Screen2State extends State<Screen2> {
                           "\n";
                       //getEmail();
                       //print(accountEmail);
+                      //final pdfFile = await PdfParagraphApi.generate();
+                      final pdfFile = await PdfParagraphApi.generate(emailController.text);
+                      //PdfApi.openFile(pdfFile);
+                      String filepath = pdfFile.path;
+                      //List<String> attachments = List<String>(1);
+                      List<String> attachments = [filepath];
+                      //attachments[0] = filepath;
+
+                      //PdfApi.openFile(pdfFile);
                       final Email email = Email(
                         body: message,
                         subject: subjectController.text,
                         recipients: [emailController.text],
+                        attachmentPaths: attachments,
                         //recipients: [accountEmail],
                         isHTML: false,
                       );
                       await FlutterEmailSender.send(email);
-                     //Navigator.popAndPushNamed(context, "/currentRoute");
-                      //Navigator.of(context).push(
-                      //    MaterialPageRoute(builder: (context) => ScreenPackUpFlow()));
-                      //Navigator.popAndPushNamed(context, "/currentRoute");
-                      //Navigator.popAndPushNamed(ScreenPackUpFlow());
-                      //RestartWidget.restartApp(context);
-                      //runApp(MyApp());
-                      //Navigator.popAndPushNamed(context,'ScreenPackUpFlow');
                       FlutterRestart.restartApp();
                       Navigator.of(context).pushReplacement(MaterialPageRoute(builder:(context)=>Home()));
 
