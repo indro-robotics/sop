@@ -5,6 +5,11 @@ import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'main.dart';
 import 'package:flutter_restart/flutter_restart.dart';
 import 'pdf_paragraph_api.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:syncfusion_flutter_pdf/pdf.dart';
+import 'dart:io';
+import 'package:restart_app/restart_app.dart';
+
 
 
 final _formKey = GlobalKey<FormState>();
@@ -259,7 +264,8 @@ class _Screen2State extends State<Screen2> {
 
                       var passed = _getPassed();
                       var failed = _getFailed();
-
+                      var message = 'SOP results';
+                      /*
                       var message = "SOP results: \n\n"
                           "Passed: ${passed}\n"
                           "Failed: ${failed}\n\n"
@@ -362,29 +368,31 @@ class _Screen2State extends State<Screen2> {
                           "      5. IF SHUT DOWN, power down GCS: ${HeaderElevenResults[4]}\n"
                           "      6. Turn off flight log: ${HeaderElevenResults[5]}\n"
                           "\n";
-                      //getEmail();
-                      //print(accountEmail);
-                      //final pdfFile = await PdfParagraphApi.generate();
-                      final pdfFile = await PdfParagraphApi.generate(emailController.text);
-                      //PdfApi.openFile(pdfFile);
-                      String filepath = pdfFile.path;
-                      //List<String> attachments = List<String>(1);
-                      List<String> attachments = [filepath];
-                      //attachments[0] = filepath;
 
-                      //PdfApi.openFile(pdfFile);
+                       */
+                      //Create document file
+                      final pdfFile = await PdfParagraphApi.generate(emailController.text);
+                      //final file = await PdfParagraphApi.generate(emailController.text);
+                      //add watermark and change Document to PDF
+                      //final pdfFile = await WatermarkAPI.addWatermark(pdf: file);
+                      //save document
+
+                      String filepath = pdfFile.path;
+
+                      List<String> attachments = [filepath];
+
+                      //Send email
                       final Email email = Email(
                         body: message,
                         subject: subjectController.text,
                         recipients: [emailController.text],
                         attachmentPaths: attachments,
-                        //recipients: [accountEmail],
                         isHTML: false,
                       );
                       await FlutterEmailSender.send(email);
-                      FlutterRestart.restartApp();
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(builder:(context)=>Home()));
-
+                      //await FlutterRestart.restartApp();
+                      //Navigator.of(context).pushReplacement(MaterialPageRoute(builder:(context)=>Home()));
+                      await Restart.restartApp();
                     })
                         : null,
                     child: Text('Submit'),

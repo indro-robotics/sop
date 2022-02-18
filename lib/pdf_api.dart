@@ -1,10 +1,12 @@
+//import 'package:syncfusion_flutter_pdf/pdf.dart';
 import 'dart:io';
 import 'emailNav.dart';
 import 'package:open_file/open_file.dart';
 import 'package:pdf/widgets.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pdf/pdf.dart';
-import 'package:open_file/open_file.dart';
+
+
 
 
 
@@ -18,6 +20,9 @@ class PdfApi{
         child: Text(text,style: TextStyle(fontSize: 48)),
       ),
     ));
+
+    //PdfGraphics graphics = pdf.graphics;
+
     var now = DateTime.now().toString();
     String dateResult = now.replaceAll(RegExp('_'), ' ');
     if (dateResult != null && dateResult.length >= 4) {
@@ -38,9 +43,15 @@ class PdfApi{
     required String name,
     required Document pdf,
   }) async{
+
+    //add watermark
+    //PdfGraphics graphics = pdf.graphics;
+
     final bytes = await pdf.save();
     final dir = await getApplicationDocumentsDirectory();
     final file = File('${dir.path}/$name');
+
+
     await file.writeAsBytes(bytes);
     return file;
   }
@@ -51,8 +62,11 @@ class PdfApi{
   }) async{
     final bytes = await pdf.save();
     final path = (await getExternalStorageDirectory())?.path;
+
     final file = File('$path/$name');
+    //String filePath = ('$path/$name');
     await file.writeAsBytes(bytes, flush: true);
+    //file.dispose();
     return file;
     //OpenFile.open('$path/$name');
     //await file.writeAsBytes(bytes);

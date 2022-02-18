@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:ui';
 
 import 'package:flutter/services.dart';
 import 'RPAS_Equipment.dart';
@@ -26,6 +27,7 @@ import 'Matrice300_RPAS.dart';
 import 'DJI_Mavic_Mini_RPAS.dart';
 import 'DJI_Mavic_Mini_PowerOn.dart';
 import 'Drone_Type_Page.dart';
+//import 'package:syncfusion_flutter_pdf/pdf.dart';
 
 class PdfParagraphApi {
   static Future<File> generate(String email) async {
@@ -33,10 +35,23 @@ class PdfParagraphApi {
 
     //final customFont =
     //Font.ttf(await rootBundle.load('assets/OpenSans-Regular.ttf'));
+    final watermark = (await rootBundle.load('assets/images/Watermark.png')).buffer.asUint8List();
+    final pageTheme=PageTheme(
+      pageFormat: PdfPageFormat.a4,
+      buildBackground:(context){
+        return FullPage(
+          ignoreMargins: true,
+          child:Image(MemoryImage(watermark)),
+        );
+      },
+    );
 
     pdf.addPage(
       MultiPage(
+        pageTheme: pageTheme,
         build: (context) => <Widget>[
+          //Image(MemoryImage(watermark),
+          //width: pageTheme.pageFormat.width),
           HeaderOne(),
           SizedBox(height: 0.5 * PdfPageFormat.cm),
           Paragraph(
@@ -184,7 +199,14 @@ class PdfParagraphApi {
 
     String result = prefix + dateResult + end;
 
+    //1. PdfDocument pdfDoc = PdfApi.saveExternalDocument(name:result, pdf:pdf) as PdfDocument;
     return PdfApi.saveExternalDocument(name: result, pdf:pdf);
+    //return WatermarkAPI.addWatermark(pdf:pdf, name:result);
+    //return(pdf);
+
+    //PdfGraphics graphics = pdfDoc.pages.graphics;
+
+
   }
 
   static Widget HeaderOne() => Container(
@@ -214,7 +236,7 @@ class PdfParagraphApi {
       ),
     ),
     padding: EdgeInsets.all(4),
-    decoration: BoxDecoration(color: PdfColors.orange),
+    decoration: BoxDecoration(color: const PdfColor.fromInt(0xfff47423)),
   );
   static Widget HeaderOne_One() => Container(
     //padding: EdgeInsets.only(bottom: 3 * PdfPageFormat.mm),
@@ -398,7 +420,7 @@ class PdfParagraphApi {
       ),
     ),
     padding: EdgeInsets.all(4),
-    decoration: BoxDecoration(color: PdfColors.orange),
+    decoration: const BoxDecoration(color: PdfColor.fromInt(0xfff47423)),
   );
   static Widget HeaderTwo_One() => Container(
     //padding: EdgeInsets.only(bottom: 3 * PdfPageFormat.mm),
@@ -715,7 +737,7 @@ class PdfParagraphApi {
       ),
     ),
     padding: EdgeInsets.all(4),
-    decoration: BoxDecoration(color: PdfColors.orange),
+    decoration: const BoxDecoration(color: const PdfColor.fromInt(0xfff47423)),
   );
   static Widget HeaderThree_One() => Container(
     //padding: EdgeInsets.only(bottom: 3 * PdfPageFormat.mm),
@@ -899,7 +921,7 @@ class PdfParagraphApi {
       ),
     ),
     padding: EdgeInsets.all(4),
-    decoration: BoxDecoration(color: PdfColors.orange),
+    decoration: const BoxDecoration(color: PdfColor.fromInt(0xfff47423)),
   );
   static Widget HeaderFour_One() => Container(
     //padding: EdgeInsets.only(bottom: 3 * PdfPageFormat.mm),
@@ -1102,7 +1124,7 @@ class PdfParagraphApi {
       ),
     ),
     padding: EdgeInsets.all(4),
-    decoration: BoxDecoration(color: PdfColors.orange),
+    decoration: const BoxDecoration(color: PdfColor.fromInt(0xfff47423)),
   );
   static Widget HeaderFive_One() => Container(
     //padding: EdgeInsets.only(bottom: 3 * PdfPageFormat.mm),
@@ -1381,7 +1403,7 @@ class PdfParagraphApi {
       ),
     ),
     padding: EdgeInsets.all(4),
-    decoration: BoxDecoration(color: PdfColors.orange),
+    decoration: const BoxDecoration(color: PdfColor.fromInt(0xfff47423)),
   );
   static Widget HeaderSix_One() => Container(
     //padding: EdgeInsets.only(bottom: 3 * PdfPageFormat.mm),
@@ -1489,7 +1511,7 @@ class PdfParagraphApi {
       ),
     ),
     padding: EdgeInsets.all(4),
-    decoration: BoxDecoration(color: PdfColors.orange),
+    decoration: const BoxDecoration(color: PdfColor.fromInt(0xfff47423)),
   );
   static Widget HeaderSeven_One() => Container(
     //padding: EdgeInsets.only(bottom: 3 * PdfPageFormat.mm),
@@ -1559,7 +1581,7 @@ class PdfParagraphApi {
       ),
     ),
     padding: EdgeInsets.all(4),
-    decoration: BoxDecoration(color: PdfColors.orange),
+    decoration: const BoxDecoration(color: PdfColor.fromInt(0xfff47423)),
   );
   static Widget HeaderEight_One() => Container(
     //padding: EdgeInsets.only(bottom: 3 * PdfPageFormat.mm),
@@ -1667,7 +1689,7 @@ class PdfParagraphApi {
       ),
     ),
     padding: EdgeInsets.all(4),
-    decoration: BoxDecoration(color: PdfColors.orange),
+    decoration: const BoxDecoration(color: PdfColor.fromInt(0xfff47423)),
   );
   static Widget HeaderNine_One() => Container(
     //padding: EdgeInsets.only(bottom: 3 * PdfPageFormat.mm),
@@ -1832,7 +1854,7 @@ class PdfParagraphApi {
       ),
     ),
     padding: EdgeInsets.all(4),
-    decoration: BoxDecoration(color: PdfColors.orange),
+    decoration: const BoxDecoration(color: PdfColor.fromInt(0xfff47423)),
   );
   static Widget HeaderTen_One() => Container(
     //padding: EdgeInsets.only(bottom: 3 * PdfPageFormat.mm),
@@ -1902,7 +1924,7 @@ class PdfParagraphApi {
       ),
     ),
     padding: EdgeInsets.all(4),
-    decoration: BoxDecoration(color: PdfColors.orange),
+    decoration: const BoxDecoration(color: PdfColor.fromInt(0xfff47423)),
   );
   static Widget HeaderEleven_One() => Container(
     //padding: EdgeInsets.only(bottom: 3 * PdfPageFormat.mm),

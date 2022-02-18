@@ -26,6 +26,7 @@ import 'DJI_Mavic_Mini_RPAS.dart';
 import 'DJI_Mavic_Mini_PowerOn.dart';
 import 'pdf_paragraph_api.dart';
 import 'pdf_api.dart';
+import 'package:restart_app/restart_app.dart';
 
 
 
@@ -159,6 +160,11 @@ class _HomeState extends State<Home> {
         MaterialPageRoute(builder: (context) => ScreenLandingChecklist()));
   }
 
+  Future<void> _reset() async {
+    await Restart.restartApp();
+  }
+
+
   void _signOut(){
     //auth.signOut();
     //Navigator.of(context).pushReplacement(MaterialPageRoute(builder:(context)=>LoginNav()));
@@ -173,12 +179,12 @@ class _HomeState extends State<Home> {
           title: Text(
             'indrorobotics.ca',
           ),
-          /*actions:<Widget>[
+          actions:<Widget>[
             IconButton(
-              icon: Icon(Icons.account_circle),
-              onPressed: _signOut,
+              icon: Icon(Icons.refresh),
+              onPressed: _reset,
             ),
-          ],*/
+          ],
         ),
         body:
         SingleChildScrollView(
