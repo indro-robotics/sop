@@ -27,6 +27,7 @@ import 'DJI_Mavic_Mini_PowerOn.dart';
 import 'pdf_paragraph_api.dart';
 import 'pdf_api.dart';
 import 'package:restart_app/restart_app.dart';
+import 'package:flutter_restart/flutter_restart.dart';
 
 
 
@@ -161,7 +162,8 @@ class _HomeState extends State<Home> {
   }
 
   Future<void> _reset() async {
-    await Restart.restartApp();
+    //await Restart.restartApp();
+    await FlutterRestart.restartApp();
   }
 
 
