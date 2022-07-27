@@ -395,8 +395,8 @@ class _Screen2State extends State<Screen2> {
                       await FlutterEmailSender.send(email);
 
                       //await FlutterRestart.restartApp();
-                      reset = true;
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(builder:(context)=>Home()));
+                      //reset = true;
+                      //Navigator.of(context).pushReplacement(MaterialPageRoute(builder:(context)=>Home()));
 
                       //await Restart.restartApp();
                         //await FlutterRestart.restartApp();

@@ -269,7 +269,6 @@ class _HomeState extends State<Home> {
     header = "Ready For Take-Off";
     body = 'Please have pre-flight requirements completed';
     backgroundImage = 'assets/images/bottom2.jpg';
-    reset = false;
     (context as Element).reassemble();
   }
 
@@ -280,9 +279,6 @@ class _HomeState extends State<Home> {
   }
 
   Widget build(BuildContext context) {
-    if(reset){
-      _reset;
-    }
 
     return Scaffold(
         appBar: AppBar(
