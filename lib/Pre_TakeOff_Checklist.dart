@@ -5,16 +5,24 @@ var HeaderNineResults = ['incomplete', 'incomplete','incomplete', 'incomplete','
 
 
 class ScreenPreTakeOffChecklist extends StatefulWidget {
+
+  ScreenPreTakeOffChecklist({Key? key}) : super(key: key);
   @override
   _ScreenPreTakeOffChecklistState createState() => _ScreenPreTakeOffChecklistState();
 }
 class _ScreenPreTakeOffChecklistState extends State<ScreenPreTakeOffChecklist> {
+  _ScreenPreTakeOffChecklistState({Key? key});
+
+
   @override
   void _doSomething() {
     Navigator.of(context).push(
         MaterialPageRoute(builder: (context) => Home(HeaderNineResults: HeaderNineResults)));
   }
   Widget build(BuildContext context) {
+    String valueYes = 'yes';
+    String valueNo = 'no';
+    int restartYes = 0;
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.orange,

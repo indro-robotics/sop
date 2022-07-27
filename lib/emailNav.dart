@@ -9,14 +9,16 @@ import 'package:path_provider/path_provider.dart';
 import 'package:syncfusion_flutter_pdf/pdf.dart';
 import 'dart:io';
 import 'package:restart_app/restart_app.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
 
+import 'TakeOff_Flow.dart';
 
 
 final _formKey = GlobalKey<FormState>();
 bool _enableBtn = false;
 bool _allowWriteFile = false;
 
-
+bool reset = false;
 
 
 class Screen2 extends StatefulWidget {
@@ -191,6 +193,7 @@ class _Screen2State extends State<Screen2> {
 
     return failed;
   }
+
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -390,10 +393,15 @@ class _Screen2State extends State<Screen2> {
                         isHTML: false,
                       );
                       await FlutterEmailSender.send(email);
+
                       //await FlutterRestart.restartApp();
-                      //Navigator.of(context).pushReplacement(MaterialPageRoute(builder:(context)=>Home()));
+                      reset = true;
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(builder:(context)=>Home()));
+
                       //await Restart.restartApp();
-                        await FlutterRestart.restartApp();
+                        //await FlutterRestart.restartApp();
+                      //RestartWidget.restartApp(context);
+                      //Phoenix.rebirth(context);
                         })
                         : null,
                     child: Text('Submit'),

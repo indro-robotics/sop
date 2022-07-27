@@ -87,6 +87,15 @@ class _ScreenTakeOffFlowState extends State<ScreenTakeOffFlow> with TickerProvid
     if (isStartPressed) {
       startStopWatch();
     }
+    if (isStopPressed){
+      stopStopWatch();
+      isStopPressed = false;
+    }
+    if (isResetPressed) {
+      resetStopWatch();
+      isResetPressed = false;
+    }
+
     return Material(
     child: Container(
         width: 450,
@@ -393,11 +402,12 @@ class _ScreenTakeOffFlowState extends State<ScreenTakeOffFlow> with TickerProvid
                 RaisedButton(
                     child: Text('Restart'),
                     onPressed: () {
-                      resetStopWatch();
                       stopStopWatch();
+                      resetStopWatch();
                       isStartPressed = false;
                       setState(() {
                         flightStart = '';
+                        timeValue="00:00:00";
                         flightEnd = '';
                         buttonText = 'Start';
                         buttonColor = Colors.green;

@@ -28,6 +28,7 @@ import 'pdf_paragraph_api.dart';
 import 'pdf_api.dart';
 import 'package:restart_app/restart_app.dart';
 import 'package:flutter_restart/flutter_restart.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
 
 
 
@@ -36,20 +37,71 @@ import 'package:flutter_restart/flutter_restart.dart';
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   //await Firebase.initializeApp();
-  runApp(MyApp());
+  //runApp(MyApp());
+  runApp(
+    RestartWidget(
+      child:MyApp(),
+    ),
+  );
 }
+
+
+class RestartWidget extends StatefulWidget {
+  RestartWidget({required this.child});
+  final Widget child;
+
+  static void restartApp(BuildContext context) {
+    //final _RestartWidgetState state = context.findAncestorStateOfType<State<RestartWidget>>();
+    context.findAncestorStateOfType<_RestartWidgetState>()?.restartApp();
+    //context.findAncestorStateOfType<State<RestartWidget>>();
+  }
+
+  @override
+  _RestartWidgetState createState() => _RestartWidgetState();
+}
+
+class _RestartWidgetState extends State<RestartWidget> {
+  Key key = UniqueKey();
+
+  void restartApp() {
+    //Navigator.of(context).push(
+    //    MaterialPageRoute(builder: (context) => ScreenPreTakeOffChecklist(restart:true)));
+    setState(() {
+      key = UniqueKey();
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return KeyedSubtree(
+      key: key,
+      child: widget.child,
+    );
+  }
+}
+
+
+
 /// This Widget is the main application widget.
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   //FirebaseAuth auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
-
+    /*return RestartWidget(
+      child: MaterialApp(
+        home: Home()
+      )
+    );*/
     return MaterialApp(
       home: Home(),
       //home: LoginNav(),
     );
   }
 }
+
+
 
 final _formKey = GlobalKey<FormState>();
 bool _enableBtn = false;
@@ -62,6 +114,7 @@ var payload = 'incomplete';
 //var rPASSetupFlow = 'incomplete';
 
 class Home extends StatefulWidget {
+
   @override
   var HeaderOneResults;
   var HeaderTwoResults;
@@ -86,10 +139,15 @@ class Home extends StatefulWidget {
   var matrice300;
   var mavicMinipower;
   var mavicMini;
+
+  var flightStart;
+  var flightEnd;
+
   Home({Key? key, this.HeaderOneResults, this.HeaderTwoResults, this.HeaderThreeResults, this.HeaderFourResults, this.HeaderFiveResults,
     this.HeaderNineResults, this.HeaderElevenResults,
     this.rPASSetupFlow, this.matrice, this.wayfinder, this.poweron, this.matricepower, this.wayfinderpower,
-  this.payload, this.micaSense, this.Zenmuse, this.flightTime, this.matrice300power, this.matrice300, this.mavicMini, this.mavicMinipower}) : super(key: key);
+  this.payload, this.micaSense, this.Zenmuse, this.flightTime, this.matrice300power, this.matrice300, this.mavicMini, this.mavicMinipower,
+  this.flightStart, this.flightEnd}) : super(key: key);
 
   _HomeState createState() => _HomeState();
 
@@ -162,8 +220,57 @@ class _HomeState extends State<Home> {
   }
 
   Future<void> _reset() async {
-    //await Restart.restartApp();
-    await FlutterRestart.restartApp();
+    for(int i=0; i<HeaderOneResults.length; i++){
+      HeaderOneResults[i] = 'incomplete';
+    }
+    for(int i=0; i<HeaderTwoResults.length; i++){
+      HeaderTwoResults[i] = 'incomplete';
+    }
+    for(int i=0; i<HeaderThreeResults.length; i++){
+      HeaderThreeResults[i] = 'incomplete';
+    }
+    for(int i=0; i<HeaderFourResults.length; i++){
+      HeaderFourResults[i] = 'incomplete';
+    }
+    for(int i=0; i<HeaderFiveResults.length; i++){
+      HeaderFiveResults[i] = 'incomplete';
+    }
+    for(int i=0; i<HeaderNineResults.length; i++){
+      HeaderNineResults[i] = 'incomplete';
+    }
+    for(int i=0; i<HeaderElevenResults.length; i++){
+      HeaderElevenResults[i] = 'incomplete';
+    }
+    rPASSetupFlow = 'incomplete';
+    matrice = 'incomplete';
+    wayfinder = 'incomplete';
+    matrice300 = 'incomplete';
+    mavicMini = 'incomplete';
+
+    poweron = 'incomplete';
+    matricepower = 'incomplete';
+    wayfinderpower = 'incomplete';
+    payload = 'incomplete';
+    micaSense = 'incomplete';
+    Zenmuse = 'incomplete';
+    flightTime = '';
+    matrice300power = 'incomplete';
+    mavicMinipower = 'incomplete';
+
+    isStartPressed= false;
+    isResetPressed= true;
+    isStopPressed= true;
+    flightStart = '';
+    flightEnd = '';
+    timeValue ="00:00:00";
+    buttonText='Start';
+    buttonColor = Colors.green;
+    buttonIcon = Icons.flight_takeoff;
+    header = "Ready For Take-Off";
+    body = 'Please have pre-flight requirements completed';
+    backgroundImage = 'assets/images/bottom2.jpg';
+    reset = false;
+    (context as Element).reassemble();
   }
 
 
@@ -173,6 +280,10 @@ class _HomeState extends State<Home> {
   }
 
   Widget build(BuildContext context) {
+    if(reset){
+      _reset;
+    }
+
     return Scaffold(
         appBar: AppBar(
           //leading: Icon(Icons.accessibility),
